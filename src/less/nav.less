@@ -1,0 +1,84 @@
+.navigation{
+    height:100%;
+    box-sizing: border-box;
+
+    .containerNav{
+        display: flex;
+        height:100%;
+        flex-direction: column;
+        justify-content: space-between;
+        .optionsTop{
+            width:90%;
+            margin:30px auto;
+            nav{
+                ul{
+                    li{
+                        text-align: center;
+                        margin-bottom: 20px; 
+                        text-align: center;
+                        cursor: pointer;
+                        div{
+                            width:50px;
+                            height:50px;
+                            margin:auto;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            border:1px solid transparent;
+                            border-radius: 100%;
+                            text-align: center;
+                            transition: .3s;
+                            .icon{
+                                font-size: 20px;
+                                color: @bgDefault;
+                            }
+                        }
+                    }
+                    li:hover{
+                        div{
+                            background-color: rgba(255, 255, 255, 0.3);
+                            border:1px solid rgba(255, 255, 255, 0.3);
+                            
+
+                        }
+                    }
+                    li.Active{
+                        div{
+                            background-color: rgba(255, 255, 255, 0.5);
+                        }
+                    }
+                }
+            }
+        }
+        .optionsBottom{
+            width:90%;
+            margin: 0px auto;
+            margin-bottom: 30px;
+            bottom:0;
+            nav{
+                ul{
+                    li{
+                        margin-bottom: 20px;
+                        .icono{
+                            text-align: center;
+                            .icon{
+                                font-size: 30px;
+                                color: white;
+                            }
+                        }
+                        .profileIcono{
+                            width:40px;
+                            margin:auto;
+                            height:40px;
+                            img{
+                                height: 100%;
+                                border-radius: 100%;
+                                width:100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

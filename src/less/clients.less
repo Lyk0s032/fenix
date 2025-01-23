@@ -1,0 +1,1844 @@
+.clients{
+    box-sizing: border-box;
+    height:100%;
+    .topHeader{
+        height:10%;
+        display:flex;
+        align-items: center;
+        width:98%;
+        margin:auto;
+        .logo{
+            width:5%;
+            img{
+                width:100%;
+            }
+        }
+        
+    }
+    .dashboard{
+        box-sizing: border-box;
+        height:90%;
+        overflow-y: auto;
+        .containerDashboard{
+            width:98%;
+            margin:auto;
+            height:100%;
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            .leftDashboard{
+                width:65%;
+                height: 100%;
+                .topBoxDashboard{
+                    margin:auto;
+                    box-sizing: border-box;
+                    height:20%;
+                    .containerBoxsDashboard{
+                        width:100%;
+                        justify-content: space-between;
+                        
+                        .filterByType{
+                            nav{
+                                ul{
+                                    li{
+                                        display: inline-block;
+                                        border-radius: 20px;
+                                        cursor: pointer;
+                                        border-radius: 20px;
+                                        transition: .3s;
+                                        div{
+                                            padding: 5px 20px;
+                                            box-sizing: border-box;
+                                            span{
+                                                font-size: 12px;
+                                                font-weight: bold;
+                                                color: @colorLetraOscuro;
+                                            }
+                                        }
+                                    }
+                                    li:hover{
+                                        background-color: #F6f6f6;
+                                    }
+                                    li.Active{
+                                        background-color: @bgAzulDark;
+                                        div{
+                                            span{
+                                                color: @bgDefault;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .filterByTime{
+                            margin-top:10px;
+                            .containerFilterByTime{
+                                width:97.5%;
+                                margin-left:auto;
+                                strong{
+                                    font-weight: 400;
+                                    color: @bgAzulDark;
+                                    font-size: 12px;
+                                }
+                                .divideFilter{
+                                    width:100%;
+                                    height:100%;
+                                    display:flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                        nav{
+                                            margin-top:5px;
+                                            ul{
+                                                li{
+                                                    display: inline-block;
+                                                    margin-right: 10px;
+                                                    cursor: pointer;
+                                                    div{
+                                                        padding:4px 20px;
+                                                        border-radius: 5px;
+                                                        box-sizing: border-box;
+                                                        border:1px solid #ccc;
+                                                        span{
+                                                            font-size: 12px;
+                                                            color: @colorLetraOscuro;
+                                                        }
+                                                    }
+                                                }
+                                                .Active{
+                                                    div{
+                                                        background-color: @bgAzulDark;
+                                                        border:1px solid @bgAzulDark;
+                                                        span{
+                                                            color: @bgDefault;
+                                                        }
+                                                        strong{
+                                                            color: @bgDefault;
+                                                        }
+                                                    }                                                    
+                                                }
+                                            }
+                                        }
+
+                                        .containerSearchClients{
+                                            padding:10px 0px;
+                                            box-sizing: border-box;
+                                            width:50%;
+                                            height:100%;
+                                            position:relative;
+                                            .inputDiv{
+                                                width:100%;
+                                                margin:auto;
+                                                input{
+                                                    width:100%;
+                                                    padding:10px 20px;
+                                                    box-sizing: border-box;
+                                                    border:1px solid #ccc;
+                                                    border-radius: 20px;
+                                                    font-size: 12px;
+                                                    color: @bgAzulDark;
+                                                    outline: 0px;
+                                                    transition: .3s;
+                                                }
+                                                input:focus{
+                                                    border:1px solid @bgAzulDark;
+                                                }
+                                            }
+                                            .resultsDivs{
+                                                position:absolute;
+                                                width:100%;
+                                                padding:10px 0px;
+                                                box-sizing: border-box;
+                                                background-color: #F6F6F6;
+                                                border-radius: 10px;
+                                                margin-top:10px;
+                                                .data{
+                                                    width:100%;
+
+                                                    .notFound{
+                                                        text-align: center;
+                                                        padding:10px 20px;
+                                                        box-sizing: border-box;
+                                                        h3{
+                                                            font-size: 12px;
+                                                            color: @bgDark;
+                                                            font-weight: 400;
+                                                            strong{
+                                                                color: @colorLetraOscuro;
+                                                                font-weight: bold;
+                                                            }
+                                                        }
+                                                    }
+                                                    .clientDiv{
+                                                        box-sizing: border-box;
+                                                        padding:10px 20px;
+                                                        cursor: pointer; 
+                                                        .containerClientDiv{
+                                                            display:flex;
+                                                            align-items: center;
+                                                            .photo{
+                                                                width:50px;
+                                                                height:50px;
+                                                                border-radius: 100%;
+                                                                margin-right: 10px;
+                                                                img{
+                                                                    width:100%;
+                                                                    height:100%;
+                                                                    object-fit: cover;
+                                                                    border-radius: 100%;
+                                                                }
+                                                            }
+                                                            .dataClientDiv{
+                                                                h3{
+                                                                    font-weight: 400;
+                                                                    font-size: 14px;
+                                                                    color: @bgAzulDark;
+                                                                }
+                                                                span{
+                                                                    font-size: 12px;
+                                                                    color: @colorLetraOscuro;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+
+                .dataClientsLists{
+                    height:80%;
+                    width:97.5%;
+                    margin-left: auto;
+                    padding-top:20px;
+                    box-sizing: border-box;
+                    margin-top:auto;
+                    .containerDataClientsLists{
+                        box-sizing: border-box;
+                        width:100%;
+                        height:100%;
+
+                        .moveTime{
+                            height:10%;
+                            border-bottom: 1px solid #ccc;
+                            box-sizing: border-box;
+                            .containerMoveTime{
+                                display: flex;
+                                height:100%;
+                                align-items: center;
+                                justify-content: space-between;
+
+                                button{
+                                    background-color: @bgDefault;
+                                    border:1px solid @bgAzulDark;
+                                    padding:8px 10px;
+                                    box-sizing: border-box;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    span{
+                                        font-size: 12px;
+                                        color: @bgAzulDark;
+                                    }
+                                }
+                                .chooseMonth{
+                                    select{
+                                        width:100%;
+                                        cursor: pointer;
+                                        background-color: @bgDefault;
+                                        border:none;
+                                        padding:8px 10px;
+                                        box-sizing: border-box;
+                                        span{
+                                            font-size: 12px;
+                                            color: @colorLetraOscuro;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .scrollLists{
+                            height:90%;
+                            overflow-y: auto;
+                            
+                            table{
+                                width:100%;
+                                border-collapse: collapse;
+                                thead{
+                                   
+                                    tr{
+                                        text-align: left;
+                                        th{
+                                            padding:10px 5px;
+                                            box-sizing: border-box;
+                                            text-align: left;
+                                            span{
+                                                font-size: 12px;
+                                                color: #666;
+                                                font-weight: 300;
+                                            }
+                                        }
+                                    }
+                                }
+                                tbody{
+                                    height:100%;
+                                    tr{
+                                        td{
+                                            width:auto;
+                                            padding:10px 5px;
+                                            box-sizing: border-box;
+                                            border-bottom: 1px solid #F6f6f6;
+                                            border-top:1px solid #F6f6f6;
+                                        
+                                            .clientTable{
+                                                display: flex;
+                                                align-items: center;
+                                                .photo{
+                                                    width:30px;
+                                                    height:30px;
+                                                    border-radius: 100%;
+                                                    margin-right: 10px;
+                                                    img{
+                                                        width:100%;
+                                                        height:100%;
+                                                        border-radius: 100%;
+                                                        object-fit: cover;
+                                                    }
+                                                }
+                                                .dataClient{
+                                                    h3{
+                                                        font-size: 14px;
+                                                        color: @bgAzulDark;
+                                                    }
+                                                    span{
+                                                        font-size: 12px;
+                                                        color: #666;
+                                                    }
+                                                }
+                                            }
+                                            .number{
+                                                span{
+                                                    font-size: 14px;
+                                                    color: @bgAzulDark;
+                                                }
+                                            }
+                                            .price{
+                                                h3{
+                                                    font-weight: 400;
+                                                    font-size: 14px;
+                                                    color: @bgAzulDark;
+                                                    span{
+                                                        font-size: 12px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .notFound{
+                                    width:100%;
+                                    padding:30px 0px;
+                                    box-sizing: border-box;
+                                    h3{
+                                        font-weight: 400;
+                                        color: @bgAzulDark;
+                                        font-size: 24px;
+                                    }
+                                    span{
+                                        font-size: 12px;
+                                        color: @colorLetraOscuro;
+                                    }
+                                    h1{
+                                        font-size: 16px;
+                                        color: @bgAzulDark;
+                                        font-weight: 400;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .rightDashboard{
+                width:34%;
+                height:100%;
+                box-sizing: border-box;
+                border-left: 1px solid #F6f6f6;
+                padding:0px 10px;
+
+                .containerRightDashboard{
+                    box-sizing: border-box;
+                    height:100%;
+                    box-sizing: border-box;
+
+                    .businessDataForSelected{
+                        height:42%;
+                        border: 1px solid @bgAzulDark;
+                        border-radius: 5px;
+                        .containerDataForBusiness{
+                            height:100%;
+                            .titleBusiness{
+                                padding:40px 20px;
+                                box-sizing: border-box;
+                                background-color: @bgAzulDark;
+                                border-radius: 5px;
+                                span{
+                                    font-size: 12px;
+                                    color: @bgDefault;
+                                }
+                                h1{
+                                    font-weight: 400;
+                                    color: @bgDefault;
+                                }
+                            }
+
+                            .dataList{
+                                margin-top:5px;
+                                table{
+                                    width:100%;
+                                    thead{
+                                        tr{
+                                            th{
+                                                text-align: center;
+                                                padding:10px 0px;
+                                                box-sizing: border-box;
+                                                span{
+                                                    font-weight: 400;
+                                                    font-size: 12px;
+                                                    color: @colorLetraOscuro;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    tbody{
+                                        tr{
+                                            td{
+                                                text-align: center;
+                                                font-size: 14px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .clientNumberOne{
+                        box-sizing: border-box;
+                        height:44%;
+                        margin-top:4%;
+                        border:1px solid #ccc;
+                        padding:20px 20px;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        .loading{
+                            box-sizing: border-box;
+                            width:100%;
+                            height:100%;
+                            display:flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            h3{
+                                font-weight: 300;
+                                color: @bgAzulDark;
+                            } 
+                        }
+                        .notFound{
+                            box-sizing: border-box;
+                            width:100%;
+                            height:100%;
+                            display:flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            h1{
+                                font-weight: 300;
+                                color: @colorLetraOscuro;
+                            }
+
+                        }
+                        .containerClientNumberOne{
+                            box-sizing: border-box;
+                            padding:10px 0px;
+                            box-sizing: border-box;
+                            .titleBox{
+                                span{
+                                    font-size: 14px;
+                                    color: @bgAzulDark;
+                                    font-weight: 300;
+                                }
+                            }
+                            .photoAndDataClient{
+                                box-sizing: border-box;
+                                display: flex;
+                                align-items: center;
+                                .photo{
+                                   width:60px;
+                                   height:60px;
+                                    margin-right: 10px;
+                                    img{
+                                        height:100%;
+                                        width:100%;
+                                        object-fit: contain;
+                                        border-radius: 5px;
+                                    }
+                                }
+                                .dataClient{
+                                    h3{
+                                        color: @bgAzulDark;
+                                    }
+                                    span{
+                                        font-size: 12px;
+                                        color: @colorLetraOscuro;
+                                    }
+                                }
+                            }
+                            .dataAboutClientOnSystem{
+                                .containerDataOnSystem{
+                                    box-sizing: border-box;
+                                    margin-top:10px;
+                                    width:100%;
+                                    .divTable{
+                                        align-items: center;
+                                        padding:10px 0px;
+                                        display: flex;
+                                        box-sizing: border-box;
+                                        border-bottom: 1px solid #F6f6f6;
+                                        justify-content: space-between;
+                                        span{
+                                            font-size: 12px;
+                                            color: @colorLetraOscuro;
+                                        }
+                                        .price{
+                                            font-weight: 400;
+                                            font-size: 22px;
+                                            color: @bgAzulDark;
+
+                                            span{
+                                                font-size: 12px;
+                                                color: @bgAzulDark;
+                                            }
+                                        }
+                                        .numberData{
+                                            font-size: 14px;
+                                            color: @bgAzulDark;
+                                            font-weight: 300;
+                                        }
+                                    }
+                                    table{
+                                        width:100%;
+                                        box-sizing: border-box;
+                                        border-collapse: collapse;
+                                        thead{
+                                            tr{
+                                                th{
+                                                    
+                                                    text-align: center;
+                                                    padding:10px 0px;
+                                                    box-sizing: border-box;
+                                                    span{
+                                                        font-size: 12px;
+                                                        font-weight: 400;
+                                                        color: @colorLetraOscuro;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        tbody{
+                                            tr{
+                                                td{
+                                                    padding:5px 0px;
+                                                    box-sizing: border-box;
+                                                    text-align: center;
+                                                    span{
+                                                        font-size: 14px;
+                                                        color: @bgDark;
+                                                    }
+                                                    .positive{
+                                                        color: @great;
+                                                    }
+                                                    .mistake{
+                                                        color: @danger;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .graphAllClients{
+            width:98%;
+            margin:auto;
+            margin-top:30px; 
+            height:100%;
+            .containerGraphs{
+                box-sizing: border-box;
+                height:100%;
+                padding:10px 0px;
+                box-sizing: border-box;
+                .divideGraph{
+                    height:100%;
+                    padding:10px 0px;
+                    box-sizing: border-box;
+                    width:100%;
+                    margin:auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .leftGraph{
+                        width:65%;
+                        box-sizing: border-box;
+                        height:100%; 
+                        .bigGraph{
+                            height:100%;
+                            .graph{
+                                height:100%;
+                                .containerGraph{
+                                    height:100%;
+    
+                                    h3{
+                                        font-weight: 400;
+                                        color: @bgAzulDark;
+                                        font-size: 14px;
+                                    }
+                                    .componenteGrafica{
+                                        box-sizing: border-box;
+                                        height:90%;
+
+                                        .loading{
+                                            height:100%;
+                                            width:100%;
+                                            display:flex;
+                                            align-items: center;
+                                            justify-content: space-around;
+                                            h3{
+                                                font-size: 22px;
+                                            }
+                                            span{
+                                                font-size: 12px;
+                                                color: @colorLetraOscuro;
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .rightGraph{
+                        width:34%;
+                        height:100%;
+                        padding:0px 10px;
+                        box-sizing: border-box;
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        .smallGraph{
+                            width:100%;
+                            border-radius: 5px;
+                            box-sizing: border-box;
+                            height:100%;
+
+                            .progressCotizacionData{
+                                box-sizing: border-box;
+
+                                .containerProgress{
+                                    box-sizing: border-box;
+
+                                    .titleData{
+                                        padding:10px 0px;
+                                        box-sizing: border-box;
+                                        h3{
+                                            font-weight: 400;
+                                            color: @colorLetraOscuro;
+                                            font-size: 14px;
+                                        }
+                                    }
+                                    .resData{
+                                        box-sizing: border-box;
+                                        .containerResData{
+                                            padding:10px 0px;
+                                            box-sizing: border-box;
+                                            border:1px solid #F6F6F6;
+                                            border-radius: 5px;
+                                            padding:30px 20px;
+                                            box-sizing: border-box;
+                                            .BigNumber{
+                                                margin-bottom: 20px;
+                                                padding:10px 0px;
+                                                box-sizing: border-box;
+                                                border-bottom: 1px solid #F6F6F6;
+                                                span{
+                                                    font-size: 12px;
+                                                    color: @colorLetraOscuro;
+                                                }
+                                                h3{
+                                                    font-weight: 400;
+                                                    font-size: 32px;
+                                                    color: @bgAzulDark;
+
+                                                    span{
+                                                        font-size: 14px;
+                                                        color: @bgAzulDark;
+                                                    }
+                                                }
+                                            }
+                                            .item{
+                                                width:100%;
+                                                box-sizing: border-box;
+                                                margin-bottom: 20px;
+                                                .horizontalTitle{
+                                                    span{
+                                                        font-size: 12px;
+                                                        color: @colorLetraOscuro;
+                                                    }
+                                                    h3{
+                                                        font-weight: 400;
+                                                        font-size: 18px;
+                                                        color: @bgAzulDark;
+                                                        span{
+                                                            font-size: 12px;
+                                                            color: @bgAzulDark;
+                                                        }
+                                                    }
+                                                }
+                                                .itemProgressBar{
+                                                    margin-top:14px;
+                                                    border:1px solid #F6F6F6;
+                                                    border-radius: 20px;
+                                                    background-color: #F6f6f6;
+                                                    .progressActive{
+                                                        padding:5px 10px;
+                                                        border-radius: 20px;
+                                                        box-sizing: border-box;
+                                                        width:5%;
+                                                        background-color: @great;
+                                                        span{
+                                                            font-weight: 400;
+                                                            color: @bgDefault;
+                                                            font-size: 12px;
+                                                        }
+                                                    }
+                                                    .Nature{
+                                                        width:35%;
+                                                        background-color: rgba(255, 99, 132, 1);
+                                                    }
+                                                    .Business{
+                                                        width:60%;
+                                                        background-color: rgba(75, 192, 192, 0.8);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+    .client{
+        box-sizing: border-box;
+        height:90%;
+        .containerClient{
+            width:100%;
+            height:100%;
+            box-sizing: border-box;
+            display:flex;
+            justify-content: space-between;
+            
+            .left{
+                width:30%;
+                height:100%;
+                box-sizing: border-box;
+                .profileLeft{
+                    box-sizing: border-box;
+                    height:100%;
+                    .containerProfile{
+                        height:100%;
+                        .top{
+                            height:10%;
+                            box-sizing: border-box;
+                            display: flex;
+                            align-items: center;
+                            width:95%;
+                            margin:auto;
+                            padding:0px 20px;
+                            
+                            button{
+                                background-color: transparent;
+                                border:none;
+                                cursor: pointer;
+                                padding:10px 0px;
+                                box-sizing: border-box;
+                                .icon{
+                                    font-size: 26px;
+                                    color: @colorLetraOscuro;
+                                    transition: .3s;
+                                }
+                            }
+                            button:hover{
+                                .icon{
+                                    color: @bgAzulDark;
+                                }
+                            }
+                        }
+                        .profile{
+                            height:90%;
+                            overflow-y: auto;
+                            box-sizing: border-box;
+                            width:100%;
+                            .containerProf{
+                                width:100%;
+                                .topProf{
+                                    width:50%;
+                                    box-sizing: border-box;
+                                    margin:auto;
+                                    margin-top:20px;
+                                    .containerTop{
+                                        width:100%;
+                                        .img{
+                                            margin:auto;
+                                            width:150px;
+                                            height:150px;
+                                            border-radius: 5px;
+                                            img{
+                                                width:100%;
+                                                height:100%;
+                                                object-fit: contain;
+                                                border-radius: 5px;
+                                            }
+                                        }
+                                        .dataBig{
+                                            width:100%;
+                                            text-align: center;
+                                            margin-top:20px;
+                                            h3{
+                                                font-weight: 400;
+                                                color: @bgAzulDark;
+                                            }
+                                            span{
+                                                font-size: 12px;
+                                                color: @colorLetraOscuro;
+                                            }
+                                            .link{
+                                                color: @bgAzulClaro;
+                                                cursor: pointer;
+                                                
+                                            } 
+                                            .link:hover{
+                                                text-decoration: underline;
+                                            }
+                                        }
+                                    }
+                                }
+                                .dataByClient{
+                                    margin-top:20px;
+                                    .containerData{
+                                        width:100%;
+                                        .navData{
+                                            width:100%;
+                                            nav{
+                                                ul{
+                                                    li{
+                                                        display: inline-block;
+                                                        width:50%;
+                                                        cursor: pointer;
+                                                        transition: .3s;
+                                                        div{
+                                                            width:100%;
+                                                            padding:10px 0px;
+                                                            box-sizing: border-box;
+                                                            text-align: center;
+                                                            transition: .3s;
+
+                                                            span{
+                                                                font-size: 14px;
+                                                                color: @colorLetraOscuro;
+                                                                transition: .3s;
+                                                                
+                                                            }
+                                                        }
+                                                    }
+                                                    .Active{
+                                                        border-bottom: 1px solid @bgAzulDark;
+                                                        div{
+                                                            span{
+                                                                font-weight: 500;
+                                                                color: @bgAzulDark;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .resultDataNav{
+                                            margin-top:10px;
+                                            .containerResult{
+                                                width:100%;
+                                                padding:30px 10px;
+                                                box-sizing: border-box;
+                                                .itemDetai{
+                                                    width:100%;
+                                                    padding:10px 30px;
+                                                    box-sizing: border-box;
+                                                    span{
+                                                        font-size: 12px;
+                                                        color: @colorLetraOscuro;
+                                                    }
+                                                    h3{
+                                                        font-weight: 400;
+                                                        color: @bgAzulDark;
+                                                        font-size: 14px;
+                                                    }
+                                                    .state{
+                                                        color: @great;
+                                                    }
+                                                }
+                                                .contactItem{
+                                                    width:100%;
+                                                    padding:20px;
+                                                    box-sizing: border-box;
+                                                    .containerItem{
+                                                        width:100%;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        .icono{
+                                                            margin-right: 20px;
+                                                            .icon{
+                                                                font-size: 20px;
+                                                                color: @bgAzulClaro;
+                                                            }
+                                                        }
+                                                        .dataItem{
+                                                            h3{
+                                                                font-size: 14px;
+                                                                color: @bgAzulClaro;
+                                                                font-weight: 500;
+                                                            }
+                                                            .cargo{
+                                                                font-size: 12px;
+                                                                color: @colorLetraOscuro;
+                                                            }
+                                                            .phone{
+                                                                font-size: 12px;
+                                                                color: @bgAzulDark;
+                                                            }
+                                                            .email{
+                                                                font-size: 12px;
+                                                                color: @bgAzulDark;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        
+                        }
+                    }
+                }
+            }
+            .right{
+                width:70%;
+                .clientDash{
+                    width:100%;
+                    height:100%;
+                    box-sizing: border-box;
+                    .containerDash{ 
+                        height:100%;
+                        .navTopDash{
+                            height:10%;
+                            box-sizing: border-box;
+                            border-bottom: 2px solid #F6F6F6;
+                            .containerDashTop{
+                                height:100%;
+                                width:98%;
+                                display: flex;
+                                justify-content: space-between;
+                                nav{
+                                    box-sizing: border-box;
+                                    height:100%;
+                                    ul{
+                                        height:100%;
+                                        li{
+                                            height:100%;
+                                            display: inline-block;
+                                            border-bottom: 2px solid #F6F6F6;
+                                            transition: .3s;
+                                            cursor: pointer;
+                                            div{
+                                                height:100%;
+                                                display: flex;
+                                                transition: .3s;
+                                                padding:0px 40px;
+                                                box-sizing: border-box;
+                                                align-items: center;
+                                                span{
+                                                    font-size: 14px;
+                                                    color: @colorLetraOscuro;
+                                                    transition: .3s;
+                                                }
+                                            }
+                                        }
+                                        li:hover{
+                                            border-bottom: 2px solid @colorLetraOscuroTransparente;
+                                            div{
+                                                background-color: #F6F6F6;
+                                            }
+                                        }
+                                        .Active{
+                                            border-bottom: 2px solid @bgAzulDark;
+                                            div{
+                                                span{
+                                                    color: @bgAzulDark;
+                                                }
+                                            }
+                                        }
+                                        .Active:hover{
+                                            border-bottom: 2px solid @bgAzulDark;
+                                            div{
+                                                background-color: @bgDefault;
+                                            }
+                                        }
+                                    }
+                                }
+                                .editar{
+                                    background-color: transparent;
+                                    cursor: pointer;
+                                    border:none;
+                                    .icon{
+                                        font-size: 15px;
+                                        color: @bgAzulDark;
+                                        vertical-align: middle;
+                                        margin-left: 5px;
+                                    }
+                                    span{
+                                        vertical-align: middle;
+                                        font-size: 12px;
+                                        color: @bgAzulDark;
+                                    }
+
+                                }
+                            }
+                        }
+                        .resultDash{
+                            box-sizing: border-box;
+                            height:90%;
+                            overflow-y: auto;
+
+                            .monthAnalisis{
+                                width:100%;
+                                height:100%;
+                                margin:auto;
+                                border:1px solid #ccc;
+                                box-sizing: border-box;
+                                padding:20px 0px;
+                                .containerMonth{
+                                    height:100%;
+                                    .parallaxOne{
+                                        height:100%;
+                                        .containerParallax{
+                                            width:98%;
+                                            height:100%;
+                                            display: flex;
+                                            justify-content: space-between;
+                                            .leftGraph{
+                                                width:55%;
+                                                height:100%;
+                                                box-sizing: border-box;
+                                                .containerLeftGraph{
+                                                    box-sizing: border-box;
+                                                    height:100%;
+
+                                                    .topFilter{
+                                                        width:100%;
+                                                        height:10%;
+                                                        .navTopThisMonth{
+                                                            width:100%;
+                                                            height:100%;
+                                                            nav{
+                                                                height:100%;
+                                                                ul{
+                                                                    height:100%;
+                                                                    li{
+                                                                        height:100%;
+                                                                        display: inline-block;
+                                                                        width:50%;
+                                                                        box-sizing: border-box;
+                                                                        border-bottom: 2px solid #F6F6F6;
+                                                                        box-sizing: border-box;
+                                                                        cursor: pointer;
+                                                                        transition: .3s;
+                                                                        div{
+                                                                            width:100%;
+                                                                            height:100%;
+                                                                            display: flex;
+                                                                            align-items: center;
+                                                                            justify-content: space-around;
+                                                                            transition: .3s;
+                                                                            span{
+                                                                                font-size: 12px;
+                                                                                color: @colorLetraOscuro;
+                                                                                transition: .3s;
+                                                                            
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    li.Active{
+                                                                        border-bottom: 2px solid @bgAzulDark;
+                                                                        div{
+                                                                            span{
+                                                                                font-weight: bold;
+                                                                                color: @bgAzulDark;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    .scrollTable{
+                                                        box-sizing: border-box;
+                                                        height: 90%;
+                                                        overflow-y: auto;
+                                                        .containerScroll{
+                                                            table{
+                                                                width:100%;
+                                                                border-collapse: collapse;
+                                                                tbody{
+                                                                    tr{
+                                                                        cursor: pointer;
+                                                                        transition: .3s;
+                                                                        .titleTd{
+                                                                            padding:15px 20px;
+                                                                            box-sizing: border-box;
+                                                                        }
+                                                                        td{
+                                                                            padding:30px 5px;
+                                                                            box-sizing: border-box;
+                                                                            .title{
+                                                                                box-sizing: border-box;
+                                                                                h3{
+                                                                                    font-weight: 500;
+                                                                                    font-size: 14px;
+                                                                                    color: @bgAzulDark;
+                                                                                }
+                                                                                h4{
+                                                                                    font-weight: 400;
+                                                                                    color: @bgAzulDark;
+                                                                                    font-size: 14px;
+                                                                                    span{
+                                                                                        color: @bgAzulDark;
+                                                                                        font-size: 10px;
+                                                                                    }
+                                                                                }
+                                                                                span{
+                                                                                    font-size: 12px;
+                                                                                    color: @colorLetraOscuro;
+                                                                                }
+                                                                            }
+                                                                            .Danger{
+                                                                                h3{
+                                                                                    color: @danger;
+                                                                                }
+                                                                                h4{
+                                                                                    color: @danger;
+                                                                                    span{
+                                                                                        color: @danger;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            .price{
+                                                                                span{
+                                                                                    font-size: 12px;
+                                                                                    color: @colorLetraOscuro;
+                                                                                }
+                                                                                h3{
+                                                                                    font-weight: 400;
+                                                                                    color: @bgAzulDark;
+                                                                                    font-size: 14px;
+                                                                                    span{
+                                                                                        font-size: 12px;
+                                                                                        color: @bgAzulDark;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            .nro{
+                                                                                span{
+                                                                                    font-size: 12px;
+                                                                                    color: @colorLetraOscuro;
+                                                                                }
+                                                                                h3{
+                                                                                    font-weight: 400;
+                                                                                    font-size: 14px;
+                                                                                    color: @bgAzulDark;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    tr:hover{
+                                                                        background-color: #F6F6F6;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            .rightGraph{
+                                                width:40%;
+                                                box-sizing: border-box;
+                                            
+                                                .containerRight{
+                                                    box-sizing: border-box;
+                                                    .box{
+                                                        width:100%;
+                                                        box-sizing: border-box;
+                                                        .containerBox{
+                                                            .navFilterTime{
+                                                                width:100%;
+                                                                display: flex;
+                                                                align-items: center;
+                                                                justify-content: space-between;
+                                                                button{
+                                                                    background-color: @bgAzulDark;
+                                                                    border:1px solid @bgAzulDark;
+                                                                    padding:6px 12px;
+                                                                    cursor: pointer;
+                                                                    border-radius: 20px;
+                                                                    box-sizing: border-box;
+                                                                    span{
+                                                                        font-size: 12px;
+                                                                        color: @bgDefault;
+                                                                    }
+                                                                }
+                                                                .divChoose{
+                                                                    select{
+                                                                        background-color: @bgDefault;
+                                                                        border:none;
+                                                                        padding:6px 20px;
+                                                                        box-sizing: border-box;
+                                                                        cursor: pointer;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    .dataBoxClient{
+                                                        box-sizing: border-box;
+                                                        margin-top:20px;
+                                                        .containerDataBox{
+                                                            width:100%;
+                                                            .topData{
+                                                                box-sizing: border-box;
+                                                                padding:40px 20px;
+                                                                background-color: @bgAzulDark;
+                                                                border-radius: 5px;
+                                                                span{
+                                                                    font-size: 12px;
+                                                                    color: @bgDefault;
+                                                                }
+                                                                h3{
+                                                                    font-weight: 400;
+                                                                    font-size: 26px;
+                                                                    color: @bgDefault;
+                                                                    span{
+                                                                        font-size: 14px;
+                                                                        color: @bgDefault;
+                                                                    }
+                                                                }
+                                                            }
+                                                            .graphLine{
+                                                                box-sizing: border-box;
+                                                                margin-top:10px;
+                                                                .containerGraphLine{
+                                                                    .line{
+                                                                        width:100%;
+                                                                        padding:20px 20px;
+                                                                        box-sizing: border-box;
+                                                                        .head{
+                                                                            display: flex;
+                                                                            align-items: center;
+                                                                            justify-content: space-between;
+                                                                            span{
+                                                                                font-size: 12px;
+                                                                                color: @colorLetraOscuro;
+                                                                            }
+                                                                            h3{
+                                                                                font-weight: 400;
+                                                                                font-size: 14px;
+                                                                                color: @bgAzulClaro;
+                                                                            }
+                                                                        }
+                                                                        .progress{
+                                                                            width:100%;
+                                                                            border-radius: 20px;
+                                                                            background-color: #F6F6F6;
+                                                                            .barProgressActive{
+                                                                                padding:5px;
+                                                                                box-sizing: border-box;
+                                                                                border-radius: 20px;
+                                                                                background-color: @bgAzulDark;
+                                                                                width:45%;
+                                                                                margin-top:5px;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .cotizacionesLists{
+                                box-sizing: border-box;
+                                height:100%;
+                                .containerLists{
+                                    width:100%;
+                                    height:100%;
+                                    overflow-y: auto;
+                                    table{
+                                        width:100%;
+                                        border-collapse: collapse;
+                                        thead{
+                                            tr{
+                                               th{
+                                                    padding:20px 30px;
+                                                    box-sizing: border-box;
+                                                    text-align: left;
+                                                    span{
+                                                        font-size: 12px;
+                                                        color: @colorLetraOscuro;
+                                                        font-weight: 400;
+                                                    }
+                                               }
+                                            }
+                                        }
+                                        tbody{
+                                            tr{
+                                                cursor: pointer;
+                                                transition: .3s;
+                                                td{
+                                                    padding:15px 30px;
+                                                    box-sizing: border-box;
+                                                    text-align: left;
+                                                    .title{
+                                                        h3{
+                                                            font-weight: 400;
+                                                            font-size: 14px;
+                                                            color: @bgAzulDark;
+                                                        }
+                                                        span{
+                                                            font-size: 12px;
+                                                            color: @colorLetraOscuro;
+                                                        }
+                                                    }
+                                                    .price{
+                                                        h3{
+                                                            font-weight: 500;
+                                                            color: @bgAzulDark;
+                                                            font-size: 14px;
+                                                            span{
+                                                                font-size: 12px;
+                                                            }
+                                                        }
+                                                    }
+                                                    .nro{
+                                                        span{
+                                                            font-size: 12px;
+                                                            color: @colorLetraOscuro;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            tr:hover{
+                                                background-color: #F6F6F6;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .yearVisualizar{
+                                width:100%;
+                                height:100%;
+                                box-sizing: border-box;
+                                overflow-y: auto;
+                                .containerYear{
+                                    width:95%;
+                                    margin:auto;
+                                    box-sizing: border-box;
+
+                                    .divide{
+                                        width:100%;
+                                        box-sizing: border-box;
+                                        .leftGraph{
+                                            padding:10px 0px;
+                                            box-sizing: border-box;
+                                            h3{
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                                color: @colorLetraOscuro;
+                                                font-weight: bold;
+                                            }
+                                        }
+                                        .rightGraph{
+                                            margin-top:20px;
+                                            .containerRightYear{
+                                                width: 100%;
+                                                box-sizing: border-box;
+                                                margin-top:40px;
+                                                .divideFilterMoney{
+                                                    display: flex;
+                                                    justify-content: space-between;
+
+                                                    .left{
+                                                        width:45%;
+                                                        box-sizing:border-box;
+                                                        .priceBox{
+                                                            box-sizing: border-box;
+                                                            padding:20px 0px;
+                                                            box-sizing: border-box;
+                                                            .topBox{
+                                                                background-color: @great;
+                                                                padding:40px 20px;
+                                                                box-sizing: border-box;
+                                                                border-radius: 5px;
+                                                                cursor: pointer;
+                                                                span{
+                                                                    font-size: 12px;
+                                                                    color: @bgDefault;
+                                                                }
+                                                                h3{
+                                                                    color: @bgDefault;
+                                                                    font-weight: 400;
+                                                                    font-size: 22px;
+                                                                    margin-top:5px;
+                                                                }
+                                                            }
+                                                            .Danger{ 
+                                                                background-color: @danger;
+                                                                text-align: right;
+                                                            }
+                                                            .monthAndGraph{
+                                                                box-sizing: border-box;
+                                                                width:90%;
+                                                                margin:auto;
+                                                                margin-top:20px;
+                                                                .itemMonth{
+                                                                    box-sizing: border-box;
+                                                                    margin-bottom: 30px;
+                                                                    .topItem{
+                                                                        display: flex;
+                                                                        align-items: center;
+                                                                        justify-content: space-between;
+                                                                        padding:0px 0px;
+                                                                        box-sizing: border-box;
+                                                                        .title{
+                                                                            width:20%;
+                                                                            span{
+                                                                                font-size: 12px;
+                                                                                color: @bgAzulDark;
+                                                                                font-weight: bold;
+                                                                            }
+                                                                        }
+                                                                        .priceMonth{
+                                                                            width:50%;
+                                                                            text-align: right;
+                                                                            h3{
+                                                                                font-weight: 400;
+                                                                                font-size: 16px;
+                                                                                color: @bgAzulDark;
+                                                                                span{
+                                                                                    font-size: 12px;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    .line{
+                                                                        width:100%;
+                                                                        margin-top:10px;
+                                                                        .progress{
+                                                                            width:100%;
+                                                                            background-color: #F6F6F6;
+                                                                            border-radius: 20px;
+                                                                            .activeProgress{
+                                                                                padding:5px 10px;
+                                                                                box-sizing: border-box;
+                                                                                background-color: @bgAzulDark;
+                                                                                width:45%;
+                                                                                border-radius: 20px;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                .itemMonth.Dangery{
+                                                                    .title{
+                                                                        span{
+                                                                            color: @danger;
+                                                                        }
+                                                                    }
+                                                                    .line{
+                                                                        .activeProgress{
+                                                                            background-color: @danger;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+                                            } 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .cotizacion{
+            position:fixed;
+            top:0;
+            right:0;
+            bottom:0;
+            background-color: @bgDefault;
+            border:1px solid #ccc;
+            box-sizing: border-box;
+            width:66.5%;
+            transition: .3s;
+            transform: translateX(100%);
+
+            .containerCotizacion{
+                height:100%;
+                width:100%;
+                box-sizing: border-box;
+
+                .topCotizacion{
+                    height:20%;
+                    box-sizing: border-box;
+                    .containerTop{
+                        height:100%;
+                        width:100%;
+                        .LeftBtnAndTitle{
+                            width:95%;
+                            margin:auto;
+                            box-sizing: border-box;
+                            height:100%;
+                            display: flex;
+                            align-items: center;
+
+                            button{
+                                margin-right: 10px;
+                                cursor: pointer;
+                                transition: .3s;
+                                background-color: transparent;
+                                border:none;
+                                padding:0px;
+                                .icon{
+                                    font-size: 22px;
+                                    color: @bgAzulDark;
+                                    transition: .3s;
+                                }
+                            }
+                            button:hover{
+                                .icon{
+                                    color: @bgAzulDark;
+                                }
+                            }
+                            h3{
+                                font-weight: 500;
+                                color: @bgAzulDark;
+                                font-size: 22px;
+                            }
+
+                        }
+
+                    }
+                }
+                .bodyCotizacion{
+                    height:90%;
+                    overflow-y: auto;
+                    box-sizing: border-box;
+                    .containerBody{
+                        .topAlert{
+                            background-color: @bgAzulDark;
+                            width:100%;
+                            padding:6px 0px;
+                            box-sizing: border-box;
+                            .containerAlert{
+                                width:90%;
+                                margin:auto;
+                                text-align: center;
+                                span{
+                                    color: @bgDefault;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                        .CotizacionDetails{
+                            margin-top:20px;
+                            box-sizing: border-box;
+
+                            .containerDetails{
+                                width:71%;
+                                margin:auto;
+                                .business{
+                                    img{
+                                        width:15%;
+                                    }
+                                }
+                                .dataClientAndAsesor{
+                                    margin-top: 40px;
+                                    .containerThat{
+                                        width:100%;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+
+                                        .asesor{
+                                            h3{
+                                                font-weight: 500;
+                                                font-size: 16px;
+                                                color: @bgAzulDark;
+                                            }
+                                            span{
+                                                font-size: 12px;
+                                                color: @colorLetraOscuro;
+                                            }
+                                        }
+                                        .Cl{
+                                            text-align: right;
+
+                                        }
+                                    }
+                                }
+                                .informationCoti{
+                                    margin-top:40px;
+                                    box-sizing: border-box;
+                                    .containerInformation{
+                                        width:100%;
+                                        .itemCoti{
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: space-between;
+                                            padding:15px 0px;
+                                            box-sizing: border-box;
+                                            span{
+                                                font-size: 12px;
+                                                color: @colorLetraOscuro;
+                                            }
+                                            h3{
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                                color: @bgAzulDark;
+                                                span{
+                                                    color: @bgAzulDark;
+                                                    font-size: 12px;
+                                                }
+                                            }
+                                        }
+                                        .Neto{
+                                            border-top: 1px solid #ccc;
+                                            margin-top:10px;
+                                            span{
+                                                font-size: 16px;
+                                            }
+                                            h3{
+                                                font-size: 18px;
+                                                color: @bgAzulDark;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .cotizacionActive{
+            transform: translateX(0%);
+        }
+        .editClient{
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            background-color: @bgDefault;
+            .containerEditClient{
+                box-sizing: border-box;
+                height:100%;
+                .topEdit{
+                    height:5%;
+                    box-sizing: border-box;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    background-color: @bgAzulDark;
+                    h3{
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: @bgDefault;
+                    }
+                }
+                .containerEditionProfile{
+                    height:95%;
+                    width:100%;
+                    border:1px solid #ccc;
+                    box-sizing: border-box;
+                    .containerDivide{
+                        width:100%;
+                        height:100%;
+                        display: flex;
+                        justify-content: space-between;
+                        .imgProfile{
+                            width:30%;
+                            border-right: 1px solid #ccc;
+                            height:100%;
+                            box-sizing: border-box; 
+                            .boxProfile{
+                                width:90%;
+                                height:80%;
+                                margin:auto;
+                                margin-top:30px;
+
+                                .boxImg{
+                                    width:200px;
+                                    height:200px;
+                                    margin:auto;
+                                    margin-top:40px;
+                                    img{
+                                        width:100%;
+                                        height:100%;
+                                        border-radius: 5px;
+                                        object-fit: contain;
+                                        box-sizing: border-box;
+
+                                    }
+                                }
+                                .inputDiv{
+                                    width:80%;
+                                    margin:auto;
+                                    margin-top:30px;
+                                    input{
+                                        width:100%;
+                                        border-radius: 5px;
+                                        padding:8px 10px;
+                                        box-sizing: border-box;
+                                        border:1px solid #ccc;
+                                        font-size: 12px;
+                                        outline: 0px;
+                                    }
+                                }
+                            }
+                            .buttonSave{
+                                width:80%;
+                                margin:auto;
+                                height:10%;
+                                box-sizing: border-box;
+                                button{
+                                    width:100%;
+                                    border-radius: 5px;
+                                    padding:8px 20px;
+                                    box-sizing: border-box;
+                                    background-color: @bgAzulDark;
+                                    border:1px solid @bgAzulDark;
+                                    cursor: pointer;
+                                    span{
+                                        font-size: 12px;
+                                        color: @bgDefault;
+                                    }
+                                }
+                            }
+                        }
+                        .otherInformation{
+                            width:70%;
+                            box-sizing: border-box;
+                            height:100%;
+                            .containerOtherInformation{
+                                height:100%;
+                                .topClose{
+                                    height:10%;
+                                    box-sizing: border-box;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    margin:auto;
+                                    padding:0px 40px;
+                                    border-bottom: 1px solid #ccc;
+                                    h3{
+                                        color: @bgAzulDark;
+                                        font-weight: 400;
+                                    }
+                                    button{
+                                        background-color: transparent;
+                                        border: none;
+                                        cursor: pointer;
+                                       
+                                        .icon{
+                                            font-size: 22px;
+                                            color: @colorLetraOscuro;
+                                        }
+                                    }
+                                }
+                                .scrollToEdit{
+                                    height:90%;
+                                    width:100%;
+                                    box-sizing: border-box;
+                                    overflow-y: auto;
+                                    .containerScroll{
+                                        width:50%;
+                                        margin:auto;
+                                        padding:50px 0px;
+                                        box-sizing: border-box;
+                                        .inputDiv{
+                                            width:100%;
+                                            margin-bottom: 30px;
+                                            label{
+                                                font-size: 12px;
+                                                color: @colorLetraOscuro;
+                                            }
+                                            input{
+                                                margin-top:10px;
+                                                width:100%;
+                                                border:1px solid #ccc;
+                                                border-radius: 20px;
+                                                outline:0px;
+                                                font-size: 12px;
+                                                color: @bgAzulClaro;
+                                                padding:8px 10px;
+                                                box-sizing: border-box;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
