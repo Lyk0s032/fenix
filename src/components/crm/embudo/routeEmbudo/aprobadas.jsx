@@ -43,10 +43,14 @@ export default function AprobadasEmbudo(){
                 <div className="infoDataCotizacion">
                     {
                         !aprobadas || loadingAprobadas ?
-                            <h1>Cargando</h1>
+                            <div className="notFound">
+                                <h3>Cargando...</h3>
+                            </div>
                         :
                         aprobadas == 'resquest' || aprobadas == 'notrequest' || aprobadas == 404 ?
-                            <h1>No hay</h1>
+                        <div className="notFound">
+                            <h1>No hay cotizaciones aprobadas para mostrar</h1>
+                        </div>
                         : 
                             <AprobadasCotizaciones data={aprobadas} />
                     }
