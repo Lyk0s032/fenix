@@ -128,6 +128,13 @@ export function gettingItem(carga){
         payload: carga
     }
 }
+// FUENTE
+export function getFuente(fuente){
+    return {
+        type: types.GET_FUENTE,
+        payload: fuente
+    }
+}
 // PROSPECTOS
 export function getProspectos(data){
     return {

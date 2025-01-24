@@ -11,6 +11,7 @@ import * as actions from './../../../store/action/action';
 
 import Prospecto from './prospecto/prospecto';
 import { FaDollarSign } from 'react-icons/fa';
+import ModalSeeOnline from '../modales/newFuenteOnline';
 
 export default function NavEmbudo(props){
     const user = props.user;
@@ -244,6 +245,7 @@ export default function NavEmbudo(props){
                     <NewEmbudo user={user}/>
                 :nav == 'fuente' ?
                     <Fuente />
+            
                 : nav == 'tags' ?
                     <Tags />
                 : nav == 'prospecto' ?

@@ -5,6 +5,7 @@ import * as actions from '../../../store/action/action';
 import axios from 'axios';
 export default function ModalNewFuente(){
     const [params, setParams] = useSearchParams();
+    const [type, setType] = useState('offline');
     const [nameFuente, setNameFuente] = useState(null);
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function ModalNewFuente(){
 
         let body = {
                 name: nameFuente,
-                type: params.get('add')
+                type: type
         }
         const create = await axios.post('/api/prospecto/addFuente', body)
         .then((res) => {
@@ -37,7 +38,13 @@ export default function ModalNewFuente(){
             }}></div>
             <div className="containerModalSmall">
                 <div className="header">
-                    <h3>Nueva fuente - <strong>No digital</strong></h3>
+                    <h3>Nueva fuente - <button onClick={() => {
+                        if(type == 'offline'){
+                           return  setType('online')
+                        }else{
+                            setType('offline')
+                        }
+                    }}>{type == 'offline' ? 'Físicas' : 'Online'}</button></h3>
                 </div>
                 <div className="result">
                     <form className="containerResult" onSubmit={(e) => {

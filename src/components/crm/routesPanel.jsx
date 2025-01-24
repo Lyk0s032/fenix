@@ -11,6 +11,7 @@ import Calendary from "./calendary/calendary";
 import RouteCalendar from "./calendary/calendary";
 import RoutesClients from "./clients/clientesRoute";
 import RouteAsesor from "./asesor/routeAsesor";
+import ModalSeeOnline from "./embudo/modales/newFuenteOnline";
 export default function RoutePanel(props){
     const user = props.user;
     const [params, setParams] = useSearchParams();
@@ -34,7 +35,7 @@ export default function RoutePanel(props){
             {alerta ? <Alerta /> : null}
             {params.get('add') == 'offline' ? <ModalNewFuente /> : null}
             {params.get('add') == 'contacto' ? <ModalNewContact user={user} /> : null} 
-
+            {params.get('add') == 'online' ?  <ModalSeeOnline /> : null}
 
             <div className="container">
                 <div className="generalNav">

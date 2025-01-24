@@ -7,6 +7,7 @@ import Sign from './components/sign/sign'
 import './css/index.css'
 import * as actions from './components/store/action/action';
 import { useDispatch, useSelector } from 'react-redux'
+import QR from './components/qr/qr'
 
 function App() { 
   const [count, setCount] = useState(0)
@@ -36,8 +37,9 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/*" element={user ? <RoutePanel user={user.user} /> : <Navigate to="/sign" />} />
+          <Route path="/*" element={user ? <RoutePanel user={user.user} /> : <h1>Hola</h1>} />
           <Route path="/sign/" element={user && !loadingUser ? <Navigate to="/" /> : <Sign />} /> 
+          <Route path="/get/add/:name" element={<QR />} />
         </Routes>
       </Router>
     </>

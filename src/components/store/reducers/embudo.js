@@ -5,7 +5,7 @@ const initialState = {
 
     item: null,
     loadingItem: false,
-
+    fuente: null,
     prospectos: null,
     loadingProspectos: false,
 
@@ -58,6 +58,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loadingEmbudo: action.payload
+            }
+        }
+        case types.GET_FUENTE: {
+            return {
+                ...state,
+                fuente: action.payload
             }
         }
         case types.GET_PROSPECTOS:{

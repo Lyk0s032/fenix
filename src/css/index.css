@@ -119,6 +119,23 @@ body {
   padding: 20px 10px;
   box-sizing: border-box;
 }
+.modal .containerModalSmall .result .containerResult .inputDivQr {
+  text-align: center;
+  box-sizing: border-box;
+}
+.modal .containerModalSmall .result .containerResult .inputDivQr .qrCode {
+  width: 200;
+  height: 200px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+.modal .containerModalSmall .result .containerResult .inputDivQr .qrCode .qrComponent {
+  height: 100%;
+}
+.modal .containerModalSmall .result .containerResult .inputDivQr h3 {
+  font-weight: 400;
+  color: #046290;
+}
 .modal .containerModalSmall .result .containerResult .inputDiv {
   margin-bottom: 20px;
 }
@@ -5454,6 +5471,134 @@ body {
 .sign .nubeMistake .containerNube .messageContainer span {
   font-size: 14px;
   color: #FFF;
+}
+.qr {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+}
+.qr .containerQr {
+  width: 100%;
+  height: 100%;
+}
+.qr .containerQr .titleQr {
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid #ccc;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.qr .containerQr .titleQr h3 {
+  color: #046290;
+  font-weight: 400;
+}
+.qr .containerQr .containerFormBig {
+  width: 100%;
+  height: 90%;
+  box-sizing: border-box;
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  justify-content: space-around;
+}
+.qr .containerQr .containerFormBig .form {
+  width: 40%;
+  box-sizing: border-box;
+}
+.qr .containerQr .containerFormBig .form .containerForm .inputDiv {
+  padding: 10px;
+  box-sizing: border-box;
+}
+.qr .containerQr .containerFormBig .form .containerForm .inputDiv label {
+  font-size: 12px;
+  color: #525456;
+}
+.qr .containerQr .containerFormBig .form .containerForm .inputDiv input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  outline: 0px;
+  margin-top: 5px;
+}
+.qr .containerQr .containerFormBig .form .containerForm .inputDiv button {
+  padding: 8px 20px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #046290;
+  border: 1px solid #046290;
+  cursor: pointer;
+}
+.qr .containerQr .containerFormBig .form .containerForm .inputDiv button span {
+  font-size: 14px;
+  color: #FFF;
+}
+.qr .loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.qr .loading .box h3 {
+  font-weight: 400px;
+  color: #046290;
+}
+.qr .loading .box span {
+  font-size: 14px;
+  color: #525456;
+}
+.qr .notFound {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.qr .notFound .box h3 {
+  font-weight: 400px;
+  color: #046290;
+}
+.qr .notFound .box h1 {
+  font-size: 64px;
+  color: #046290;
+  font-weight: 400;
+}
+.qr .notFound .box span {
+  font-size: 14px;
+  color: #525456;
+}
+.qr .message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.qr .message .boxMessage {
+  width: 50%;
+  text-align: center;
+}
+.qr .message .boxMessage h1 {
+  font-size: 44px;
+  color: #046290;
+}
+.qr .message .boxMessage span {
+  font-size: 18px;
+  color: #525456;
+}
+@media screen and (max-width: 700px) {
+  .qr .containerQr .containerFormBig {
+    height: 80%;
+    box-sizing: border-box;
+  }
+  .qr .containerQr .containerFormBig .form {
+    width: 95%;
+  }
 }
 .navigation {
   height: 100%;

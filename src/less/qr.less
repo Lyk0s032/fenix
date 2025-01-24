@@ -1,0 +1,142 @@
+.qr{
+    box-sizing: border-box;
+    width:100%;
+    height:100vh;
+    .containerQr{
+        width:100%;
+        height:100%;
+        .titleQr{
+            width:100%;
+            height:10%;
+            border-bottom: 1px solid #ccc;
+            padding:0px 10px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            h3{
+                color: @bgAzulDark;
+                font-weight: 400;
+            }
+        }
+        .containerFormBig{
+            width:100%;
+            height:90%;
+            box-sizing: border-box;
+            display: flex;
+            overflow-y: auto;
+            align-items: center;
+            justify-content: space-around;
+            .form{
+                width:40%;
+                box-sizing: border-box;
+                .containerForm{
+                    .inputDiv{
+                        padding:10px;
+                        box-sizing: border-box;
+                        label{
+                            font-size: 12px;
+                            color: @colorLetraOscuro;
+                        }
+                        input{
+                            width:100%;
+                            border-radius: 5px;
+                            border:1px solid #ccc;
+                            padding:8px 10px;
+                            box-sizing: border-box;
+                            outline:0px;
+                            margin-top: 5px;
+                        }
+                        button{ 
+                            padding:8px 20px;
+                            box-sizing: border-box;
+                            width:100%;
+                            border-radius: 5px;
+                            background-color: @bgAzulDark;
+                            border:1px solid @bgAzulDark;
+                            cursor: pointer;
+                            span{
+                                font-size: 14px;
+                                color: @bgDefault;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    .loading{
+        width:100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .box{
+            h3{
+                font-weight: 400px;
+                color: @bgAzulDark;
+            }
+            span{
+                font-size: 14px;
+                color: @colorLetraOscuro;
+            }
+        }
+    }
+    .notFound{
+        width:100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .box{
+            h3{
+                font-weight: 400px;
+                color: @bgAzulDark;
+            }
+            h1{
+                font-size: 64px;
+                color: @bgAzulDark;
+                font-weight: 400;
+            }
+            span{
+                font-size: 14px;
+                color: @colorLetraOscuro;
+            }
+        }
+    }
+    .message{
+        width:100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .boxMessage{
+            width:50%;
+            text-align: center;
+            h1{
+                font-size: 44px;
+                color: @bgAzulDark;
+            }
+            span{
+                font-size: 18px;
+                color: @colorLetraOscuro;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:700px){
+    .qr{
+        .containerQr{
+            
+            .containerFormBig{
+                height:80%; 
+                box-sizing: border-box;
+                .form{
+                    width:95%;
+                }
+                
+            }
+        }
+    }
+}

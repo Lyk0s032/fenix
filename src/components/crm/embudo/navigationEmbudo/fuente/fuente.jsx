@@ -16,6 +16,12 @@ export default function Fuente(){
     const sendNav = (route) => {
         dispatch(actions.HandleNav(route))
     }
+
+    const openFuente = (fuente) => {
+        dispatch(actions.getFuente(fuente))
+        params.set('add', 'online')
+        setParams(params);
+    }
     return (
         <div className="embudoNav">
             <div className="containerEmbudoLeft">
@@ -90,7 +96,9 @@ export default function Fuente(){
                                                 console.log(fuente)
                                                 return (
                                                     fuente.type == 'online' ?
-                                                        <div className="fuente">
+                                                        <div className="fuente" onClick={() => {
+                                                            openFuente(fuente) 
+                                                        }}>
                                                             <div className="containerFuente">
                                                                 <div className="dataFuente">
                                                                     <h3>{fuente.nombre}</h3>
