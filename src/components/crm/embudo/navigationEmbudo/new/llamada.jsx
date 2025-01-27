@@ -6,6 +6,7 @@ import * as actions from '../../../../store/action/action';
 import axios from 'axios';
 
 export default function Llamada(props){
+    const asesores = props.asesores;
     const user = props.user;
     const dispatch = useDispatch();
     const [params, setParams] = useSearchParams();
@@ -17,6 +18,7 @@ export default function Llamada(props){
         time: null,
         hora: null,
         contacto: null,
+        asesorId: user.rango == 'lider' ? null : user.id
     })
     const [loading, setLoading] = useState(false);
     // Función para resetear
@@ -30,15 +32,17 @@ export default function Llamada(props){
     }
     // Función si es llamada.
     const createCall = async () => {
-        if(loading) return null
+        if(loading) return null; 
         if(!form.nombre || !form.time || !form.hora) return dispatch(actions.HandleAlerta('No puedes dejar campos vacios', 'mistake'))
+        if(!form.asesorId) return dispatch(actions.HandleAlerta('Selecciona un asesor', 'mistake'))
+        
         // Caso contrario, avanzamos
         setLoading(true)
         let body = {
             title: form.nombre,
             caso: 'contacto 1',
             clientId: cliente.id,
-            userId: user.id,
+            userId: form.asesorId,
             time: form.time,
             hour: form.hora,
             contactId: parseInt(form.contacto)   
@@ -71,7 +75,7 @@ export default function Llamada(props){
         let body = {
             title: form.nombre,
             clientId: cliente.id,
-            userId: user.id,
+            userId: form.asesorId,
             time: form.time,
             hour: form.hora,
             contactId: parseInt(form.contacto)   
@@ -179,6 +183,33 @@ export default function Llamada(props){
                                 <AiOutlinePlus className="icon" />
                             </button>
                         </div>
+                        {
+                            user.rango == 'lider' ?
+                                <div className="inputDiv">
+                                    <label htmlFor="">Selecciona un asesor</label><br />
+                                    <select name="" id="" 
+                                    onChange={(e) => {
+                                        setForm({
+                                            ...form,
+                                            asesorId: e.target.value
+                                        })
+                                    }} value={form.asesorId}>
+                                        {
+                                            asesores && asesores.length ?
+                                                asesores.map((asesor, i) => {
+                                                    return (
+                                                        asesor.id != user.id && asesor.rango == 'asesor' ?
+                                                            <option value={asesor.id}>{asesor.name}</option>
+                                                        :null
+                                                    )
+                                                })
+                                            : <span>No hay</span>
+                                        }
+                                    
+                                    </select>
+                                </div>
+                            : null 
+                        }
                         <div className="inputDiv">
                             <button className="create" onClick={() => {
                                 step == 'call' ? createCall() 

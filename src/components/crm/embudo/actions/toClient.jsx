@@ -6,6 +6,7 @@ import { laterFunction, nuevoClient } from '../actionsAxios';
 import { useSearchParams } from 'react-router-dom';
 
 export default function ToClient(props){
+    const user = props.user;
     const item = props.item;
     const dispatch = useDispatch();
     console.log(item)
@@ -35,16 +36,24 @@ export default function ToClient(props){
             data.phone, data.email, data.type, data.sector, 
             data.responsable, data.url, data.direccion, data.fijo, data.ciudad)
             .then((res) => {
-                console.log(res);
                 dispatch(actions.HandleAlerta('Cliente creado con éxito', 'positive'))
                 setLoading(false);
+                return res
             
             })
             .then((res) => {
-                dispatch(actions.AxiosGetAllEmbudo(1, false))
+                dispatch(actions.AxiosGetAllEmbudo(user.id, false))
                 params.delete('w');
                 params.delete('a');
                 setParams(params);
+                return res.data
+            })
+            .then((data) => {
+                dispatch(actions.handleCliente(data))
+                dispatch(actions.HandleNav('new'))
+                dispatch(actions.HandleNew('choose'))
+
+                return true
             })
             .catch((err) => {
                 console.log(err);

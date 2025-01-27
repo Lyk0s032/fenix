@@ -16,6 +16,7 @@ export const laterFunction = async (title, note, tags, userId, prospectoId, cale
     .then((res) => {
         console.log(res);
         console.log('funciono')
+        return res
     })
     .catch(err => {
         console.log(err);
@@ -45,8 +46,7 @@ export const nuevoClient = async (photo, prospectoId,
     }
     const save = await axios.post('api/prospecto/createClient', body)
     .then((res) => {
-        console.log(res);
-        console.log('Exito')
+        return res
     })
     .catch(err => {
         console.log(err);

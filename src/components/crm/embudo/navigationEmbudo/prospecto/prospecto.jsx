@@ -68,7 +68,11 @@ export default function Prospecto(props){
             dispatch(actions.HandleAlerta('Creado con éxito', 'positive'))
             setForm()
             dispatch(actions.AxiosGetAllEmbudo(user.id, false))
-            
+            return res.data
+        })
+        .then((data) => {
+            dispatch(actions.handleCliente(data))
+            dispatch(actions.HandleNew('choose'))
         })
         .catch(err => { 
             setLoading(false);
