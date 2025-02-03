@@ -243,6 +243,31 @@ export default function CotizacionesPanel(props){
                                             </button>
                                         </div>
                                     </div>
+                                : cotizacion.state == 'aprobada' ?
+                                    options == 'edit' ?
+                                        <div className="actionsAndOptions">
+                                            <div className="dinamiActions">
+                                                <button className='Wait' onClick={() => setOptions(null)}>
+                                                    <AiOutlineArrowLeft className='icon' /><br />
+                                                    <span>Regresar</span>
+                                                </button>
+                                            </div>
+                                            <div className="edit">
+                                                <button >
+                                                    <BsThreeDotsVertical className="icon"  />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        :
+                                        <div className="actionsAndOptions">
+                                            
+                                            <div className="edit">
+                                                <button onClick={() => setOptions('edit')}>
+                                                    <BsThreeDotsVertical className="icon"  />
+                                                </button>
+                                            </div>
+                                        </div>
                                 : null
                             }
                             
