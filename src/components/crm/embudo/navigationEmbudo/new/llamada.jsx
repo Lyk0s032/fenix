@@ -184,8 +184,8 @@ export default function Llamada(props){
                             </button>
                         </div>
                         {
-                            user.rango == 'lider' ?
-                                <div className="inputDiv">
+                            user.rango == 'lider' ? 
+                                <div className="inputDiv"> 
                                     <label htmlFor="">Selecciona un asesor</label><br />
                                     <select name="" id="" 
                                     onChange={(e) => {
@@ -209,7 +209,7 @@ export default function Llamada(props){
                                     </select>
                                 </div>
                             : null 
-                        }
+                        } 
                         <div className="inputDiv">
                             <button className="create" onClick={() => {
                                 step == 'call' ? createCall() 

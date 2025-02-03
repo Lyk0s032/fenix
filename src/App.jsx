@@ -37,7 +37,7 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/*" element={user ? <RoutePanel user={user.user} /> : <h1>Hola</h1>} />
+          <Route path="/*" element={user ? <RoutePanel user={user.user} /> : <Sign />} />
           <Route path="/sign/" element={user && !loadingUser ? <Navigate to="/" /> : <Sign />} /> 
           <Route path="/get/add/:name" element={<QR />} />
         </Routes>
