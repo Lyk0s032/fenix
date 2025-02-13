@@ -75,7 +75,7 @@ export default function CotizacionNew(props){
         <div className="leftNavEmbudoNew">
             <div className="containerLeftNavEmbudoNew">
                 <div className="titleNew">
-                    <h3>Nueva cotización</h3>
+                    <h3>Nueva cotización a <strong>{cliente.nombreEmpresa}</strong></h3>
                 </div>
                 <div className="formNewCoti">
                     <div className="containerFormNew">

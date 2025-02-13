@@ -102,7 +102,7 @@ export default function Llamada(props){
         <div className="leftNavEmbudoNew">
             <div className="containerLeftNavEmbudoNew">
                 <div className="titleNew">
-                    <h3>Nueva {step == 'visita' ? 'visita' : step == 'call' ? 'llamada' : null}</h3>
+                    <h3>Nueva {step == 'visita' ? 'visita' : step == 'call' ? 'llamada' : null} a <strong>{cliente.nombreEmpresa}</strong></h3>
                 </div>
                 <div className="formNewCoti">
                     <div className="containerFormNew">

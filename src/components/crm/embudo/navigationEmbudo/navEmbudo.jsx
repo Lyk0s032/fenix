@@ -184,7 +184,7 @@ export default function NavEmbudo(props){
                                 <div className="title">
                                     
                                     <div className="titleInfo">
-                                        <h3>Visitas</h3>
+                                        <h3>Visitas pendientes</h3>
                                         <h1>
                                             {
                                                 embudo.loadingVisitas || !embudo.visitas || embudo.visitas == 404 || embudo.visitas == 'notrequest'  ?
@@ -203,13 +203,29 @@ export default function NavEmbudo(props){
                                 <div className="title">
                                     
                                     <div className="titleInfo">
-                                        <h3>Cotizaciones</h3>
-                                        <h1>
                                             {
-                                                embudo.loadingCotizaciones || !embudo.cotizaciones || embudo.cotizaciones == 404 || embudo.cotizaciones == 'notrequest' ? 0
-                                                : embudo.cotizaciones.length ? embudo.cotizaciones.length : 0
+                                                embudo.loadingCotizaciones || !embudo.cotizaciones ?
+                                                    <div className="rightFinance">
+                                                        <span >Cotizaciones pendientes</span> 
+                                                        <h1>--- <span>COP</span></h1>
+                                                    </div>
+                                                : embudo.cotizaciones == 404 || embudo.cotizaciones == 'notrequest' ?
+                                                    <div className="rightFinance">
+                                                        <span >Cotizaciones pendientes</span> 
+                                                        <h1>0 <span >COP</span></h1>
+                                                    </div> 
+                                                : embudo.cotizaciones.length ?  
+                                                    <div className="rightFinance">
+                                                        <span >Cotizaciones pendientes ({embudo.cotizaciones.length})</span> 
+                                                        <h1 >{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.cotizaciones.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span >COP</span></h1>
+                                                    </div>
+                                                :
+                                                    <div className="rightFinance">
+                                                        <span >Cotizaciones pendientes</span> 
+                                                        <h1>--- <span>COP</span></h1>
+                                                    </div>
                                             }
-                                        </h1>
+
                                     
                                     </div>
                                 </div>
@@ -222,7 +238,7 @@ export default function NavEmbudo(props){
                                 <div className="title">
                                     
                                     <div className="titleInfo">
-                                        <h3>Prospectos</h3>
+                                        <h3>Clientes prospectos</h3>
                                         <h1>
                                             {
                                                 embudo.loadingProspectos || !embudo.prospectos || embudo.prospectos == 404 || embudo.prospectos == 'notrequest' ?

@@ -21,6 +21,17 @@ export default function Choose(){
     return (
         <div className="leftNavEmbudoNew">
             <div className="containerLeftNavEmbudoNew">
+
+                <div className="clientChoosed">
+                    <div className="containerChoosed">
+                        <div className="img">
+                            <img src={cliente.photo} alt="" />
+                        </div>
+                        <div className="name">
+                            <h3>{cliente.nombreEmpresa}</h3>
+                        </div>
+                    </div>
+                </div>
                 <div className="titleNew">
                     <h3>Selecciona</h3>
                 </div>

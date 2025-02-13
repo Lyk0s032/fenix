@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { MdAccessTime, MdArrowBack } from 'react-icons/md';
@@ -6,6 +6,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import * as actions from '../../../../store/action/action';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
 export default function CotizacionesPanel(props){
     const user = props.user;
@@ -17,19 +18,26 @@ export default function CotizacionesPanel(props){
     const embudo = useSelector(store => store.embudo);
     const { cotizacion, loadingCotizacion } = embudo;
 
-    const calendary = cotizacion.calendaries && cotizacion.calendaries.length ? cotizacion.calendaries.find((it) => it.state == 'active') : null;
+    useEffect(() => {
+        if(!cotizacion) {
+            params.delete('cotizacion')
+            setParams(params);
+        }
+    }, [])
+    const calendary = cotizacion && cotizacion.calendaries && cotizacion.calendaries.length ? cotizacion.calendaries.find((it) => it.state == 'active') : null;
 
+    
     const [form, setForm] = useState({
         calendaryId: null,
-        title: cotizacion.name, 
-        nit: cotizacion.nit, 
-        nro: cotizacion.nro, 
-        fecha: cotizacion.fecha, 
-        bruto: cotizacion.bruto, 
-        descuento: cotizacion.descuento, 
-        neto: cotizacion.neto, 
+        title:cotizacion ?  cotizacion.name : null, 
+        nit: cotizacion ? cotizacion.nit : null, 
+        nro: cotizacion ? cotizacion.nro : null, 
+        fecha: cotizacion ? cotizacion.fecha : null, 
+        bruto: cotizacion ? cotizacion.bruto : null, 
+        descuento: cotizacion ? cotizacion.descuento : null, 
+        neto: cotizacion ? cotizacion.neto : null, 
     });
-    const [iva, setIva] = useState(cotizacion.iva == 19 ? true : false);
+    const [iva, setIva] = useState(cotizacion ? cotizacion.iva == 19 ? true : false : false);
     const [loading, setLoading] = useState(false);
 
     const [aplazar, setAplazar] = useState({
@@ -132,6 +140,8 @@ export default function CotizacionesPanel(props){
         })
         return sendAplazar;
     }
+
+    
     return (
         <div className="cotizacion">
             {
@@ -494,12 +504,12 @@ export default function CotizacionesPanel(props){
                                                 <div className="asesor">
                                                     <h3>{cotizacion.user.name}</h3>
                                                     <span>Nro. {cotizacion.nro}</span><br />
-                                                    <span className='time'>{cotizacion.fecha.split('T')[0]}</span>
+                                                    <span className='time'>{dayjs(cotizacion.fecha.split('T')[0]).format('DD [de] MMMM [del] YYYY')}</span>
                                                 </div>
                                                 <div className="asesor Reverse">
                                                     <h3>{cotizacion.client.nombreEmpresa}</h3>
                                                     <span>Nit. {cotizacion.nit}</span><br />
-                                                    <span className='time'>Pendiente</span>
+                                                    <span className='time'>{cotizacion.state}</span>
                                                 </div>
                                             </div>
                                         </div>

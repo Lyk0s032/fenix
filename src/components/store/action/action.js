@@ -348,9 +348,13 @@ export function axiosToGetAprobadas(user, carga){
     const mes = dia.format('MM');
     const year = dia.format('YYYY');
     const day = dia.format('DD');
+    console.log(day);
+    const month = day < 6 ? dia.subtract(1, 'month').format('MM') : mes;
+    console.log('-------------------------------------------')
+    console.log(mes - 1)
+    console.log('-------------------------------------------')
 
-    const month = day < 6 ? mes - 1 : mes;
-
+ 
     return function(dispatch){ 
         dispatch(gettingAprobadas(carga))
         axios.get(`api/cotizacion/get/embudo/mes/${year}/${month}/${user}`)

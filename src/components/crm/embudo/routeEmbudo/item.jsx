@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { MdLocalPhone, MdOutlineClose, MdOutlineQuestionMark } from 'react-icons/md';
@@ -24,6 +24,14 @@ export default function Item(props){
         setParams(params);
     }
     let proximaFecha = item.calendaries ? item.calendaries.find(time => time.state == 'active') : null
+    
+    useEffect(() => {
+        if(!item) {
+            params.delete('w')
+            params.delete('action')
+            setParams(params);
+        }
+    }, [])
     return (
     type == 'contacto' ?
         <tr onClick={() => openAction(item)}>
@@ -35,8 +43,8 @@ export default function Item(props){
                         </div>
                         <div className="dataAbout">
                             <h3>{item.client.nombreEmpresa}</h3>
-                            <h4>{item.client.phone}</h4>
-                            <span>{item.client.type}</span>
+                            <span>{item.client.type}</span><br />
+                            <span>Asesor: {item.user ? item.user.name : null}</span>
                         </div>
                     </div>
                 </div>
@@ -224,7 +232,7 @@ export default function Item(props){
                         <div className="dataAbout">
                             <h3>{item.client.nombreEmpresa ? item.client.nombreEmpresa : 'Sin definir'}</h3>
                             <h4>{item.client.phone}</h4>
-                            <span>{item.client.type}</span>
+                            <span>Asesor: {item.user ? item.user.name : null}</span>
                         </div>
                     </div>
                 </div>
@@ -269,11 +277,20 @@ export default function Item(props){
                     <div className="containerAbout">
                         <div className="div">
                         </div>
-                        <div className="dataAbout">
-                            <h3>{item.nombreEmpresa ? item.nombreEmpresa : 'Sin definir'}</h3>
-                            <h4>{item.phone}</h4>
-                            <span>{item.type}</span>
-                        </div>
+                        {
+                            item.type == 'digital' ?
+                            <div className="dataAbout">
+                                <h3>{item.namePersona ? item.namePersona : 'Sin definir'}</h3>
+                                <h4>{item.phone}</h4>
+                                <span>{item.type}</span> 
+                            </div>
+                            :
+                            <div className="dataAbout">
+                                <h3>{item.nombreEmpresa ? item.nombreEmpresa : 'Sin definir'}</h3>
+                                <h4>{item.phone}</h4>
+                                <span>{item.type}</span>
+                            </div>
+                        }
                     </div>
                 </div>
             </td>

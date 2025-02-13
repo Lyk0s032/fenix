@@ -441,6 +441,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-top: 5px;
 }
 .embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation {
   width: 100%;
@@ -506,6 +507,19 @@ body {
   font-size: 14px;
   color: #525456;
 }
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation .containerItemNavigation .title .titleInfo .rightFinance {
+  box-sizing: border-box;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation .containerItemNavigation .title .titleInfo .rightFinance span {
+  font-size: 11px;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation .containerItemNavigation .title .titleInfo .rightFinance h1 {
+  font-size: 14px;
+  color: #046290;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation .containerItemNavigation .title .titleInfo .rightFinance h1 span {
+  color: #046290;
+}
 .embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation .containerItemNavigation .data {
   width: 20%;
   text-align: center;
@@ -543,6 +557,20 @@ body {
 }
 .embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation.Active .containerItemNavigation .title .titleInfo span {
   color: #919eab;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation.Active .containerItemNavigation .title .titleInfo .rightFinance {
+  box-sizing: border-box;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation.Active .containerItemNavigation .title .titleInfo .rightFinance span {
+  font-size: 11px;
+  color: #FFF;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation.Active .containerItemNavigation .title .titleInfo .rightFinance h1 {
+  font-size: 14px;
+  color: #FFF;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation.Active .containerItemNavigation .title .titleInfo .rightFinance h1 span {
+  color: #FFF;
 }
 .embudo .containerEmbudo .segureDiv .embudoNavigation .containerEmbudoNavigation .optionsForNavigationEmbudo .containerOptionsForNavigationEmbudo .itemNavigation.Active .containerItemNavigation .data h3 {
   color: #FFF;
@@ -665,6 +693,33 @@ body {
   height: 100%;
   box-sizing: border-box;
   overflow-y: auto;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .clientChoosed {
+  box-sizing: border-box;
+  width: 100%;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .clientChoosed .containerChoosed {
+  width: 90%;
+  margin: auto;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .clientChoosed .containerChoosed .img {
+  width: 100%;
+  text-align: center;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .clientChoosed .containerChoosed .img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .clientChoosed .containerChoosed .name {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+.embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .clientChoosed .containerChoosed .name h3 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #046290;
 }
 .embudo .containerEmbudo .segureDiv .embudoNavigation .embudoNav .containerEmbudoLeft .scrollLeftEmbudo .containerScrollLeft .searchAll .scrollClients .containerScroll .leftNavEmbudoNew .containerLeftNavEmbudoNew .titleNew {
   width: 95%;
@@ -2559,49 +2614,79 @@ body {
   font-size: 12px;
   color: #525456;
 }
-.calendar {
+.divAllCalendary {
+  width: 100%;
+  height: 100%;
+}
+.divAllCalendary .filterUser {
+  height: 8%;
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
-.calendar .containerCalendar {
+.divAllCalendary .filterUser select {
+  width: 40%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: 1px solid #046290;
+  background-color: #046290;
+  color: #FFF;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.divAllCalendary .filterUser select option {
+  text-align: center;
+  font-size: 16px;
+  background-color: #FFF;
+  color: #046290;
+  padding: 10px;
+}
+.divAllCalendary .calendar {
+  box-sizing: border-box;
+  width: 100%;
+  height: 92%;
+}
+.divAllCalendary .calendar .containerCalendar {
   height: 100%;
   width: 100%;
 }
-.calendar .containerCalendar .calendario {
+.divAllCalendary .calendar .containerCalendar .calendario {
   width: 100%;
   height: 100%;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary {
   width: 100%;
   height: 100%;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event.rbc-selected {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event.rbc-selected {
   background-color: #046290;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-row-bg .rbc-day-bg {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-row-bg .rbc-day-bg {
   padding: 0px 10px;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-event {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-event {
   background-color: transparent;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-event-label {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-event-label {
   display: none;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-time-content {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .reactBig .rbc-time-content {
   display: none;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .rbc-events-container {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-events-container {
   border: 1px solid #FFF;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event {
   width: 100%;
   margin-right: 25px;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event .rbc-event-label {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event .rbc-event-label {
   display: none;
 }
-.calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event .rbc-events-container {
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event .rbc-events-container {
   font-size: 12px;
 }
 .nubeItemCalendario {

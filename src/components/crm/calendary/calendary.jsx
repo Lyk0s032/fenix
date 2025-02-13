@@ -7,10 +7,13 @@ export default function RouteCalendar(props){
     const user = props.user
     const dispatch = useDispatch();
     const calendary = useSelector(store => store.calendar);
+    const usuarios = useSelector(store => store.usuario)
     const { calendar, loadingCalendar } = calendary;
-
+    {console.log(usuarios)}
     useEffect(() => {
         dispatch(actions.axiosToGetCalendar(user.id, true))
+            dispatch(actions.axiosToGetAsesores(user.id, true)) 
+    
     }, [])
     return (
             !calendar || loadingCalendar ?
@@ -29,6 +32,33 @@ export default function RouteCalendar(props){
                 </div>
             </div>
             :
-            <Calendary user={user} calendar={calendar} />
+            <div className="divAllCalendary">
+                <div className="filterUser">
+                    {
+                        user == 'lider' ? 
+                        <select name="" id="" onChange={(e) => {
+                            dispatch(actions.axiosToGetCalendar(e.target.value, false))
+
+                        }}>
+                            <option value={user.id}>Mi calendario</option>
+                            {
+                                usuarios.asesores && usuarios.asesores.length ?
+                                    usuarios.asesores.map((us, i) => {
+                                        return (
+                                            <option value={us.id}>{`${us.name} ${us.lastName}`}</option>
+                                        )
+                                    })
+                                : null
+                            }
+
+                        </select>
+                        :
+                        <select name="" id="">
+                            <option value="">{user.name} {user.lastName}</option>
+                        </select>
+                    }
+                </div>
+                <Calendary user={user} calendar={calendar} />
+            </div>
     )
 }

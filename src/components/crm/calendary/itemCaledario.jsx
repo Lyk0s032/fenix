@@ -346,10 +346,17 @@ function ItemCalendar(props){
                                                                 de: e.target.value
                                                             })
                                                         }} value={email.de}>
-                                                            <option value="7:00 AM">7:00</option>
-                                                            <option value="8:00 AM">8:00</option>
-                                                            <option value="9:00 AM">9:00</option>
-                                                            <option value="10:00 AM">10:00</option>
+                                                            <option value="7:00 AM">7:00 AM</option>
+                                                            <option value="8:00 AM">8:00 AM </option>
+                                                            <option value="9:00 AM">9:00 AM </option>
+                                                            <option value="10:00 AM">10:00 AM </option>
+                                                            <option value="11:00 AM">11:00 AM </option>
+                                                            <option value="12:00 PM">12:00 PM</option>
+                                                            <option value="01:00 PM">01:00 PM</option>
+                                                            <option value="02:00 PM">02:00 PM</option>
+                                                            <option value="03:00 PM">03:00 PM</option>
+                                                            <option value="04:00 PM">03:00 PM</option>
+                                                            <option value="05:00 PM">05:00 PM</option>
 
                                                         </select>
                                                     </div>
@@ -362,11 +369,18 @@ function ItemCalendar(props){
                                                                 a: e.target.value
                                                             })
                                                         }} value={email.a}>
-                                                            <option value="7:00 AM">7:00</option>
-                                                            <option value="8:00 AM">8:00</option>
-                                                            <option value="9:00 AM">9:00</option>
-                                                            <option value="10:00 AM">10:00</option>
-
+                                                            <option value="7:00 AM">7:00 AM</option>
+                                                            <option value="8:00 AM">8:00 AM</option>
+                                                            <option value="9:00 AM">9:00 AM</option>
+                                                            <option value="10:00 AM">10:00 AM </option>
+                                                            <option value="11:00 AM">11:00 AM </option>
+                                                            <option value="12:00 PM">12:00 PM</option>
+                                                            <option value="01:00 PM">01:00 PM</option>
+                                                            <option value="02:00 PM">02:00 PM</option>
+                                                            <option value="03:00 PM">03:00 PM</option>
+                                                            <option value="04:00 PM">03:00 PM</option>
+                                                            <option value="05:00 PM">05:00 PM</option>
+ 
                                                         </select>
                                                     </div>
                                                 </div>

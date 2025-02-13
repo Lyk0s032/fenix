@@ -25,7 +25,9 @@ export default function ItemCotizaciones(props){
                     </div>
                     <div className="dataBusiness">
                         <h3>{cotizacion.client.nombreEmpresa}</h3>
-                        <span>{cotizacion.client.type}</span>
+                        <span>{cotizacion.client.type}</span><br />
+                        <span>Asesor: {cotizacion.user ? cotizacion.user.name : null}</span>
+
                     </div> 
                 </div>
             </td>

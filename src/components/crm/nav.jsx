@@ -2,12 +2,15 @@ import React from 'react';
 import { AiFillHome, AiFillWindows, AiOutlineHome, AiOutlineWindows } from 'react-icons/ai';
 import { BsCalendar3Event, BsFillPeopleFill, BsPeople } from 'react-icons/bs';
 import { MdOutlineSettingsSuggest, MdSettingsSuggest } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import * as actions from '../store/action/action';
 
 export default function Nav(props){
     const user = props.user;
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const letMe = () => {
         const pageWidth = document.documentElement.scrollWidth;
@@ -15,6 +18,11 @@ export default function Nav(props){
 
         console.log(`Ancho de la página: ${pageWidth}px`);
         console.log(`Alto de la página: ${pageHeight}px`);
+    }
+
+    const closeSesion = async () => {
+        window.localStorage.removeItem('loggedPeople'); 
+        dispatch(actions.GET_USER(null))
     }
     return (
         <div className="navigation">
@@ -59,6 +67,11 @@ export default function Nav(props){
                             <li>
                                 <div className="profileIcono">
                                     <img src={user.photo} alt="" />
+                                </div>
+                            </li>
+                            <li style={{cursor:'pointer'}} onClick={() => closeSesion()}>
+                                <div className="profileIcono">
+                                    <span style={{fontSize:11, color: 'white'}}>Cerrar sesión</span>
                                 </div>
                             </li>
 

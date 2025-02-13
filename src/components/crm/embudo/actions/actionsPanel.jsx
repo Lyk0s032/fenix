@@ -82,6 +82,46 @@ export default function ActionsPanelEmbudo(props){
                 !item || loadingItem ?
                     <h1>Cargando...</h1>
                 :
+                item == 'notrequest' ? 
+                <div className="containerActionsEmbudo">
+                    <div className="top">
+                        <div className="containerTop">
+                            <div className="title">
+                                <div className="juntos">
+                                    <button className='btn' onClick={() => openAction()}>
+                                        <MdArrowBack className='icon' />
+                                    </button>
+                                    <div className="dataTitle">
+                                            <div className="topDataClient">
+                                                <div className="photo">
+                                                    <img src="https://static.vecteezy.com/system/resources/previews/026/822/782/non_2x/incognito-icon-unknown-illustration-sign-nameless-symbol-or-logo-vector.jpg" alt="" />
+                                                </div>
+                                                <div className="clientData">
+                                                    <h3>Ups!</h3>
+                                                    <h4>No hemos encontrado esto</h4>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div className="optionsConfig">
+                                    <nav>
+                                        <ul>
+                                            
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={focus ? "clientConversation Focus" : "clientConversation"}>
+                        <div className="notFound">
+                            <h1>No hemos encontrado esto</h1>
+                        </div>
+                    </div> 
+                    
+                </div>
+                :
                 <div className="containerActionsEmbudo">
                     <div className="top">
                         <div className="containerTop">
@@ -107,9 +147,10 @@ export default function ActionsPanelEmbudo(props){
                                             :
                                             <div className="topDataClient">
                                                 <div className="photo">
-                                                    <img style={{borderRadius:100}} src={item.client.photo} alt="" />
+                                                    {console.log(item)}
+                                                    <img style={{borderRadius:100}} src={item && item.client ? item.client.photo ? item.client.photo : null : null} alt="" />
                                                 </div>
-                                                <div className="clientData">
+                                                <div className="clientData"> 
                                                     <h3>{item.client.nombreEmpresa}</h3>
                                                     <h4>{item.client.responsable}</h4>
                                                     <h4>{item.client.phone}</h4>
