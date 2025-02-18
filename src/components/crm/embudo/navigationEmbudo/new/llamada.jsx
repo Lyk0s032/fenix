@@ -184,7 +184,7 @@ export default function Llamada(props){
                             </button>
                         </div>
                         {
-                            user.rango == 'lider' ? 
+                            user.rango == 'lider' || user.rango == 'comercial' ? 
                                 <div className="inputDiv"> 
                                     <label htmlFor="">Selecciona un asesor</label><br />
                                     <select name="" id="" 
@@ -208,7 +208,7 @@ export default function Llamada(props){
                                     
                                     </select>
                                 </div>
-                            : null 
+                            : null  
                         } 
                         <div className="inputDiv">
                             <button className="create" onClick={() => {

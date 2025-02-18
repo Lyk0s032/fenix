@@ -93,166 +93,196 @@ export default function NavEmbudo(props){
                         </div>
                     </div>
                 </div>
-                <div className="searchAndTags">
-                    <div className="containerSearchAndTags">
+                {
+                    user.rango == 'lider' || user.rango == 'asesor' ?
+                        <div className="searchAndTags">
+                            <div className="containerSearchAndTags">
 
-                        <div className="financeThisMonth">
-                            <div className="containerFinanceThisMonth">
-                                
-                                <div className="dataFinanceBig" onClick={() => navigate('/aprobadas')}>
-                                    <div className="containerDataFinance">
-                                        <div className="icono">
-                                            <FaDollarSign className="icon" />
+                                <div className="financeThisMonth">
+                                    <div className="containerFinanceThisMonth">
+                                        
+                                        <div className="dataFinanceBig" onClick={() => navigate('/aprobadas')}>
+                                            <div className="containerDataFinance">
+                                                <div className="icono">
+                                                    <FaDollarSign className="icon" />
+                                                </div>
+                                                    {
+                                                        embudo.loadingAprobadas || !embudo.aprobadas ?
+                                                            <div className="rightFinance">
+                                                                <span>Hasta el momento</span> 
+                                                                <h1>--- <span>COP</span></h1>
+                                                                <h3>-- Cotizaciones aprobadas</h3>
+                                                            </div>
+                                                        : embudo.aprobadas == 404 || embudo.aprobadas == 'notrequest' ?
+                                                            <div className="rightFinance">
+                                                                <span>Hasta el momento</span> 
+                                                                <h1>0 <span>COP</span></h1>
+                                                                <h3>0 Cotizaciones aprobadas</h3>
+                                                            </div> 
+                                                        : embudo.aprobadas.length ?  
+                                                            <div className="rightFinance">
+                                                                {console.log(embudo.aprobadas)} 
+                                                                <span>Hasta el momento</span>
+                                                                <h1>{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.aprobadas.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span>COP</span></h1>
+                                                                <h3>{embudo.aprobadas.length} Cotizaciones aprobadas</h3>
+                                                            </div>
+                                                        :
+                                                            <div className="rightFinance">
+                                                                <span>Hasta el momento</span> 
+                                                                <h1>--- <span>COP</span></h1>
+                                                                <h3>--- Cotizaciones aprobadas</h3>
+                                                            </div>
+                                                    }
+                                                
+                                            </div>
                                         </div>
-                                            {
-                                                embudo.loadingAprobadas || !embudo.aprobadas ?
-                                                    <div className="rightFinance">
-                                                        <span>Hasta el momento</span> 
-                                                        <h1>--- <span>COP</span></h1>
-                                                        <h3>-- Cotizaciones aprobadas</h3>
-                                                    </div>
-                                                : embudo.aprobadas == 404 || embudo.aprobadas == 'notrequest' ?
-                                                    <div className="rightFinance">
-                                                        <span>Hasta el momento</span> 
-                                                        <h1>0 <span>COP</span></h1>
-                                                        <h3>0 Cotizaciones aprobadas</h3>
-                                                    </div> 
-                                                : embudo.aprobadas.length ?  
-                                                    <div className="rightFinance">
-                                                        {console.log(embudo.aprobadas)} 
-                                                        <span>Hasta el momento</span>
-                                                        <h1>{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.aprobadas.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span>COP</span></h1>
-                                                        <h3>{embudo.aprobadas.length} Cotizaciones aprobadas</h3>
-                                                    </div>
-                                                :
-                                                    <div className="rightFinance">
-                                                        <span>Hasta el momento</span> 
-                                                        <h1>--- <span>COP</span></h1>
-                                                        <h3>--- Cotizaciones aprobadas</h3>
-                                                    </div>
-                                            }
                                         
                                     </div>
                                 </div>
-                                
+                                {/* <div className="search">
+                                    <input type="text" placeholder='Buscar cliente' />
+                                </div> */}
+                                {/* <div className="tagsOpen">
+                                    <div className="containerTags">
+                                        <button onClick={() => sendNav('fuente')}>
+                                            <AiOutlinePlus className="icon" />
+                                            <span>Fuente</span><br />
+                                        </button>
+                                        <button onClick={() => sendNav('prospecto')}>
+                                            <AiOutlinePlus className="icon" />
+                                            <span>Prospecto</span>
+                                        </button>
+                                        
+                                        <button onClick={() => sendNav('tags')}>
+                                            <AiOutlinePlus className="icon" />
+                                            <span>Tags</span>
+                                        </button>
+                                    </div>
+                                </div> */}
                             </div>
                         </div>
-                        {/* <div className="search">
-                            <input type="text" placeholder='Buscar cliente' />
-                        </div> */}
-                        {/* <div className="tagsOpen">
-                            <div className="containerTags">
-                                <button onClick={() => sendNav('fuente')}>
-                                    <AiOutlinePlus className="icon" />
-                                    <span>Fuente</span><br />
-                                </button>
-                                <button onClick={() => sendNav('prospecto')}>
-                                    <AiOutlinePlus className="icon" />
-                                    <span>Prospecto</span>
-                                </button>
-                                
-                                <button onClick={() => sendNav('tags')}>
-                                    <AiOutlinePlus className="icon" />
-                                    <span>Tags</span>
-                                </button>
-                            </div>
-                        </div> */}
-                    </div>
-                </div>
+                    :null
+                }
                 <div className="optionsForNavigationEmbudo">
-                    <div className="containerOptionsForNavigationEmbudo">
-                        <div className={navRoute == "/" ? "itemNavigation Active" : 'itemNavigation'} onClick={() => navigate('/')}>
-                            <div className="containerItemNavigation">
-                                <div className="title">
-                                    <div className="titleInfo">
-                                        <h3>Contactos</h3>
-                                        <h1>
-                                            {
-                                                embudo.loadingContactos || !embudo.contactos || embudo.contactos == 404 || embudo.contactos == 'notrequest' ?
-                                                0
-                                                : embudo.contactos.length ? embudo.contactos.length : 0 
-                                            }
-                                        </h1>
+                    {
+                        user.rango == 'lider' || user.rango == 'asesor' ?
+                        <div className="containerOptionsForNavigationEmbudo">
+                            
+                            <div className={navRoute == "/" ? "itemNavigation Active" : 'itemNavigation'} onClick={() => navigate('/')}>
+                                <div className="containerItemNavigation">
+                                    <div className="title">
+                                        <div className="titleInfo">
+                                            <h3>Contactos</h3>
+                                            <h1>
+                                                {
+                                                    embudo.loadingContactos || !embudo.contactos || embudo.contactos == 404 || embudo.contactos == 'notrequest' ?
+                                                    0
+                                                    : embudo.contactos.length ? embudo.contactos.length : 0 
+                                                }
+                                            </h1>
 
+                                        </div>
                                     </div>
+                                    
                                 </div>
-                                
+                            </div>
+                            <div className={navRoute == "/visitas" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/visitas')}>
+                                <div className="containerItemNavigation">
+                                    <div className="title">
+                                        
+                                        <div className="titleInfo">
+                                            <h3>Visitas pendientes</h3>
+                                            <h1>
+                                                {
+                                                    embudo.loadingVisitas || !embudo.visitas || embudo.visitas == 404 || embudo.visitas == 'notrequest'  ?
+                                                    0
+                                                    : embudo.visitas.length ? embudo.visitas.length : 0
+                                                }
+                                            </h1>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div className={navRoute == "/cotizaciones" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/cotizaciones')}>
+                                <div className="containerItemNavigation">
+                                    <div className="title">
+                                        
+                                        <div className="titleInfo">
+                                                {
+                                                    embudo.loadingCotizaciones || !embudo.cotizaciones ?
+                                                        <div className="rightFinance">
+                                                            <span >Cotizaciones pendientes</span> 
+                                                            <h1>--- <span>COP</span></h1>
+                                                        </div>
+                                                    : embudo.cotizaciones == 404 || embudo.cotizaciones == 'notrequest' ?
+                                                        <div className="rightFinance">
+                                                            <span >Cotizaciones pendientes</span> 
+                                                            <h1>0 <span >COP</span></h1>
+                                                        </div> 
+                                                    : embudo.cotizaciones.length ?  
+                                                        <div className="rightFinance">
+                                                            <span >Cotizaciones pendientes ({embudo.cotizaciones.length})</span> 
+                                                            <h1 >{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.cotizaciones.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span >COP</span></h1>
+                                                        </div>
+                                                    :
+                                                        <div className="rightFinance">
+                                                            <span >Cotizaciones pendientes</span> 
+                                                            <h1>--- <span>COP</span></h1>
+                                                        </div>
+                                                }
+
+                                        
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                            <div className={navRoute == "/prospectos" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/prospectos')}>
+                                <div className="containerItemNavigation">
+                                    <div className="title">
+                                        
+                                        <div className="titleInfo">
+                                            <h3>Clientes prospectos</h3>
+                                            <h1>
+                                                {
+                                                    embudo.loadingProspectos || !embudo.prospectos || embudo.prospectos == 404 || embudo.prospectos == 'notrequest' ?
+                                                    0
+                                                    : embudo.prospectos.length ? embudo.prospectos.length : 0
+                                                }    
+                                            </h1>                                        
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
-                        <div className={navRoute == "/visitas" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/visitas')}>
-                            <div className="containerItemNavigation">
-                                <div className="title">
-                                    
-                                    <div className="titleInfo">
-                                        <h3>Visitas pendientes</h3>
-                                        <h1>
-                                            {
-                                                embudo.loadingVisitas || !embudo.visitas || embudo.visitas == 404 || embudo.visitas == 'notrequest'  ?
-                                                0
-                                                : embudo.visitas.length ? embudo.visitas.length : 0
-                                            }
-                                        </h1>
+                    :
+                        <div className="containerOptionsForNavigationEmbudo">
+                            <div className={navRoute == "/prospectos" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/prospectos')}>
+                                <div className="containerItemNavigation">
+                                    <div className="title">
+                                        
+                                        <div className="titleInfo">
+                                            <h3>Clientes prospectos</h3>
+                                            <h1>
+                                                {
+                                                    embudo.loadingProspectos || !embudo.prospectos || embudo.prospectos == 404 || embudo.prospectos == 'notrequest' ?
+                                                    0
+                                                    : embudo.prospectos.length ? embudo.prospectos.length : 0
+                                                }    
+                                            </h1>                                        
 
+                                        </div>
                                     </div>
+                                    
                                 </div>
-                                
                             </div>
                         </div>
-                        <div className={navRoute == "/cotizaciones" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/cotizaciones')}>
-                            <div className="containerItemNavigation">
-                                <div className="title">
-                                    
-                                    <div className="titleInfo">
-                                            {
-                                                embudo.loadingCotizaciones || !embudo.cotizaciones ?
-                                                    <div className="rightFinance">
-                                                        <span >Cotizaciones pendientes</span> 
-                                                        <h1>--- <span>COP</span></h1>
-                                                    </div>
-                                                : embudo.cotizaciones == 404 || embudo.cotizaciones == 'notrequest' ?
-                                                    <div className="rightFinance">
-                                                        <span >Cotizaciones pendientes</span> 
-                                                        <h1>0 <span >COP</span></h1>
-                                                    </div> 
-                                                : embudo.cotizaciones.length ?  
-                                                    <div className="rightFinance">
-                                                        <span >Cotizaciones pendientes ({embudo.cotizaciones.length})</span> 
-                                                        <h1 >{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.cotizaciones.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span >COP</span></h1>
-                                                    </div>
-                                                :
-                                                    <div className="rightFinance">
-                                                        <span >Cotizaciones pendientes</span> 
-                                                        <h1>--- <span>COP</span></h1>
-                                                    </div>
-                                            }
-
-                                    
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div className={navRoute == "/prospectos" ? "itemNavigation Active" : 'itemNavigation'}  onClick={() => navigate('/prospectos')}>
-                            <div className="containerItemNavigation">
-                                <div className="title">
-                                    
-                                    <div className="titleInfo">
-                                        <h3>Clientes prospectos</h3>
-                                        <h1>
-                                            {
-                                                embudo.loadingProspectos || !embudo.prospectos || embudo.prospectos == 404 || embudo.prospectos == 'notrequest' ?
-                                                0
-                                                : embudo.prospectos.length ? embudo.prospectos.length : 0
-                                            }    
-                                        </h1>                                        
-
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
 

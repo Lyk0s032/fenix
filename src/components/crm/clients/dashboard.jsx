@@ -87,9 +87,6 @@ export default function Dashboard(){
                                     <div className="chooseMonth">
                                         <select name="" id="">
                                             <option value="">{month}</option>
-                                            <option value="">Enero</option>
-                                            <option value="">Febrero</option>
-                                            <option value="">Marzo</option>
 
                                         </select>
                                     </div>

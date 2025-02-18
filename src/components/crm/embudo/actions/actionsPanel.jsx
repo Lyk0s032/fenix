@@ -133,18 +133,37 @@ export default function ActionsPanelEmbudo(props){
                                     <div className="dataTitle">
                                         {
                                             item.state == 'intento 1' || item.state == 'intento 2' || item.state == 'intento 3'?
-                                            <div className="topDataClient">
+                                            <div className="topDataClient" style={{ width:500}}>
                                                 <div className="photo">
                                                     <img src="https://static.vecteezy.com/system/resources/previews/026/822/782/non_2x/incognito-icon-unknown-illustration-sign-nameless-symbol-or-logo-vector.jpg" alt="" />
                                                 </div>
-                                                <div className="clientData">
-                                                    <h3>{item.nombreEmpresa}</h3>
-                                                    <h4>{item.namePersona}</h4>
-                                                    <h4>{item.phone}</h4>
-                                                    <span>{item.direccion}</span>
+                                                <div className="clientData" 
+                                                style={{borderColor:'black',
+                                                    width:'90%',
+                                                    display:'flex',
+                                                    justifyContent:'space-between'
+                                                }}>
+                                                    <div>
+                                                        <h3>{item.nombreEmpresa}</h3>
+                                                        <h4>{item.namePersona}</h4>
+                                                        <h4>{item.phone}</h4>
+                                                        <span>Dirección: {item.direccion}</span><br />
+                                                        <span style={{textDecoration:'underline', cursor:'pointer'}}>{item.url}</span><br />
+                                                        <span>fijo: {item.fijo}</span><br />
+
+                                                    </div>
+                                                    <div>
+                                                        <span>{item.email}</span><br />
+                                                        <span>Cargo: <strong>{item.cargo}</strong></span><br />
+                                                        <span>Tipo: <strong>{item.type}</strong></span><br />
+                                                        <span>Fuente: <strong>{item.fuente.nombre}</strong></span><br />
+                                                        <span>Ciudad: <strong>{item.city}</strong></span><br />
+                                                    
+                                                    </div>
+                                                
                                                 </div>
                                             </div>
-                                            :
+                                            : 
                                             <div className="topDataClient">
                                                 <div className="photo">
                                                     {console.log(item)}

@@ -53,16 +53,21 @@ export default function RouteEmbudo(props){
                 {
 
                     <div className="visualizacionEmbudo">
-                        <Routes>
-                            <Route path="/*" element={<ContactoEmbudo contactos={contactos}/>} />
-                            <Route path="/visitas/*" element={<VisitaEmbudo />} />
-                            <Route path="/cotizaciones/*" element={<CotizacionesEmbudo />} />
-                            <Route path="/prospectos/*" element={<ProspectosEmbudo />} />
-                            <Route path="/aprobadas/*" element={<AprobadasEmbudo />} />
+                        {
+                            user.rango == 'comercial' ?
+                                <Routes>
+                                    <Route path="/*" element={<ProspectosEmbudo />} />
+                                </Routes>
+                            :
+                                <Routes>
+                                    <Route path="/*" element={<ContactoEmbudo contactos={contactos}/>} />
+                                    <Route path="/visitas/*" element={<VisitaEmbudo />} />
+                                    <Route path="/cotizaciones/*" element={<CotizacionesEmbudo />} />
+                                    <Route path="/prospectos/*" element={<ProspectosEmbudo />} />
+                                    <Route path="/aprobadas/*" element={<AprobadasEmbudo />} />
+                                </Routes>
 
-
-
-                        </Routes>
+                        }
 
                             <CSSTransition 
                                 in={params.get('w') == 'action'} 

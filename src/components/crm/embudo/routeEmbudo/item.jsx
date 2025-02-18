@@ -272,6 +272,9 @@ export default function Item(props){
         </tr>
     : type == 'prospecto' ?
         <tr onClick={() => openAction(item)}>
+            {
+                console.log(item) 
+            }
             <td>
                 <div className='aboutClient'>
                     <div className="containerAbout">
@@ -282,13 +285,13 @@ export default function Item(props){
                             <div className="dataAbout">
                                 <h3>{item.namePersona ? item.namePersona : 'Sin definir'}</h3>
                                 <h4>{item.phone}</h4>
-                                <span>{item.type}</span> 
+                                <span>{item.type} - {item.fuente.nombre}</span> 
                             </div>
                             :
                             <div className="dataAbout">
                                 <h3>{item.nombreEmpresa ? item.nombreEmpresa : 'Sin definir'}</h3>
                                 <h4>{item.phone}</h4>
-                                <span>{item.type}</span>
+                                <span>{item.type} - {item.fuente.nombre} </span>
                             </div>
                         }
                     </div>

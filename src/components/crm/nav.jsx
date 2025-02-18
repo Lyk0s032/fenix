@@ -29,29 +29,41 @@ export default function Nav(props){
             <div className="containerNav">
                 <div className="optionsTop">
                     <nav>
-                        <ul>
-                            <li className={location.pathname == '/' ? 'Active' : null} onClick={() => navigate('/')}>
-                                <div className="icono">
-                                    <AiFillHome className='icon' />
-                                </div>
-                            </li>
-                            <li  className={location.pathname == '/clients' ? 'Active' : null} onClick={() => navigate('/clients')}>
-                                <div className="icono">
-                                    <AiOutlineWindows className='icon' />
-                                </div>
-                            </li>
-                            <li className={location.pathname == '/asesores' ? 'Active' : null} onClick={() => navigate('/asesores')}>
-                                <div className="icono">
-                                    <BsPeople className='icon' />
-                                </div>
-                            </li>
+                        {
+                            user.rango == 'lider' || user.rango ==  'asesor' ? 
+                                <ul>
+                                    <li className={location.pathname == '/' ? 'Active' : null} onClick={() => navigate('/')}>
+                                        <div className="icono">
+                                            <AiFillHome className='icon' />
+                                        </div>
+                                    </li>
+                                    <li  className={location.pathname == '/clients' ? 'Active' : null} onClick={() => navigate('/clients')}>
+                                        <div className="icono">
+                                            <AiOutlineWindows className='icon' />
+                                        </div>
+                                    </li>
+                                    <li className={location.pathname == '/asesores' ? 'Active' : null} onClick={() => navigate('/asesores')}>
+                                        <div className="icono">
+                                            <BsPeople className='icon' />
+                                        </div>
+                                    </li>
 
-                            <li  className={location.pathname == '/calendar' ? 'Active' : null} onClick={() => navigate('/calendar')}>
-                                <div className="icono">
-                                    <BsCalendar3Event className='icon' />
-                                </div>
-                            </li>
-                        </ul>
+                                    <li  className={location.pathname == '/calendar' ? 'Active' : null} onClick={() => navigate('/calendar')}>
+                                        <div className="icono">
+                                            <BsCalendar3Event className='icon' />
+                                        </div>
+                                    </li>
+                                </ul>
+                            :
+                                <ul>
+                                    <li className={location.pathname == '/' ? 'Active' : null} onClick={() => navigate('/')}>
+                                        <div className="icono">
+                                            <AiFillHome className='icon' />
+                                        </div>
+                                    </li> 
+                                </ul>
+                        }
+                        
                     </nav>
                 </div>
 

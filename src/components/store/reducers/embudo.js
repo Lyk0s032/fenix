@@ -1,5 +1,7 @@
+import dayjs from "dayjs";
 import types from "../types";
 
+const day = dayjs();
 const initialState = {
     loadingEmbudo: true,
 
@@ -29,8 +31,7 @@ const initialState = {
 
     perdido: null,
     loadingPerdido: false,
-
-    time: '2025-01-06'
+    time: `${day.format('YYYY-MM-6')}`
 }
 
 export default function (state = initialState, action) {

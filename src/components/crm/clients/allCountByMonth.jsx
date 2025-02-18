@@ -14,7 +14,10 @@ export default function CountByMonth(){
 
     const traerData = async () => {
         setLoading(true);
-        const go = await axios.get(`api/clients/dataAndFinance/${dayjs(time).get('year')}/${dayjs(time).get('month')+1}`)
+        const sistemaFecha = dayjs();
+        const dia = sistemaFecha.format('DD');
+        const month = dia >= 6 ? dayjs(time).get('month')+1 : dayjs(time).get('month');
+        const go = await axios.get(`api/clients/dataAndFinance/${dayjs(time).get('year')}/${month}`)
         .then((res) => {
             setLoading(false) 
             setData(res.data)
@@ -46,7 +49,7 @@ export default function CountByMonth(){
                         <Valor valor={data.aprobadas} /> 
                     }
                     <span className='time'>
-                        Del <strong>{dayjs(time).format('DD MMMM')} </strong>
+                        Del <strong>{dayjs(time).format('DD - MMMM')} </strong>
                         al <strong>{dayjs(time).add(1, 'month').subtract(1, 'day').format('DD MMMM')}</strong>
                     </span>
                 </div>
