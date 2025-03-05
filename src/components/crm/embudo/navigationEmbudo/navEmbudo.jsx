@@ -224,7 +224,7 @@ export default function NavEmbudo(props){
                                                     : embudo.cotizaciones.length ?  
                                                         <div className="rightFinance">
                                                             <span >Cotizaciones pendientes ({embudo.cotizaciones.length})</span> 
-                                                            <h1 >{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.cotizaciones.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span >COP</span></h1>
+                                                            <Pendiente cotizaciones={embudo.cotizaciones} />
                                                         </div>
                                                     :
                                                         <div className="rightFinance">
@@ -299,5 +299,14 @@ export default function NavEmbudo(props){
                 : null
             }
         </div>
+    )
+}
+
+function Pendiente(props){
+    const cotizaciones = props.cotizaciones;
+
+    const filtrado = cotizaciones.filter(coti => coti.state == 'pendiente' || coti.state == 'aplazado'); 
+    return ( 
+        <h1 >{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(filtrado.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span >COP</span></h1>
     )
 }

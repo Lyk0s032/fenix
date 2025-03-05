@@ -89,6 +89,32 @@ export default function NubeActions(props){
         .catch(err => {
             setLoading(false);
             dispatch(actions.HandleAlerta('No hemos logrado cancelar esta visita, intentalo más tarde', 'mistake'));
+        })
+        return sendCancel
+    }
+
+    // CUMPLIR VISITA
+    const cumplirVisita = async () => {
+        setLoading(true)
+        let body = {
+            visitaId:item.id,
+            calendaryId:fechaActual.id,
+            userId:user.id,
+            clientId: item.client.id
+        }
+
+        const sendCancel = await axios.post('api/visitas/cumplir', body)
+        .then((res) => {
+            setLoading(false);
+            dispatch(actions.HandleAlerta('Visita cancelada', 'positive'));
+            dispatch(actions.AxiosGetAllEmbudo(user.id, false));
+            params.delete('w')
+            params.delete('a');
+            setParams(params);
+        }) 
+        .catch(err => {
+            setLoading(false);
+            dispatch(actions.HandleAlerta('No hemos logrado cancelar esta visita, intentalo más tarde', 'mistake'));
 
         })
         return sendCancel
@@ -266,6 +292,9 @@ export default function NubeActions(props){
                                         </button>
                                         <button className="tagSelect Great" onClick={() => openAction('cotizacion')}>
                                             <span>Cotización</span>
+                                        </button> 
+                                        <button className="tagSelect Great" onClick={() => cumplirVisita()}>
+                                            <span>Cumplir</span>
                                         </button>
                                         {/* <button className="tagSelect Cancel" onClick={() => {
                                             openAction('notInteres')

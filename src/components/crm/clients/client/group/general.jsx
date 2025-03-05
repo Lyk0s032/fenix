@@ -5,14 +5,14 @@ export default function GeneralUser(props){
     const [show, setShow] = useState(null);
     console.log(coti)
 
-    const pendientes = coti && coti.length ? coti.filter(cl => cl.state == 'pendiente') : 0
+    const pendientes = coti && coti.length ? coti.filter(cl => cl.state == 'pendiente' || cl.state == 'aplazado') : 0
     const desarrollo = coti && coti.length ? coti.filter(cl => cl.state == 'desarrollo') : 0
  
     console.log(pendientes)
     return (
         <div className="containerGeneralUser">
             <div className="containerResultsUser">
-                <div className="leftNavigation">
+                <div className="leftNavigation"> 
                     <div className="containerNav">
                         <nav>
                             <ul>
