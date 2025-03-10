@@ -92,18 +92,19 @@ export default function NubeActions(props){
         })
         return sendCancel
     }
-
+    console.log(item) 
     // CUMPLIR VISITA
     const cumplirVisita = async () => {
+        let fechaActual = item.calendaries && item.calendaries.length ? item.calendaries.find(tl => tl.state == 'active') : null;
         setLoading(true)
         let body = {
             visitaId:item.id,
-            calendaryId:fechaActual.id,
+            calendaryId: fechaActual.id,
             userId:user.id,
             clientId: item.client.id
         }
 
-        const sendCancel = await axios.post('api/visitas/cumplir', body)
+        const sendCancel = await axios.put('api/visitas/cumplir', body)
         .then((res) => {
             setLoading(false);
             dispatch(actions.HandleAlerta('Visita cancelada', 'positive'));

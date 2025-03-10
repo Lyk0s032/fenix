@@ -8,7 +8,6 @@ export default function GeneralUser(props){
     const pendientes = coti && coti.length ? coti.filter(cl => cl.state == 'pendiente' || cl.state == 'aplazado') : 0
     const desarrollo = coti && coti.length ? coti.filter(cl => cl.state == 'desarrollo') : 0
  
-    console.log(pendientes)
     return (
         <div className="containerGeneralUser">
             <div className="containerResultsUser">
@@ -19,13 +18,13 @@ export default function GeneralUser(props){
                                 <li className={!show ? 'Active' : null} 
                                 onClick={() => setShow(null)}>
                                     <div>
-                                        <span>Cotizaciones pendientes</span>
+                                        <span>Cotizaciones pendientes ({ pendientes && pendientes.length ? pendientes.length : 0})</span>
                                     </div>
                                 </li>
                                 <li className={show == 'desarrollo' ?  'Active' : null} 
                                 onClick={() => setShow('desarrollo')}>
                                     <div>
-                                        <span>Cotizaciones en desarrollo</span>
+                                        <span>Cotizaciones en desarrollo ({ desarrollo && desarrollo.length ? desarrollo.length : 0})</span>
                                     </div>
                                 </li>
                             </ul>
@@ -42,7 +41,7 @@ export default function GeneralUser(props){
                                         pendientes && pendientes.length ?
                                             pendientes.map((pendiente, i) => {
                                                 return (
-                                                    <tr >
+                                                    <tr key={i+1}>
                                                         <td >
                                                             <div className="business">
                                                                 <div className="photo">
@@ -57,6 +56,7 @@ export default function GeneralUser(props){
                                                         <td>
                                                             <div className="title">
                                                                 <h3>{pendiente.name}</h3>
+                                                                <span className="state">{pendiente.state}</span>
                                                             </div>
                                                         </td>
                                                         <td>

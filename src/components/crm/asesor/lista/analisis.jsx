@@ -78,7 +78,9 @@ export default function AnalisisUser(props){
                         <li onClick={() => setOptions('cotizaciones')}
                             className={options == 'cotizaciones' ? 'Active' : null}>
                             <div>
-                                <span>Cotizaciones</span>
+                                <span>Cot. Aprobadas ({
+                                    data && data.searchUser && data.searchUser.cotizacions && data.searchUser.cotizacions.length ? data.searchUser.cotizacions.length : 0 
+                                })</span> 
                             </div>
                         </li>
 

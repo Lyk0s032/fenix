@@ -5162,6 +5162,11 @@ body {
   color: #046290;
   font-weight: 400;
 }
+.asesores .containerAsesor .rightComponent .asesorComponent .containerComponent .filterByMonth .containerGeneralUser .containerResultsUser .rightData .containerRightData table tbody tr td .title .state {
+  font-size: 12px;
+  color: #046290;
+  font-weight: bold;
+}
 .asesores .containerAsesor .rightComponent .asesorComponent .containerComponent .filterByMonth .containerGeneralUser .containerResultsUser .rightData .containerRightData table tbody tr td .try span {
   font-size: 12px;
   color: #525456;
