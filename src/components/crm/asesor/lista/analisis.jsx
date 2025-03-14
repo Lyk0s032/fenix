@@ -6,6 +6,7 @@ import PendientesByUser from './pendientes';
 import DesarrolloByUser from './desarrollo';
 import dayjs from 'dayjs';
 import axios from 'axios';
+import CotizacionesByUserPerdidas from './perdidas';
 
 export default function AnalisisUser(props){
     const [options, setOptions] = useState(null);
@@ -79,18 +80,27 @@ export default function AnalisisUser(props){
                             className={options == 'cotizaciones' ? 'Active' : null}>
                             <div>
                                 <span>Cot. Aprobadas ({
-                                    data && data.searchUser && data.searchUser.cotizacions && data.searchUser.cotizacions.length ? data.searchUser.cotizacions.length : 0 
+                                    data && data.searchUser && data.searchUser.cotizacions && data.searchUser.cotizacions.length ? data.searchUser.cotizacions.filter(s => s.state == 'aprobada').length : 0 
+                                })</span> 
+                            </div>
+                        </li>
+                        
+                        <li onClick={() => setOptions('perdidas')}
+                            className={options == 'perdidas' ? 'Active' : null}>
+                            <div>
+                                <span>Cot. Perdidas ({
+                                    data && data.searchUser && data.searchUser.cotizacions && data.searchUser.cotizacions.length ? data.searchUser.cotizacions.filter(s => s.state == 'perdido').length : 0 
                                 })</span> 
                             </div>
                         </li>
 
 
-                        <li onClick={() => setOptions('year')}
+                        {/* <li onClick={() => setOptions('year')}
                             className={options == 'year' ? 'Active' : null}>
                             <div>
                                 <span>Últimos 12 meses</span>
                             </div>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
             </div>
@@ -116,7 +126,9 @@ export default function AnalisisUser(props){
                             : options == 'visitas'?
                                 <Visitas visita={data.searchUser.visita}/>
                             : options == 'cotizaciones' ?
-                                <CotizacionesByUser cotizaciones={data.searchUser.cotizacions} />   
+                                <CotizacionesByUser cotizaciones={data.searchUser.cotizacions} /> 
+                            : options == 'perdidas' ?
+                                <CotizacionesByUserPerdidas cotizaciones={data.searchUser.cotizacions} />   
                             : options == 'pendientes' ?
                                 <PendientesByUser /> 
                             : options == 'desarrollo' ?
@@ -138,7 +150,8 @@ export default function AnalisisUser(props){
                                 :
                                     <div>
                                         <span>Total vendido</span>
-                                        <h1>{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(data.total)} / <strong>{data.searchUser.meta && data.searchUser.meta.length ? new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(data.searchUser.meta[0].valor) : 0 }</strong></h1>
+                                        {/* <h1>{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(data.total)} / <strong>{data.searchUser.meta && data.searchUser.meta.length ? new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(data.searchUser.meta[0].valor) : 0 }</strong></h1> */}
+                                        <PriceTotal data={data} />
                                     </div>
                             } 
                         </div>
@@ -176,5 +189,15 @@ export default function AnalisisUser(props){
                 
             </div>
         </div>
+    )
+}
+
+function PriceTotal(props){
+    const data = props.data;
+    const datica = data.searchUser && data.searchUser.cotizacions ? data.searchUser.cotizacions.filter(s => s.state == 'aprobada') : 0;
+    const valor = datica.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)
+    return (
+        <h1>{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(valor)} / <strong>{data.searchUser.meta && data.searchUser.meta.length ? new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(data.searchUser.meta[0].valor) : 0 }</strong></h1>
+
     )
 }

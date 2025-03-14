@@ -1,11 +1,11 @@
 import React from 'react';
-import * as actions from './../../../store/action/action';
 import { useDispatch } from 'react-redux';
+import * as actions from './../../../store/action/action';
 
-export default function CotizacionesByUser(props){
+export default function CotizacionesByUserPerdidas(props){
     const total = props.cotizaciones;
-    
-    const cotizacions = total.filter(c => c.state == 'aprobada');
+
+    const cotizacions = total.filter(c => c.state == 'perdido');
 
     const dispatch = useDispatch();
     

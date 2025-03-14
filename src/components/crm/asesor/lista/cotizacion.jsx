@@ -4,7 +4,7 @@ import * as actions from '../../../store/action/action';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 
-export default function CotizacionSee(){
+export default function CotizacionSeeUser(){
 
     const embudo = useSelector(store => store.embudo);
     const { cotizacion, loadingCotizacion } = embudo;
@@ -22,7 +22,7 @@ export default function CotizacionSee(){
                     <div className="loading">
                         <h1>Cargando</h1>
                     </div>
-                </div>
+                </div> 
             :
             <div className="containerCotizacion">
                 <div className="topCotizacion">

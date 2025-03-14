@@ -4887,6 +4887,153 @@ body {
   width: 70%;
   box-sizing: border-box;
 }
+.asesores .containerAsesor .rightComponent .cotizacion {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #FFF;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  width: 66.5%;
+  transition: 0.3s;
+  transform: translateX(100%);
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion {
+  height: 20%;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop {
+  height: 100%;
+  width: 100%;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .LeftBtnAndTitle {
+  width: 95%;
+  margin: auto;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .LeftBtnAndTitle button {
+  margin-right: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .LeftBtnAndTitle button .icon {
+  font-size: 22px;
+  color: #046290;
+  transition: 0.3s;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .LeftBtnAndTitle button:hover .icon {
+  color: #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .LeftBtnAndTitle h3 {
+  font-weight: 500;
+  color: #046290;
+  font-size: 22px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion {
+  height: 90%;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .topAlert {
+  background-color: #046290;
+  width: 100%;
+  padding: 6px 0px;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .topAlert .containerAlert {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .topAlert .containerAlert span {
+  color: #FFF;
+  font-size: 14px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails {
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails {
+  width: 71%;
+  margin: auto;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .business img {
+  width: 15%;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .dataClientAndAsesor {
+  margin-top: 40px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .dataClientAndAsesor .containerThat {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .dataClientAndAsesor .containerThat .asesor h3 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .dataClientAndAsesor .containerThat .asesor span {
+  font-size: 12px;
+  color: #525456;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .dataClientAndAsesor .containerThat .Cl {
+  text-align: right;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti {
+  margin-top: 40px;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation {
+  width: 100%;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .itemCoti {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0px;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .itemCoti span {
+  font-size: 12px;
+  color: #525456;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .itemCoti h3 {
+  font-weight: 400;
+  font-size: 14px;
+  color: #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .itemCoti h3 span {
+  color: #046290;
+  font-size: 12px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .Neto {
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .Neto span {
+  font-size: 16px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .Neto h3 {
+  font-size: 18px;
+  color: #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacionActive {
+  transform: translateX(0%);
+}
 .asesores .containerAsesor .rightComponent .asesorComponent {
   box-sizing: border-box;
   height: 100%;

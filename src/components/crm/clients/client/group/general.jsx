@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../../../store/action/action';
 
 export default function GeneralUser(props){
     const coti = props.cotizaciones;
@@ -8,6 +10,17 @@ export default function GeneralUser(props){
     const pendientes = coti && coti.length ? coti.filter(cl => cl.state == 'pendiente' || cl.state == 'aplazado') : 0
     const desarrollo = coti && coti.length ? coti.filter(cl => cl.state == 'desarrollo') : 0
  
+    const dispatch = useDispatch();
+
+    const closeCotizacion = () => {
+        const coti = document.querySelector("#cotizacion").classList.toggle('cotizacionActive');
+        return coti; 
+    } 
+    
+    const open = (item) => {
+        dispatch(actions.getCotizacion(item))
+        closeCotizacion()
+    }
     return (
         <div className="containerGeneralUser">
             <div className="containerResultsUser">
@@ -41,8 +54,8 @@ export default function GeneralUser(props){
                                         pendientes && pendientes.length ?
                                             pendientes.map((pendiente, i) => {
                                                 return (
-                                                    <tr key={i+1}>
-                                                        <td >
+                                                    <tr key={i+1} onClick={() => open(pendiente)}>
+                                                        <td  >
                                                             <div className="business">
                                                                 <div className="photo">
                                                                     <img src={pendiente.client.photo} alt="" />
@@ -84,7 +97,7 @@ export default function GeneralUser(props){
                                         desarrollo && desarrollo.length ?
                                             desarrollo.map((desarro, i) => {
                                                 return (
-                                                    <tr >
+                                                    <tr key={i+1} onClick={() => open(desarro)}>
                                                         <td >
                                                             <div className="business">
                                                                 <div className="photo">

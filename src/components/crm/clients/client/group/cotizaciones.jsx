@@ -19,6 +19,7 @@ export default function CotizacionesListClient(props){
     const open = (item) => {
         dispatch(actions.getCotizacion(item))
         closeCotizacion()
+        console.log('Hola')
     }
     return (
         <div className="cotizacionesLists">

@@ -4,6 +4,8 @@ import PanelAsesor from './dataAsesor';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actions from '../../store/action/action';
 import { MdYoutubeSearchedFor } from 'react-icons/md';
+import CotizacionSee from '../clients/client/cotizacion';
+import CotizacionSeeUser from './lista/cotizacion';
 export default function RouteAsesor(props){
     const user = props.user;
     const dispatch = useDispatch();
@@ -27,7 +29,10 @@ export default function RouteAsesor(props){
                         <LeftAsesores asesores={asesores} user={user} />
                     }
                 </div>
+
                 <div className="rightComponent">
+                    <CotizacionSeeUser /> 
+
                     <PanelAsesor />
                 </div>
             </div>
