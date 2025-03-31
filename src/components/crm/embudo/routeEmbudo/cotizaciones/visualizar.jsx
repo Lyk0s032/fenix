@@ -389,6 +389,21 @@ export default function CotizacionesPanel(props){
                                                     </div>
                                                     <div className="titleAndResponse">
                                                         <div className="titleTable">
+                                                            <h3>Nro</h3>
+                                                        </div>
+                                                        <div className="responseTable">
+                                                            <div className="inputDiv">
+                                                                <input type="text" value={form.nro} onChange={(e) => {
+                                                                    setForm({
+                                                                        ...form,
+                                                                        nro: e.target.value
+                                                                    })
+                                                                }} />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="titleAndResponse">
+                                                        <div className="titleTable">
                                                             <h3>NIT</h3>
                                                         </div>
                                                         <div className="responseTable">
