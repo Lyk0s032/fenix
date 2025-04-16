@@ -35,14 +35,15 @@ export default function Calendary(props){
                 // Alternar la clase para mostrar/ocultar el panel de acciones
                 document.querySelector("#nubeAcciones").classList.toggle('nubeItemCalendarioActive');
             };
+            const estado = props.event.data.state;
             return (
-                <div className='itemCalendario' onClick={handleClick}> 
+                <div className={estado == 'active' ? 'itemCalendario' : estado == 'cancelado' ? 'itemCalendario Cancel' : estado == 'aplazado' ? 'itemCalendario Later' : estado == 'cumplido' ? 'itemCalendario Great' : 'itemCalendario Other'} onClick={handleClick}> 
                     <div className="containerItem" >
                         <label htmlFor=""> <span>{props.event.data.note}</span></label>
                     </div>
                 </div>
             )
-        }
+        } 
     }
 
     const message = {

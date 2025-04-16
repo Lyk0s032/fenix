@@ -9,7 +9,10 @@ export default function RouteCalendar(props){
     const calendary = useSelector(store => store.calendar);
     const usuarios = useSelector(store => store.usuario)
     const { calendar, loadingCalendar } = calendary;
-    {console.log(usuarios)}
+    
+    const changeAsesor = async (user) => {
+        dispatch(actions.axiosToGetCalendar(user, false))
+    }
     useEffect(() => {
         dispatch(actions.axiosToGetCalendar(user.id, true))
             dispatch(actions.axiosToGetAsesores(user.id, true)) 
@@ -38,7 +41,6 @@ export default function RouteCalendar(props){
                         user == 'lider' ? 
                         <select name="" id="" onChange={(e) => {
                             dispatch(actions.axiosToGetCalendar(e.target.value, false))
-
                         }}>
                             <option value={user.id}>Mi calendario</option>
                             {
@@ -53,8 +55,21 @@ export default function RouteCalendar(props){
 
                         </select>
                         :
-                        <select name="" id="">
-                            <option value="">{user.name} {user.lastName}</option>
+                        <select name="" id="" onChange={(e) => {
+                            changeAsesor(e.target.value)
+                        }}>
+                            {
+                                user.rango == 'lider' ?
+                                <option value="">Selecciona asesor</option>
+                                :null
+                            }
+                            {
+                                usuarios.asesores && usuarios.asesores.map((u, i) => {
+                                    return (
+                                        <option value={u.id}>{u.name} {u.lastName}</option>
+                                    )
+                                })
+                            }
                         </select>
                     }
                 </div>

@@ -8,9 +8,9 @@ export default function ItemCotizaciones(props){
     const cotizacion = props.cotizacion;
     const dispatch = useDispatch();
     const [params, setParams] = useSearchParams();  
-    console.log(cotizacion) 
     const openCotizacion = () => {
         dispatch(actions.getCotizacion(cotizacion))
+        dispatch(actions.axiosGetNotesCoti(cotizacion.id))
         params.set('cotizacion','action')
         setParams(params);
     }

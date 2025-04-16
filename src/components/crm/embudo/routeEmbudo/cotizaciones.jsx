@@ -15,7 +15,6 @@ export default function CotizacionesEmbudo(){
     const embudo = useSelector(store => store.embudo);
     const { cotizaciones, loadingCotizaciones } = embudo;
 
-    console.log(embudo)
     return (
         <div className="pestanaEmbudo">
             <div className="containerPestanaEmbudo">

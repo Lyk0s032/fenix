@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineArrowLeft, AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai';
 import { BsThreeDotsVertical } from 'react-icons/bs';
-import { MdAccessTime, MdArrowBack } from 'react-icons/md';
+import { MdAccessTime, MdArrowBack, MdOutlineMessage } from 'react-icons/md';
 import { useParams, useSearchParams } from 'react-router-dom';
 import * as actions from '../../../../store/action/action';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,12 +12,14 @@ export default function CotizacionesPanel(props){
     const user = props.user;
     const [params, setParams] = useSearchParams();
     const [options, setOptions] = useState(null);
+    const [note, setNote] = useState(null);
+
     const [state, setState] = useState('espera'); 
     const dispatch = useDispatch();
 
     const embudo = useSelector(store => store.embudo);
-    const { cotizacion, loadingCotizacion } = embudo;
-
+    const { cotizacion, loadingCotizacion, notesCoti, loadingNotesCoti } = embudo;
+    console.log(notesCoti)
     useEffect(() => {
         if(!cotizacion) {
             params.delete('cotizacion')
@@ -141,6 +143,30 @@ export default function CotizacionesPanel(props){
         return sendAplazar;
     }
 
+    const addNote = async () => {
+        if(!note || note == '') return dispatch(actions.HandleAlerta('Ingresa una nota', 'mistake'))
+        let body = {
+            type: '',
+            clientId: cotizacion.client.id,
+            userId: user.id,
+            manual: 'manual',
+            note: note,
+            cotizacionId: cotizacion.id
+        }
+        const sendNote = await axios.post('api/notes/addManual', body)
+        .then((res) => {
+            setNote('');
+            dispatch(actions.axiosGetNotesCoti(cotizacion.id, false));
+            dispatch(actions.HandleAlerta('Agregado con éxito', 'positive'));
+            return true
+        })
+        .catch(err => {
+            console.log(err)
+            dispatch(actions.HandleAlerta('No hemos logrado ingresar esto.', 'mistake'));
+            return null
+        })
+        return sendNote;
+    }
     
     return (
         <div className="cotizacion">
@@ -177,6 +203,20 @@ export default function CotizacionesPanel(props){
                                         <div className="edit">
                                             <button >
                                                 <BsThreeDotsVertical className="icon"  />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    : options == 'message' ?
+                                    <div className="actionsAndOptions">
+                                        <div className="dinamiActions">
+                                            <button className='Wait' onClick={() => setOptions(null)}>
+                                                <AiOutlineArrowLeft className='icon' /><br />
+                                                <span>Regresar</span>
+                                            </button>
+                                        </div>
+                                        <div className="edit">
+                                            <button >
+                                                <MdOutlineMessage className="icon"  />
                                             </button>
                                         </div>
                                     </div>
@@ -217,6 +257,9 @@ export default function CotizacionesPanel(props){
                                             </button>
                                         </div>
                                         <div className="edit">
+                                            <button style={{marginRight:20}} onClick={() => setOptions('message')}>
+                                                <MdOutlineMessage className="icon"  />
+                                            </button>
                                             <button onClick={() => setOptions('edit')}>
                                                 <BsThreeDotsVertical className="icon"  />
                                             </button>
@@ -508,6 +551,48 @@ export default function CotizacionesPanel(props){
                                                     </div>
 
                                                 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                : options == 'message' ?
+                                    <div className="dataCoti">
+                                        <div className="history">
+                                            <div className="getHistory">
+                                                <div className="scrollHistory">
+                                                    <div className="notes">
+                                                        {
+                                                            !notesCoti || loadingNotesCoti ?
+                                                                <h1>Cargando...</h1>
+                                                            : notesCoti == 404 ?
+                                                                <h1>No hay notas</h1>
+                                                            : notesCoti && notesCoti.length ?
+                                                                notesCoti.map((c, i) => {
+                                                                    return (
+                                                                        <div className="note" key={i+1}>
+                                                                            <span>{c.note}</span>
+                                                                            <div className="time">
+                                                                                <strong>14 de Abril del 2025</strong>
+                                                                            </div>
+                                                                        </div>
+                                                                    )
+                                                                })
+                                                            : null
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="getData">
+                                                <div className="containerGetData">
+                                                    <input type="text" placeholder='Anexa información de la cotización aquí...' 
+                                                    onChange={((e) => {
+                                                        setNote(e.target.value)
+                                                    })} onKeyDown={(e) => {
+                                                        if(e.key == 'Enter'){
+                                                            addNote()
+                                                        }
+                                                    }} value={note}/>
+                                                    
                                                 </div>
                                             </div>
                                         </div>

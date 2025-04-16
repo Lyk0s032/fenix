@@ -2494,6 +2494,66 @@ body {
 .embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .valorCotizacion .containerValor .table .Bruto .responseTable h3 span {
   font-size: 14px;
 }
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history {
+  box-sizing: border-box;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 20px;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory {
+  height: 85%;
+  width: 100%;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory .scrollHistory {
+  height: 100%;
+  overflow-y: auto;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory .scrollHistory .notes {
+  width: 100%;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory .scrollHistory .notes .note {
+  width: 95%;
+  padding: 10px 10px;
+  background-color: #F8F8F8;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory .scrollHistory .notes .note span {
+  color: #046290;
+  font-size: 12px;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory .scrollHistory .notes .note .time {
+  width: 100%;
+  text-align: right;
+  margin-top: 10px;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getHistory .scrollHistory .notes .note .time strong {
+  font-weight: 400;
+  font-size: 11px;
+  color: #454f5b;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getData {
+  height: 10%;
+  box-sizing: border-box;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getData .containerGetData {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #046290;
+}
+.embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .dataCoti .history .getData .containerGetData input {
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px 0px;
+  box-sizing: border-box;
+  border: 1px solid #FFF;
+  outline: 0px;
+  font-size: 12px;
+  color: #046290;
+}
 .embudo .containerEmbudo .visualizacionEmbudo .cotizacion .containerCotizacion .dataCotizacion .containerDataCotizacion .titleForm {
   margin-top: 40px;
   box-sizing: border-box;
@@ -2545,11 +2605,15 @@ body {
   font-size: 12px;
   color: #FFF;
 }
+.rbc-timeslot-group {
+  min-height: 50px;
+}
 .itemCalendario {
   box-sizing: border-box;
   transition: 0.3s;
-  padding: 5px 0px;
+  padding: 5px 10px;
   background-color: #046290;
+  border: none;
   color: #666;
 }
 .itemCalendario .containerItem {
@@ -2594,6 +2658,34 @@ body {
 }
 .itemCalendario .client span {
   font-size: 12px;
+}
+.rbc-event {
+  min-height: 40px;
+  max-height: 100%;
+}
+.rbc-event-content {
+  padding: 0px;
+}
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event.rbc-selected {
+  background-color: transparent;
+}
+.rbc-event,
+.rbc-day-slot .rbc-background-event {
+  background-color: transparent;
+  min-height: 40px;
+  max-height: 100%s;
+}
+.itemCalendario.Cancel {
+  background-color: #dc3545;
+}
+.itemCalendario.Later {
+  background-color: #FFC107;
+}
+.itemCalendario.Great {
+  background-color: #388E3C;
+}
+.itemCalendario.Other {
+  background-color: black;
 }
 .loading {
   box-sizing: border-box;

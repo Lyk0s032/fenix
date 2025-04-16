@@ -384,6 +384,7 @@ export function gettingCotizacion(carga){
     }
 }
 
+
 // Cargar embudo
 export function AxiosGetAllEmbudo(user, carga){
     return function(dispatch){
@@ -396,6 +397,41 @@ export function AxiosGetAllEmbudo(user, carga){
     }
     
 }
+
+
+
+export function getNotesCoti(data){
+    return {
+        type: types.GET_NOTES_COTIZACION,
+        payload: data
+    }
+}
+export function gettingNotesCoti(carga){
+    return {
+        type: types.GETTING_NOTES_COTIZACION,
+        payload: carga
+    }
+}
+export function axiosGetNotesCoti(coti, carga){
+    return function(dispatch){ 
+        dispatch(gettingNotesCoti(carga))
+        axios.get(`api/cotizacion/getNotes/notes/${coti}`)
+        .then((info) => info.data)
+        .then(inf => {
+            return dispatch(getNotesCoti(inf))
+        })
+        .catch((e) => {
+            if(e.request){
+                return dispatch(getNotesCoti('notrequest'));
+            }else{
+                return dispatch(getNotesCoti(404))
+                
+            }
+        });
+    }
+}
+
+
 export function EmbudoLoading(carga){
     return {
         type: types.LOADING_EMBUDO,

@@ -20,6 +20,9 @@ const initialState = {
     cotizaciones: null,
     loadingCotizaciones: false,
 
+    notesCoti: null,
+    loadingNotesCoti: false,
+
     cotizacion: null,
     loadingCotizacion: false,
 
@@ -147,6 +150,20 @@ export default function (state = initialState, action) {
                 loadingCotizacion: action.payload 
             }
         }
+        case types.GET_NOTES_COTIZACION:{
+            return {
+                ...state,
+                notesCoti: action.payload,
+                loadingNotesCoti: false
+            }
+        }
+        case types.GETTING_NOTES_COTIZACION:{
+            return {
+                ...state,
+                loadingNotesCoti: action.payload
+            }
+        }
+
         case types.USER:{
             return {
                 ...state,

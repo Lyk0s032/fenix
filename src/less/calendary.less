@@ -1,8 +1,12 @@
+.rbc-timeslot-group{
+    min-height: 50px;
+}
 .itemCalendario{
     box-sizing: border-box;
     transition: .3s;
-    padding:5px 0px;
+    padding:5px 10px;
     background-color: @bgAzulDark;
+    border: none;
     color: #666;
     
     .containerItem{
@@ -55,6 +59,33 @@
             font-size: 12px;
         }
     }
+}
+.rbc-event{
+    min-height:40px;
+    max-height: 100%;
+}
+.rbc-event-content{
+    padding:0px;
+}
+.divAllCalendary .calendar .containerCalendar .calendario .etiquetaCalendary .rbc-event.rbc-selected{
+    background-color: transparent;
+}
+.rbc-event, .rbc-day-slot .rbc-background-event{
+    background-color: transparent;
+    min-height:40px;
+    max-height: 100%s;
+}
+.itemCalendario.Cancel{
+    background-color: @danger;
+}
+.itemCalendario.Later{
+    background-color: @wait;
+}
+.itemCalendario.Great{
+    background-color: @great;
+}
+.itemCalendario.Other{
+    background-color: black;
 }
 
 .loading{
