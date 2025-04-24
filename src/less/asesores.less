@@ -215,7 +215,12 @@
                         box-sizing: border-box;
                         .containerTop{
                             height:100%;
-                            width:100%;
+                            width:90%;
+                            margin:auto;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            
                             .LeftBtnAndTitle{
                                 width:95%;
                                 margin:auto;
@@ -249,6 +254,44 @@
                                 }
     
                             }
+                            .actionsAndOptions{
+                                width:30%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: end;
+                                .dinamiActions{
+                                    margin-right: 30px;
+                                    .Wait{
+                                        background-color: transparent;
+                                        border:none;
+                                        cursor: pointer;
+                                        display: flex;
+                                        align-items: center;
+                                        .icon{
+                                            margin-right: 15px;
+                                            font-size: 16px;
+                                            color: @bgAzulDark;
+                                        }
+                                        span{
+                                            color: @bgAzulDark;
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                                .edit{
+                                    button{
+                                        width:20px;
+                                        height:20px;
+                                        background-color: transparent;
+                                        border: none;
+                                        cursor: pointer;
+                                        .icon{
+                                            color: @bgDark;
+                                            font-size: 20px;
+                                        }
+                                    }
+                                }
+                            }
     
                         }
                     }
@@ -257,6 +300,7 @@
                         overflow-y: auto;
                         box-sizing: border-box;
                         .containerBody{
+                            height:100%;
                             .topAlert{
                                 background-color: @bgAzulDark;
                                 width:100%;
@@ -275,7 +319,7 @@
                             .CotizacionDetails{
                                 margin-top:20px;
                                 box-sizing: border-box;
-    
+                                height:80%;
                                 .containerDetails{
                                     width:71%;
                                     margin:auto;
@@ -344,6 +388,69 @@
                                                     font-size: 18px;
                                                     color: @bgAzulDark;
                                                 }
+                                            }
+                                        }
+                                    }
+                                }
+                                .history{
+                                    box-sizing: border-box;
+                                    width:80%;
+                                    margin:auto;
+                                    height:100%;
+                                    margin-bottom:20px;
+                                    box-sizing: border-box;
+                                    .getHistory{
+                                        height:85%;
+                                        width:100%;
+                                        .scrollHistory{
+                                            height:100%;
+                                            overflow-y: auto;
+
+                                            .notes{
+                                                width:100%;
+                                                .note{
+                                                    width:95%;
+                                                    padding:10px 10px;
+                                                    background-color: #F8F8F8;
+                                                    box-sizing: border-box;
+                                                    border-radius: 5px;
+                                                    margin-bottom: 15px;
+                                                    span{
+                                                        color: @bgAzulDark;
+                                                        font-size: 12px;
+                                                    }
+                                                    .time{
+                                                        width:100%;
+                                                        text-align: right;
+                                                        margin-top:10px;
+                                                        strong{
+                                                            font-weight: 400;
+                                                            font-size: 11px;
+                                                            color: @bgDark;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .getData{
+                                        height:10%;
+                                        box-sizing: border-box;
+                                        .containerGetData{
+                                            width:100%;
+                                            height:100%;
+                                            display: flex;
+                                            align-items: center;
+                                            border-top: 1px solid @bgAzulDark;
+                                            input{
+                                                width:100%;
+                                                border-radius: 5px;
+                                                padding: 8px 0px;
+                                                box-sizing: border-box;
+                                                border:1px solid @bgDefault;
+                                                outline:0px;      
+                                                font-size: 12px;
+                                                color: @bgAzulDark;        
                                             }
                                         }
                                     }

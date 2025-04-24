@@ -16,6 +16,8 @@ export default function CotizacionesByUser(props){
 
     const open = (item) => {
         dispatch(actions.getCotizacion(item))
+        dispatch(actions.axiosGetNotesCoti(item.id))
+        
         closeCotizacion()
     }
     return (
@@ -26,7 +28,7 @@ export default function CotizacionesByUser(props){
                     cotizacions && cotizacions.length ?
                         cotizacions.map((cotizacion, i) => {
                             return (
-                                <tr onClick={() => open(cotizacion)}>
+                                <tr key={i+1} onClick={() => open(cotizacion)}>
                                     <td>
                                         <div className="business">
                                             <div className="photo">

@@ -87,7 +87,6 @@ export default function PanelAsesor(){
                             </nav>
                         </div>
                     </div>
-                    {console.log(asesor)}
                     <div className="filterByMonth">
                         {
                             !visualizar ? 

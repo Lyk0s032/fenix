@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../../../store/action/action';
 
 export default function GeneralUser(props){
+    const usuario = props.usuario;
+    console.log('usuario', usuario.user.user)
     const coti = props.cotizaciones;
     const [show, setShow] = useState(null);
     console.log(coti)
@@ -19,6 +21,8 @@ export default function GeneralUser(props){
     
     const open = (item) => {
         dispatch(actions.getCotizacion(item))
+        dispatch(actions.axiosGetNotesCoti(item.id))
+        
         closeCotizacion()
     }
     return (

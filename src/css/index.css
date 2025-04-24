@@ -5002,7 +5002,11 @@ body {
 }
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop {
   height: 100%;
-  width: 100%;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .LeftBtnAndTitle {
   width: 95%;
@@ -5033,10 +5037,49 @@ body {
   color: #046290;
   font-size: 22px;
 }
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions .dinamiActions {
+  margin-right: 30px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions .dinamiActions .Wait {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions .dinamiActions .Wait .icon {
+  margin-right: 15px;
+  font-size: 16px;
+  color: #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions .dinamiActions .Wait span {
+  color: #046290;
+  font-size: 14px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions .edit button {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .topCotizacion .containerTop .actionsAndOptions .edit button .icon {
+  color: #454f5b;
+  font-size: 20px;
+}
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion {
   height: 90%;
   overflow-y: auto;
   box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody {
+  height: 100%;
 }
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .topAlert {
   background-color: #046290;
@@ -5056,6 +5099,7 @@ body {
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails {
   margin-top: 20px;
   box-sizing: border-box;
+  height: 80%;
 }
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails {
   width: 71%;
@@ -5121,6 +5165,67 @@ body {
 }
 .asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .containerDetails .informationCoti .containerInformation .Neto h3 {
   font-size: 18px;
+  color: #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history {
+  width: 80%;
+  margin: auto;
+  height: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory {
+  height: 85%;
+  width: 100%;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory .scrollHistory {
+  height: 100%;
+  overflow-y: auto;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory .scrollHistory .notes {
+  width: 100%;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory .scrollHistory .notes .note {
+  width: 95%;
+  padding: 10px 10px;
+  background-color: #F8F8F8;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory .scrollHistory .notes .note span {
+  color: #046290;
+  font-size: 12px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory .scrollHistory .notes .note .time {
+  width: 100%;
+  text-align: right;
+  margin-top: 10px;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getHistory .scrollHistory .notes .note .time strong {
+  font-weight: 400;
+  font-size: 11px;
+  color: #454f5b;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getData {
+  height: 10%;
+  box-sizing: border-box;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getData .containerGetData {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #046290;
+}
+.asesores .containerAsesor .rightComponent .cotizacion .containerCotizacion .bodyCotizacion .containerBody .CotizacionDetails .history .getData .containerGetData input {
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px 0px;
+  box-sizing: border-box;
+  border: 1px solid #FFF;
+  outline: 0px;
+  font-size: 12px;
   color: #046290;
 }
 .asesores .containerAsesor .rightComponent .cotizacionActive {

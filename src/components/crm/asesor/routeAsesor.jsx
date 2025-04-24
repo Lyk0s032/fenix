@@ -12,7 +12,6 @@ export default function RouteAsesor(props){
     const usuarios = useSelector(store => store.usuario);
     const { asesores, loadingAsesores } = usuarios;
 
-    console.log(user)
     useEffect(() => { 
         dispatch(actions.axiosToGetAsesores(user.id, true)) 
     }, [])

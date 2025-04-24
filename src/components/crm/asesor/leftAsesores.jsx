@@ -156,7 +156,6 @@ export default function LeftAsesores(props){
                                 </div>
                             </div>
                         </div>
-                                    {console.log(usuarios)} 
                         {
                             !usuarios || usuarios == 404 || usuarios == 'notrequest' ?
                                 <div className="notFound">
