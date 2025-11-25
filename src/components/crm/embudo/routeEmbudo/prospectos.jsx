@@ -98,7 +98,6 @@ export default function ProspectosEmbudo(props){
                                         
                                     </nav>
                                     <div className="setting">
-                                       {console.log(prospectos)}
                                     </div>
                                 </div>
                             </div>

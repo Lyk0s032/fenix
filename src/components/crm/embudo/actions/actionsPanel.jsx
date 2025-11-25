@@ -150,6 +150,7 @@ export default function ActionsPanelEmbudo(props){
                                                         <span>Dirección: {item.direccion}</span><br />
                                                         <span style={{textDecoration:'underline', cursor:'pointer'}}>{item.url}</span><br />
                                                         <span>fijo: {item.fijo}</span><br />
+                                                        <span>Fecha: {item.createdAt.split('T')[0]}</span>
 
                                                     </div>
                                                     <div>
@@ -174,6 +175,7 @@ export default function ActionsPanelEmbudo(props){
                                                     <h4>{item.client.responsable}</h4>
                                                     <h4>{item.client.phone}</h4>
                                                     <span>{item.client.direccion}</span>
+                                                    
                                                 </div>
                                             </div>
                                         }

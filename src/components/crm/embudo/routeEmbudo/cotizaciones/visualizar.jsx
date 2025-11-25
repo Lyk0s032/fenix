@@ -7,6 +7,7 @@ import * as actions from '../../../../store/action/action';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import Probability from './probability';
 
 export default function CotizacionesPanel(props){
     const user = props.user;
@@ -254,6 +255,14 @@ export default function CotizacionesPanel(props){
                                             }}>
                                                 <MdAccessTime className="icon Wait" /><br />
                                                 <span className='Wait'>Aplazar</span>
+                                            </button>
+
+                                            <button className='Wait' onClick={() => {
+                                                params.set('probability', true)
+                                                setParams(params)
+                                            }}>
+                                                <MdAccessTime className="icon Wait" /><br />
+                                                <span className='Wait'>%%%</span>
                                             </button>
                                         </div>
                                         <div className="edit">
@@ -678,9 +687,15 @@ export default function CotizacionesPanel(props){
                             </div>
                         </div>
                     }
-
+                    {
+                        params.get('probability') ?
+                            <Probability cotizacion={cotizacion} />
+                        : null
+                    }
                 </div>
             }
+
+           
         </div>
     )
 }

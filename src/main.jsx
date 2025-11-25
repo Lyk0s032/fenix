@@ -7,7 +7,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 axios.defaults.baseURL = 'https://comercialapi-production.up.railway.app/';
-// axios.defaults.baseURL = 'http://192.168.1.15:3000/';
+// axios.defaults.baseURL = 'http://192.168.1.22:3002/';
  
 createRoot(document.getElementById('root')).render( 
   <Provider store={store}>

@@ -21,6 +21,7 @@ export default function TableMonth(){
         const go = await axios.get(`api/clients/getByMonthGeneral/${dayjs(time).get('year')}/${dayjs(time).get('month')+1}`)
         .then((res) => {
             setLoading(false)
+            console.log(res)
             setList(res.data)
         })
         .catch(err => {
