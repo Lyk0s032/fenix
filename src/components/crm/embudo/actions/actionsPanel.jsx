@@ -204,6 +204,20 @@ export default function ActionsPanelEmbudo(props){
                                 item.state == 'perdido' ? null:
                                 <NubeActions user={user} item={item} />
                             }
+                            {console.log('item', item)}
+                            {/* Mensaje recibido */}
+                            {
+                                item.mensaje ?
+                                <div className="mensajeRecibido">
+                                    <div className="mensajeContent">
+                                        <span className="mensajeTexto">{item.mensaje}</span>
+                                        <span className="mensajeHora">
+                                            {item.createdAt ? dayjs(item.createdAt).format('HH:mm') : ''}
+                                        </span>
+                                    </div>
+                                </div>
+                                : null
+                            }
                             { item.client ? 
                             <div className="containerClientConversation"ref={mensajeRef}>
                                 {

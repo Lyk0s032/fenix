@@ -272,9 +272,6 @@ export default function Item(props){
         </tr>
     : type == 'prospecto' ?
         <tr onClick={() => openAction(item)}>
-            {
-                console.log(item) 
-            }
             <td>
                 <div className='aboutClient'>
                     <div className="containerAbout">

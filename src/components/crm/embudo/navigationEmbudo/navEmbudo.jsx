@@ -121,7 +121,6 @@ export default function NavEmbudo(props){
                                                             </div> 
                                                         : embudo.aprobadas.length ?  
                                                             <div className="rightFinance">
-                                                                {console.log(embudo.aprobadas)} 
                                                                 <span>Hasta el momento</span>
                                                                 <h1>{new Intl.NumberFormat('es-CO', {currency: 'COP'}).format(embudo.aprobadas.reduce((acumulador, valorActual) => acumulador + (Number(valorActual.bruto) - Number(valorActual.descuento)), 0)) } <span>COP</span></h1>
                                                                 <h3>{embudo.aprobadas.length} Cotizaciones aprobadas</h3>

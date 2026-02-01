@@ -1813,6 +1813,58 @@
                         transition: .3s;
                         position:relative;
                         
+                        .mensajeRecibido{
+                            width: 100%;
+                            padding: 0 20px;
+                            box-sizing: border-box;
+                            display: flex;
+                            justify-content: flex-start;
+                            margin-top: 80px;
+                            margin-bottom: 15px;
+                            position: absolute;
+                            z-index: 1;
+                            .mensajeContent{
+                                max-width: 75%;
+                                min-width: 120px;
+                                background-color: #dcf8c6;
+                                padding: 8px 12px 9px 9px;
+                                border-radius: 7.5px 7.5px 7.5px 0;
+                                box-sizing: border-box;
+                                box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+                                position: relative;
+                                &::before{
+                                    content: '';
+                                    position: absolute;
+                                    left: -8px;
+                                    bottom: 0;
+                                    width: 0;
+                                    height: 0;
+                                    border-style: solid;
+                                    border-width: 0 8px 13px 0;
+                                    border-color: transparent #dcf8c6 transparent transparent;
+                                }
+                                .mensajeTexto{
+                                    font-size: 14.2px;
+                                    color: #111b21;
+                                    line-height: 1.28;
+                                    word-wrap: break-word;
+                                    white-space: pre-wrap;
+                                    display: block;
+                                    margin: 0;
+                                    padding-right: 50px;
+                                }
+                                .mensajeHora{
+                                    position: absolute;
+                                    bottom: 4px;
+                                    right: 7px;
+                                    font-size: 11px;
+                                    color: #667781;
+                                    white-space: nowrap;
+                                    display: inline-block;
+                                }
+                            }
+                        }
+                        
                         .nubeOptions{
                             position:absolute;
                             right:0;
