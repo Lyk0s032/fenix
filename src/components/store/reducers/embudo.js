@@ -11,6 +11,9 @@ const initialState = {
     prospectos: null,
     loadingProspectos: false,
 
+    prospectosPanel: null,
+    loadingProspectosPanel: false,
+
     contactos: null, 
     loadingContactos: false,
 
@@ -81,6 +84,19 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loadingProspectos: action.payload
+            }
+        }
+        case types.GET_PROSPECTOS_PANEL: {
+            return {
+                ...state,
+                prospectosPanel: action.payload,
+                loadingProspectosPanel: false
+            }
+        }
+        case types.GETTING_PROSPECTOS_PANEL: {
+            return {
+                ...state,
+                loadingProspectosPanel: action.payload
             }
         }
 

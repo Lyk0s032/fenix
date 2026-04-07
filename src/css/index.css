@@ -1141,6 +1141,8 @@ body {
   width: 100%;
   box-sizing: border-box;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .embudo .containerEmbudo .visualizacionEmbudo .pestanaEmbudo .containerPestanaEmbudo {
   width: 100%;

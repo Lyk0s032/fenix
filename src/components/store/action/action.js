@@ -168,6 +168,48 @@ export function axiosToGetProspectos(carga){
     }
 }
 
+// PANEL DE PROSPECTOS — getAllWithData con filtros
+export function getProspectosPanel(data) {
+    return {
+        type: types.GET_PROSPECTOS_PANEL,
+        payload: data
+    }
+}
+export function gettingProspectosPanel(carga) {
+    return {
+        type: types.GETTING_PROSPECTOS_PANEL,
+        payload: carga
+    }
+}
+
+/**
+ * Carga prospectos del endpoint /api/prospecto/getAllWithData
+ * @param {Object} filters - { desde, hasta, fuenteId, venta, asesorAsignado, valorCotizadoMin, valorCotizadoMax }
+ */
+export function axiosGetProspectosPanel(filters = {}) {
+    return function(dispatch) {
+        dispatch(gettingProspectosPanel(true));
+
+        const params = new URLSearchParams();
+        if (filters.desde)              params.set('desde',            filters.desde);
+        if (filters.hasta)              params.set('hasta',            filters.hasta);
+        if (filters.fuenteId)           params.set('fuenteId',         filters.fuenteId);
+        if (filters.venta !== '' && filters.venta !== undefined && filters.venta !== null)
+                                        params.set('venta',            filters.venta);
+        if (filters.asesorAsignado)     params.set('asesorAsignado',   filters.asesorAsignado);
+        if (filters.valorCotizadoMin)   params.set('valorCotizadoMin', filters.valorCotizadoMin);
+        if (filters.valorCotizadoMax)   params.set('valorCotizadoMax', filters.valorCotizadoMax);
+
+        const query = params.toString();
+        axios.get(`/api/prospecto/getAllWithData${query ? `?${query}` : ''}`)
+            .then(res => dispatch(getProspectosPanel(res.data)))
+            .catch(e => {
+                if (e.request) dispatch(getProspectosPanel('notrequest'));
+                else           dispatch(getProspectosPanel(404));
+            });
+    }
+}
+
 // LLAMADAS
 export function getContactos(data){
     return {

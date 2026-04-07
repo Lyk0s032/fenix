@@ -11,6 +11,7 @@ import ProspectosEmbudo from './routeEmbudo/prospectos';
 import CotizacionesEmbudo from './routeEmbudo/cotizaciones';
 import CotizacionesPanel from './routeEmbudo/cotizaciones/visualizar';
 import AprobadasEmbudo from './routeEmbudo/aprobadas';
+import NewProspectosEmbudo from './routeEmbudo/newProspectos/panelProspectos';
 
 export default function RouteEmbudo(props){
     const user = props.user;
@@ -63,7 +64,8 @@ export default function RouteEmbudo(props){
                                     <Route path="/*" element={<ContactoEmbudo contactos={contactos}/>} />
                                     <Route path="/visitas/*" element={<VisitaEmbudo />} />
                                     <Route path="/cotizaciones/*" element={<CotizacionesEmbudo />} />
-                                    <Route path="/prospectos/*" element={<ProspectosEmbudo />} />
+                                    {/* <Route path="/prospectos/*" element={<ProspectosEmbudo />} /> */}
+                                    <Route path="/prospectos/*" element={<NewProspectosEmbudo />} />
                                     <Route path="/aprobadas/*" element={<AprobadasEmbudo />} />
                                 </Routes>
 
