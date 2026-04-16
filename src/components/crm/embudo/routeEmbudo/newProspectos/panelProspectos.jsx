@@ -3,7 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import {
     MdLocalPhone, MdDragIndicator,
-    MdClose, MdRefresh, MdSearch, MdCheck, MdErrorOutline
+    MdClose, MdRefresh, MdSearch, MdCheck, MdErrorOutline, MdAdd
 } from 'react-icons/md';
 import { BsLayoutThreeColumns, BsFunnelFill } from 'react-icons/bs';
 import { useSearchParams } from 'react-router-dom';
@@ -76,10 +76,18 @@ const mapProspectos = (lista, asesores = []) =>
     lista.map((p, i) => {
         const dp = p.dataProspect || {};
         const fechaRaw = p.createdAt || p.fecha || '';
-        const fecha    = fechaRaw ? fechaRaw.split('T')[0] : '';
-        const horaRaw  = fechaRaw && fechaRaw.includes('T')
-            ? fechaRaw.split('T')[1].substring(0, 5)
-            : (dp.hora || p.hora || '');
+        
+        // Convertir a zona horaria local y extraer fecha/hora
+        let fecha = '';
+        let horaRaw = '';
+        
+        if (fechaRaw) {
+            const localDate = dayjs(fechaRaw);
+            fecha = localDate.format('YYYY-MM-DD');
+            horaRaw = localDate.format('HH:mm');
+        } else if (dp.hora || p.hora) {
+            horaRaw = dp.hora || p.hora || '';
+        }
 
         return {
             _idx:            i,
@@ -176,6 +184,8 @@ export default function NewProspectosEmbudo() {
     /** Modal de "Llamar después" */
     const [laterModal, setLaterModal] = useState(null); // { rowIdx, row }
     const [laterForm,  setLaterForm]  = useState({ time: '', hour: '16:00', note: '' });
+    /** Fila temporal nueva */
+    const [newRowTemp, setNewRowTemp] = useState(null);
 
     /** Menú de tres puntos por fila */
     const [activeMenu, setActiveMenu] = useState(null); // { rowIdx, row, x, y }
@@ -185,6 +195,7 @@ export default function NewProspectosEmbudo() {
     const inputRef    = useRef(null);
     const colPanelRef = useRef(null);
     const debounceRef = useRef(null);
+    const saveNewRef  = useRef(null);
 
     /* ── Carga inicial ── */
     useEffect(() => {
@@ -195,16 +206,24 @@ export default function NewProspectosEmbudo() {
     /* ── Sync Redux → tableData ── */
     useEffect(() => {
         if (prospectosPanel && Array.isArray(prospectosPanel)) {
-            setTableData(mapProspectos(prospectosPanel, asesores));
+            const mapped = mapProspectos(prospectosPanel, asesores);
+            // Si hay una fila temporal nueva, agregarla al inicio
+            if (newRowTemp) {
+                setTableData([newRowTemp, ...mapped]);
+            } else {
+                setTableData(mapped);
+            }
         }
-    }, [prospectosPanel, asesores]);
+    }, [prospectosPanel, asesores, newRowTemp]);
 
     /* ── Re-resolver asesores cuando llegue la lista ── */
     useEffect(() => {
         if (asesores.length && tableData.length) {
-            setTableData(prev => prev.map(r => ({
-                ...r, asesor: resolveAsesor(r._asesorId, asesores),
-            })));
+            setTableData(prev => prev.map(r => {
+                // No actualizar la fila temporal nueva
+                if (r._isNew) return r;
+                return { ...r, asesor: resolveAsesor(r._asesorId, asesores) };
+            }));
         }
     }, [asesores]);
 
@@ -269,6 +288,147 @@ export default function NewProspectosEmbudo() {
         }
     }, []);
 
+    /* ─── Actualizar datos básicos del prospecto (nombre, teléfono, fuente) ── */
+    const updateProspectoBasicData = useCallback(async (rowIdx, updatedRow, fieldChanged) => {
+        const prospectoId = updatedRow._id;
+        
+        // No actualizar filas nuevas sin guardar
+        if (updatedRow._isNew && updatedRow._isUnsaved) return;
+
+        const body = {};
+        if (fieldChanged === 'empresa') {
+            body.nombreEmpresa = updatedRow.empresa || null;
+            body.nombrePersona = updatedRow.empresa || null;
+        }
+        if (fieldChanged === 'whatsapp') {
+            body.telefono = updatedRow.whatsapp || null;
+        }
+        if (fieldChanged === 'fuente') {
+            const fuenteObj = fuentes.find(f => f.nombre === updatedRow.fuente);
+            body.fuente = fuenteObj?.id || null;
+        }
+
+        if (Object.keys(body).length === 0) return;
+
+        setRowStatus(prev => ({ ...prev, [rowIdx]: 'saving' }));
+        try {
+            await axios.put(`/api/prospecto/update/${prospectoId}`, body);
+            setRowStatus(prev => ({ ...prev, [rowIdx]: 'ok' }));
+            setTimeout(() => setRowStatus(prev => {
+                const n = { ...prev };
+                delete n[rowIdx];
+                return n;
+            }), 2500);
+        } catch (error) {
+            console.error('Error al actualizar prospecto:', error);
+            setRowStatus(prev => ({ ...prev, [rowIdx]: 'error' }));
+            setTimeout(() => setRowStatus(prev => {
+                const n = { ...prev };
+                delete n[rowIdx];
+                return n;
+            }), 4000);
+        }
+    }, [fuentes]);
+
+    /* ─── Acciones de trazabilidad: Contestó / No contestó / Llamar después ── */
+
+    /** Crear nuevo prospecto vacío */
+    const handleAddNewProspecto = useCallback(() => {
+        const tempId = `temp_${Date.now()}`;
+        const newRow = {
+            _idx: -1,
+            _id: tempId,
+            _asesorId: null,
+            _hasDataProspect: false,
+            _calendaries: [],
+            _activeCalendaryId: null,
+            _isNew: true,
+            _isUnsaved: true,
+            state: 'intento 1',
+            fecha: dayjs().format('YYYY-MM-DD'),
+            hora: dayjs().format('HH:mm'),
+            empresa: '',
+            whatsapp: '',
+            fuente: '',
+            categoriaProducto: '',
+            referenciaProducto: '',
+            seRealizoVenta: '',
+            valorVentaIva: '',
+            cotizacion: '',
+            valorCotizacion: '',
+            asesor: '',
+            motivoRechazo: '',
+        };
+        setNewRowTemp(newRow);
+        // dispatch(actions.HandleAlerta('Nueva fila agregada. Completa nombre y WhatsApp, luego presiona Enter en WhatsApp para guardar', 'positive'));
+    }, [dispatch]);
+
+    /** Guardar nuevo prospecto en el backend */
+    const saveNewProspecto = useCallback(async (row) => {
+        // Validación básica
+        if (!row.empresa || !row.whatsapp) {
+            dispatch(actions.HandleAlerta('Ingresa al menos el nombre/empresa y teléfono', 'negative'));
+            return false;
+        }
+
+        // Verificar si ya se está guardando (evitar duplicados)
+        if (rowStatus[0] === 'saving') {
+            console.log('Ya se está guardando, evitando duplicado');
+            return false;
+        }
+
+        setRowStatus(prev => ({ ...prev, 0: 'saving' }));
+        try {
+            const body = {
+                nombreEmpresa: row.empresa || null,
+                namePersona: row.empresa || null,
+                phone: row.whatsapp || null,
+                email: null,
+                type: 'empresa',
+                cargo: 'gerente',
+                url: null,
+                direccion: null,
+                fijo: null,
+                city: null,
+                fuenteId: fuentes.find(f => f.nombre === row.fuente)?.id || null,
+            };
+
+            const response = await axios.post('/api/prospecto/create', body);
+            const newProspecto = response.data;
+
+            // Si tiene datos de dataProspect, crearlos
+            if (row.categoriaProducto || row.referenciaProducto || row.seRealizoVenta || 
+                row.valorVentaIva || row.cotizacion || row.valorCotizacion || row.motivoRechazo) {
+                const dpBody = buildBody(row);
+                await axios.post('/api/data-prospect/create', { prospectoId: newProspecto.id, ...dpBody });
+            }
+
+            setRowStatus(prev => ({ ...prev, 0: 'ok' }));
+            // dispatch(actions.HandleAlerta('Prospecto creado con éxito', 'positive'));
+            
+            // Limpiar fila temporal y recargar datos
+            setNewRowTemp(null);
+            dispatch(actions.axiosGetProspectosPanel(filters));
+
+            setTimeout(() => setRowStatus(prev => {
+                const n = { ...prev };
+                delete n[0];
+                return n;
+            }), 2500);
+
+            return true;
+        } catch (error) {
+            setRowStatus(prev => ({ ...prev, 0: 'error' }));
+            dispatch(actions.HandleAlerta('Error al crear el prospecto', 'negative'));
+            setTimeout(() => setRowStatus(prev => {
+                const n = { ...prev };
+                delete n[0];
+                return n;
+            }), 4000);
+            return false;
+        }
+    }, [fuentes, filters, dispatch, rowStatus]);
+
     /* ─── Acciones de trazabilidad: Contestó / No contestó / Llamar después ── */
 
     /** No contestó → PUT /api/prospecto/dontCall (avanza intento) */
@@ -292,7 +452,7 @@ export default function NewProspectosEmbudo() {
                 prospectoId,
                 userId:      user?.id,
                 time:        dayjs().format('YYYY-MM-DD'),
-                hour:        '4:00PM',
+                hour:        dayjs().format('HH:mm'),
             });
             dispatch(actions.HandleAlerta('No contestó — próxima llamada en 3 días', 'positive'));
             dispatch(actions.axiosGetProspectosPanel(filters));
@@ -390,26 +550,76 @@ export default function NewProspectosEmbudo() {
     const stopEdit  = () => setEditingCell(null);
 
     /**
-     * Confirma el valor editado.
+     * Actualiza el valor en el estado local sin guardar (para cuando el usuario está escribiendo)
+     */
+    const updateCellValue = useCallback((rowIdx, colKey, value, extra = {}) => {
+        setTableData(prev => prev.map((row, i) => {
+            if (i !== rowIdx) return row;
+            return { ...row, [colKey]: value, ...extra };
+        }));
+    }, []);
+
+    /**
+     * Confirma el valor editado y lo guarda si es necesario.
      * Para columnas de dataProspect llama al API.
+     * Para columnas básicas (empresa, whatsapp, fuente) también llama al API.
      * Para la columna asesor también actualiza _asesorId.
      */
     const commitEdit = useCallback((rowIdx, colKey, value, extra = {}) => {
+        // Primero actualizar el valor
         setTableData(prev => {
             const updated = prev.map((row, i) => {
                 if (i !== rowIdx) return row;
                 return { ...row, [colKey]: value, ...extra };
             });
             const updatedRow = updated[rowIdx];
-            if (DATA_PROSPECT_COLS.has(colKey)) {
+            
+            // Para filas existentes con dataProspect, guardar normalmente
+            if (!updatedRow._isNew && DATA_PROSPECT_COLS.has(colKey)) {
                 saveDataProspect(rowIdx, updatedRow);
             }
+            
+            // Para filas existentes, actualizar datos básicos del prospecto
+            if (!updatedRow._isNew && ['empresa', 'whatsapp', 'fuente'].includes(colKey)) {
+                updateProspectoBasicData(rowIdx, updatedRow, colKey);
+            }
+            
             return updated;
         });
-    }, [saveDataProspect]);
+    }, [saveDataProspect, updateProspectoBasicData]);
 
-    const handleCellKey = (e, rowIdx, colKey) => {
-        if (e.key === 'Escape' || e.key === 'Enter') { stopEdit(); return; }
+    const handleCellKey = useCallback((e, rowIdx, colKey) => {
+        if (e.key === 'Escape') { 
+            stopEdit(); 
+            return; 
+        }
+        
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const row = tableData[rowIdx];
+            
+            // Si es una fila nueva y está en cualquiera de los campos principales, intentar guardar
+            if (row._isNew && row._isUnsaved && ['empresa', 'whatsapp', 'fuente'].includes(colKey)) {
+                if (row.empresa && row.whatsapp) {
+                    stopEdit();
+                    saveNewProspecto(row);
+                    return;
+                } else {
+                    dispatch(actions.HandleAlerta('Completa el nombre/empresa y teléfono para guardar', 'negative'));
+                    return;
+                }
+            }
+            
+            // Si es una fila existente y está editando campos básicos, guardar
+            if (!row._isNew && ['empresa', 'whatsapp'].includes(colKey)) {
+                const currentValue = row[colKey];
+                commitEdit(rowIdx, colKey, currentValue);
+            }
+            
+            stopEdit();
+            return;
+        }
+        
         if (e.key === 'Tab') {
             e.preventDefault();
             stopEdit();
@@ -417,7 +627,7 @@ export default function NewProspectosEmbudo() {
             const next = visibleCols[ci + 1];
             if (next) startEdit(rowIdx, next.key);
         }
-    };
+    }, [tableData, visibleCols, saveNewProspecto, dispatch, commitEdit]);
 
     /* ── Drag & drop columnas ── */
     const onDragStart = (e, idx) => { dragColRef.current = idx; e.dataTransfer.effectAllowed = 'move'; };
@@ -451,14 +661,32 @@ export default function NewProspectosEmbudo() {
     const renderCell = (row, globalIdx, col) => {
         const isEditing = editingCell?.rowIdx === globalIdx && editingCell?.colKey === col.key;
         const val       = row[col.key] ?? '';
+        const isNewRow  = row._isNew;
 
         /* ── Modo edición ── */
         if (isEditing) {
+            /* Select de fuente */
+            if (col.key === 'fuente') {
+                return (
+                    <select ref={inputRef} value={val}
+                        onChange={e => {
+                            updateCellValue(globalIdx, col.key, e.target.value);
+                            commitEdit(globalIdx, col.key, e.target.value);
+                        }}
+                        onBlur={stopEdit} style={S.input}>
+                        <option value="">— seleccionar fuente —</option>
+                        {fuentes.map(f => <option key={f.id} value={f.nombre}>{f.nombre}</option>)}
+                    </select>
+                );
+            }
             /* Select estándar (Sí/No) */
             if (col.type === 'select') {
                 return (
                     <select ref={inputRef} value={val}
-                        onChange={e => commitEdit(globalIdx, col.key, e.target.value)}
+                        onChange={e => {
+                            updateCellValue(globalIdx, col.key, e.target.value);
+                            commitEdit(globalIdx, col.key, e.target.value);
+                        }}
                         onBlur={stopEdit} style={S.input}>
                         <option value="">— seleccionar —</option>
                         {col.options.map(o => <option key={o} value={o}>{o}</option>)}
@@ -472,6 +700,7 @@ export default function NewProspectosEmbudo() {
                         onChange={e => {
                             const id     = e.target.value;
                             const nombre = resolveAsesor(id, asesores);
+                            updateCellValue(globalIdx, col.key, nombre, { _asesorId: id ? Number(id) : null });
                             commitEdit(globalIdx, col.key, nombre, { _asesorId: id ? Number(id) : null });
                         }}
                         onBlur={stopEdit} style={S.input}>
@@ -488,8 +717,11 @@ export default function NewProspectosEmbudo() {
             if (col.type === 'time') {
                 return (
                     <input ref={inputRef} type="time" value={val}
-                        onChange={e => commitEdit(globalIdx, col.key, e.target.value)}
-                        onBlur={stopEdit}
+                        onChange={e => updateCellValue(globalIdx, col.key, e.target.value)}
+                        onBlur={() => {
+                            commitEdit(globalIdx, col.key, val);
+                            stopEdit();
+                        }}
                         onKeyDown={e => handleCellKey(e, globalIdx, col.key)}
                         style={S.input} />
                 );
@@ -498,8 +730,11 @@ export default function NewProspectosEmbudo() {
             const inputType = col.type === 'money' ? 'number' : col.type === 'date' ? 'date' : 'text';
             return (
                 <input ref={inputRef} type={inputType} value={val}
-                    onChange={e => commitEdit(globalIdx, col.key, e.target.value)}
-                    onBlur={stopEdit}
+                    onChange={e => updateCellValue(globalIdx, col.key, e.target.value)}
+                    onBlur={() => {
+                        commitEdit(globalIdx, col.key, val);
+                        stopEdit();
+                    }}
                     onKeyDown={e => handleCellKey(e, globalIdx, col.key)}
                     style={S.input} placeholder="Escribir…" />
             );
@@ -511,6 +746,11 @@ export default function NewProspectosEmbudo() {
         if ((col.key === 'seRealizoVenta' || col.key === 'cotizacion') && val) {
             const ok = val === 'Sí';
             return <span style={{ ...S.chip, ...(ok ? S.chipGreen : S.chipRed) }}>{val}</span>;
+        }
+
+        /* Indicador visual para filas nuevas sin datos */
+        if (isNewRow && !val && (col.key === 'empresa' || col.key === 'whatsapp')) {
+            return <span style={{ ...S.placeholder, fontStyle: 'italic', color: '#F59E0B' }}>Click para editar</span>;
         }
 
         const display = displayValue(col, val);
@@ -558,6 +798,11 @@ export default function NewProspectosEmbudo() {
                     </div>
 
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <button style={S.addBtn} onClick={handleAddNewProspecto} title="Agregar nuevo prospecto">
+                            <MdAdd size={16} />
+                            <span style={{ marginLeft: 3 }}>Nuevo</span>
+                        </button>
+
                         <button style={{ ...S.toolBtn, ...(showFilters ? S.toolBtnActive : {}) }}
                             onClick={() => setShowFilters(v => !v)}>
                             <BsFunnelFill size={13} />
@@ -766,9 +1011,15 @@ export default function NewProspectosEmbudo() {
                                     const gi         = tableData.indexOf(row);
                                     const isSelected = selectedRows.has(di);
                                     const st         = rowStatus[gi];
+                                    const isNewRow   = row._isNew;
                                     return (
                                         <tr key={row._id ?? di}
-                                            style={{ background: isSelected ? '#EEF2FF' : di % 2 === 0 ? '#fff' : '#F9FAFB' }}
+                                            style={{ 
+                                                background: isNewRow ? '#FFF9E6' : 
+                                                            isSelected ? '#EEF2FF' : 
+                                                            di % 2 === 0 ? '#fff' : '#F9FAFB',
+                                                borderLeft: isNewRow ? '3px solid #F59E0B' : 'none'
+                                            }}
                                             className="excelRow">
                                             <td style={{ ...S.tdNum, position: 'relative' }}>
                                                 <input type="checkbox" checked={isSelected}
@@ -795,7 +1046,7 @@ export default function NewProspectosEmbudo() {
                                                     )}
 
                                                     {/* Tres puntos — solo para intentos activos */}
-                                                    {CALL_STATES.has(row.state) && (
+                                                    {CALL_STATES.has(row.state) && !isNewRow && (
                                                         actionLoadingRow === gi ? (
                                                             <span style={{ color: '#94a3b8', fontSize: 11, fontStyle: 'italic' }}>…</span>
                                                         ) : (
@@ -936,9 +1187,9 @@ export default function NewProspectosEmbudo() {
                                     <select style={{ ...S.filterInput, width: '100%', marginTop: 4 }}
                                         value={laterForm.hour}
                                         onChange={e => setLaterForm(f => ({ ...f, hour: e.target.value }))}>
-                                        <option value="7:00">7:00 AM</option>
-                                        <option value="8:00">8:00 AM</option>
-                                        <option value="9:00">9:00 AM</option>
+                                        <option value="07:00">7:00 AM</option>
+                                        <option value="08:00">8:00 AM</option>
+                                        <option value="09:00">9:00 AM</option>
                                         <option value="10:00">10:00 AM</option>
                                         <option value="11:00">11:00 AM</option>
                                         <option value="12:00">12:00 PM</option>
@@ -1018,6 +1269,11 @@ const S = {
         display: 'inline-flex', alignItems: 'center', padding: '5px 11px',
         border: '1px solid #e2e8f0', borderRadius: 7, background: '#fff', cursor: 'pointer',
         fontSize: 12, color: '#475569', fontWeight: 500, transition: 'all .15s',
+    },
+    addBtn: {
+        display: 'inline-flex', alignItems: 'center', padding: '5px 11px',
+        border: '1px solid #16A34A', borderRadius: 7, background: '#16A34A', cursor: 'pointer',
+        fontSize: 12, color: '#fff', fontWeight: 600, transition: 'all .15s',
     },
     toolBtnActive: { background: '#EEF2FF', borderColor: '#3864f3', color: '#3864f3' },
     btnBadge: { marginLeft: 5, background: '#3864f3', color: '#fff', borderRadius: 10, padding: '0 6px', fontSize: 10, fontWeight: 700 },

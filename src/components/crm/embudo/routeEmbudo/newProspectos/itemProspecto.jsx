@@ -23,7 +23,7 @@ export default function ItemProspecto({ item, userId, filters = {} }) {
     
     const [activeMenu, setActiveMenu] = useState(false);
     const [showLaterModal, setShowLaterModal] = useState(false);
-    const [laterForm, setLaterForm] = useState({ time: '', hour: '16:00', note: '' });
+    const [laterForm,  setLaterForm]  = useState({ time: '', hour: '16:00', note: '' });
     const [loading, setLoading] = useState(false);
     const menuRef = useRef(null);
 
@@ -92,7 +92,7 @@ export default function ItemProspecto({ item, userId, filters = {} }) {
                 prospectoId: item.id || item._id,
                 userId: userId,
                 time: dayjs().format('YYYY-MM-DD'),
-                hour: '4:00PM',
+                hour: dayjs().format('HH:mm'),
             });
             dispatch(actions.HandleAlerta('No contestó — próxima llamada en 3 días', 'positive'));
             // Refrescar lista de prospectos
@@ -451,9 +451,9 @@ export default function ItemProspecto({ item, userId, filters = {} }) {
                                         value={laterForm.hour}
                                         onChange={(e) => setLaterForm(f => ({ ...f, hour: e.target.value }))}
                                     >
-                                        <option value="7:00">7:00 AM</option>
-                                        <option value="8:00">8:00 AM</option>
-                                        <option value="9:00">9:00 AM</option>
+                                        <option value="07:00">7:00 AM</option>
+                                        <option value="08:00">8:00 AM</option>
+                                        <option value="09:00">9:00 AM</option>
                                         <option value="10:00">10:00 AM</option>
                                         <option value="11:00">11:00 AM</option>
                                         <option value="12:00">12:00 PM</option>
