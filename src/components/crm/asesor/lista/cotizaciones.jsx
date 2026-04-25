@@ -15,11 +15,10 @@ export default function CotizacionesByUser(props){
     } 
 
     const open = (item) => {
-        dispatch(actions.getCotizacion(item))
-        dispatch(actions.axiosGetNotesCoti(item.id))
-        
-        closeCotizacion()
-    }
+        dispatch(actions.getCotizacion(item));
+        dispatch(actions.axiosToGetCotizacion(item.id, false));
+        closeCotizacion();
+    };
     return (
         <div className="listTable">
             <table>

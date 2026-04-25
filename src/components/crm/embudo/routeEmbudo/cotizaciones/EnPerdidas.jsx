@@ -5,7 +5,9 @@ import ItemEnPerdido from './itemPerdido';
 
 export default function EnPerdido(props){
     const data = props.data;
-    const perdido =  data.filter(ct => ct.state == 'perdido');
+    
+    // Filtrar por state (perdido)
+    const perdido = data.filter(ct => ct.state == 'perdido');
 
     return (
         <div className="containerInfoData">

@@ -3,7 +3,10 @@ import ItemEnDesarrollo from './itemEnDesarrollo';
 
 export default function EnDesarrollo(props){
     const data = props.data;
-    const desarrollo =  data.filter(ct => ct.state == 'desarrollo'); 
+    
+    // Filtrar por state (desarrollo)
+    const desarrollo = data.filter(ct => ct.state == 'desarrollo');
+    
     return (
         <div className="containerInfoData">
             <table>

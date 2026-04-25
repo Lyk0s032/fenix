@@ -11,7 +11,8 @@ export default function CotizacionSeeUser(){
     const embudo = useSelector(store => store.embudo);
     const usuario = useSelector(store => store.usuario);
     const user = usuario.user.user;
-    const { cotizacion, loadingCotizacion, notesCoti, loadingNotesCoti} = embudo;
+    const { cotizacion, loadingCotizacion } = embudo;
+    const noteCotizacionsList = actions.noteCotizacionsFromCotizacion(cotizacion);
 
     const [note, setNote] = useState(null);
 
@@ -36,7 +37,7 @@ export default function CotizacionSeeUser(){
         const sendNote = await axios.post('api/notes/addManual', body)
         .then((res) => {
             setNote('');
-            dispatch(actions.axiosGetNotesCoti(cotizacion.id, false));
+            dispatch(actions.axiosToGetCotizacion(cotizacion.id, false));
             dispatch(actions.HandleAlerta('Agregado con éxito', 'positive'));
             return true
         })
@@ -107,25 +108,20 @@ export default function CotizacionSeeUser(){
                                 <div className="history">
                                     <div className="getHistory">
                                         <div className="scrollHistory">
-                                            {console.log(notesCoti)}
                                             <div className="notes">
                                                     {
-                                                        !notesCoti || loadingNotesCoti ?
+                                                        loadingCotizacion ?
                                                             <h1>Cargando...</h1>
-                                                        : notesCoti == 404 ?
+                                                        : noteCotizacionsList.length === 0 ?
                                                             <h1>No hay notas</h1>
-                                                        : notesCoti && notesCoti.length ?
-                                                            notesCoti.map((c, i) => {
-                                                                return (
-                                                                    <div className="note" key={i+1}>
-                                                                        <span>{c.note}</span>
-                                                                        <div className="time">
-                                                                            <strong>14 de Abril del 2025</strong>
-                                                                        </div>
+                                                        : noteCotizacionsList.map((c, i) => (
+                                                                <div className="note" key={c.id != null ? String(c.id) : i}>
+                                                                    <span>{c.note}</span>
+                                                                    <div className="time">
+                                                                        <strong>14 de Abril del 2025</strong>
                                                                     </div>
-                                                                )
-                                                            })
-                                                        : null
+                                                                </div>
+                                                            ))
                                                     }
                                             </div>
                                         </div>

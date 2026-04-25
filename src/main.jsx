@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 
 axios.defaults.baseURL = 'https://comercialapi-production.up.railway.app/';
 // axios.defaults.baseURL = 'http://192.168.1.22:3002/';
-// axios.defaults.baseURL = 'http://192.168.1.3:3002';
+// axios.defaults.baseURL = 'http://192.168.1.108:3002';
 // axios.defaults.baseURL = 'http://192.168.1.108:3002';
  
 createRoot(document.getElementById('root')).render( 

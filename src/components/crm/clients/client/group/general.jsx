@@ -20,11 +20,10 @@ export default function GeneralUser(props){
     } 
     
     const open = (item) => {
-        dispatch(actions.getCotizacion(item))
-        dispatch(actions.axiosGetNotesCoti(item.id))
-        
-        closeCotizacion()
-    }
+        dispatch(actions.getCotizacion(item));
+        dispatch(actions.axiosToGetCotizacion(item.id, false));
+        closeCotizacion();
+    };
     return (
         <div className="containerGeneralUser">
             <div className="containerResultsUser">

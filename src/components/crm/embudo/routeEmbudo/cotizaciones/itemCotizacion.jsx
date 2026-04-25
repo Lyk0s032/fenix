@@ -9,11 +9,11 @@ export default function ItemCotizaciones(props){
     const dispatch = useDispatch();
     const [params, setParams] = useSearchParams();  
     const openCotizacion = () => {
-        dispatch(actions.getCotizacion(cotizacion))
-        dispatch(actions.axiosGetNotesCoti(cotizacion.id))
-        params.set('cotizacion','action')
+        dispatch(actions.getCotizacion(cotizacion));
+        dispatch(actions.axiosToGetCotizacion(cotizacion.id, false));
+        params.set('cotizacion','action');
         setParams(params);
-    }
+    };
     return (
         <tr onClick={() => {
             openCotizacion()

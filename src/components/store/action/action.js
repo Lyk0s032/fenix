@@ -440,7 +440,21 @@ export function AxiosGetAllEmbudo(user, carga){
     
 }
 
+/** Notas de cotización embebidas en el objeto devuelto por getById / lista. */
+export function noteCotizacionsFromCotizacion(cot) {
+    if (!cot || !Array.isArray(cot.noteCotizacions)) return [];
+    return cot.noteCotizacions;
+}
 
+/** Respuesta GET notas: el JSON trae el array en `noteCotizacions`. */
+export function normalizeNotesCotiPayload(data) {
+    if (data == null) return [];
+    if (Array.isArray(data)) return data;
+    const raw = data.noteCotizacions ?? data.noteCotizacion;
+    if (Array.isArray(raw)) return raw;
+    if (raw != null && typeof raw === 'object') return [raw];
+    return [];
+}
 
 export function getNotesCoti(data){
     return {
@@ -460,7 +474,7 @@ export function axiosGetNotesCoti(coti, carga){
         axios.get(`api/cotizacion/getNotes/notes/${coti}`)
         .then((info) => info.data)
         .then(inf => {
-            return dispatch(getNotesCoti(inf))
+            return dispatch(getNotesCoti(normalizeNotesCotiPayload(inf)))
         })
         .catch((e) => {
             if(e.request){

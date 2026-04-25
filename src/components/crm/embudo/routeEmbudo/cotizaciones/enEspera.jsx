@@ -4,7 +4,9 @@ import ItemEnEspera from './itemEspera';
 
 export default function EnEspera(props){
     const data = props.data;
-    const desarrollo =  data.filter(ct => ct.state == 'aplazado');
+    
+    // Filtrar por state (aplazado)
+    const desarrollo = data.filter(ct => ct.state == 'aplazado');
 
     return (
         <div className="containerInfoData">

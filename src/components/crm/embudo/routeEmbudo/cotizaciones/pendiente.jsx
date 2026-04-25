@@ -3,7 +3,20 @@ import ItemCotizaciones from './itemCotizacion';
 
 export default function Pendientes(props){
     const data = props.data;
-    const pendientes =  data.filter(ct => ct.state == 'pendiente'); 
+    const selectedEstado = props.selectedEstado;
+    
+    // Primero filtrar por state (pendiente)
+    let pendientes = data.filter(ct => ct.state == 'pendiente');
+    
+    // Luego aplicar filtro de estado si está seleccionado
+    if (selectedEstado !== null) {
+        if (selectedEstado === 'sin_enviar') {
+            pendientes = pendientes.filter(cot => !cot.estado || cot.estado === null);
+        } else {
+            pendientes = pendientes.filter(cot => cot.estado === selectedEstado);
+        }
+    }
+    
     return (
         <div className="containerInfoData">
             <table>
