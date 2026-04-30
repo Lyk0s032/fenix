@@ -38,12 +38,8 @@ export default function CotizacionesPanel(props){
     const embudo = useSelector(store => store.embudo);
     const { cotizacion, loadingCotizacion } = embudo;
     const noteCotizacionsList = actions.noteCotizacionsFromCotizacion(cotizacion);
-    useEffect(() => {
-        if(!cotizacion) {
-            params.delete('cotizacion')
-            setParams(params);
-        }
-    }, [])
+    // No limpiar ?cotizacion aquí al montar: el GET por id es async; si cotizacion
+    // aún es null, borrar el query desmontaba el panel (CSSTransition) antes de cargar.
     const calendary = cotizacion && cotizacion.calendaries && cotizacion.calendaries.length ? cotizacion.calendaries.find((it) => it.state == 'active') : null;
 
     
@@ -839,14 +835,14 @@ export default function CotizacionesPanel(props){
                                         <div className="topAbout">
                                             <div className="containerAbout">
                                                 <div className="asesor">
-                                                    <h3>{cotizacion.user.name}</h3>
-                                                    <span>Nro. {cotizacion.nro}</span><br />
-                                                    <span className='time'>{dayjs(cotizacion.fecha.split('T')[0]).format('DD [de] MMMM [del] YYYY')}</span>
+                                                    <h3>{cotizacion?.user?.name}</h3>
+                                                    <span>Nro. {cotizacion?.nro}</span><br />
+                                                    <span className='time'>{dayjs(cotizacion?.fecha?.split('T')[0]).format('DD [de] MMMM [del] YYYY')}</span>
                                                 </div>
                                                 <div className="asesor Reverse">
-                                                    <h3>{cotizacion.client.nombreEmpresa}</h3>
-                                                    <span>Nit. {cotizacion.nit}</span><br />
-                                                    <span className='time'>{cotizacion.state}</span>
+                                                    <h3>{cotizacion?.client?.nombreEmpresa}</h3>
+                                                    <span>Nit. {cotizacion?.nit}</span><br />
+                                                    <span className='time'>{cotizacion?.state}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -859,7 +855,7 @@ export default function CotizacionesPanel(props){
                                                         </div>
                                                         <div className="responseTable">
                                                             <h3 className='title'>
-                                                                {cotizacion.name}
+                                                                {cotizacion?.name}
                                                             </h3>
                                                         </div>
                                                     </div>

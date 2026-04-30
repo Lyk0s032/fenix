@@ -38,7 +38,7 @@ export default function AprobadasCotizaciones(props){
                     {
                         data && data.length ?
                         cotizacionesFiltradas.map((cotizacion, i) => (
-                            <ItemCotizaciones key={i + 1} cotizacion={cotizacion} />
+                            <ItemCotizaciones key={i+1} cotizacion={cotizacion} />
                         ))
                     : 
                         <div className="notFound">

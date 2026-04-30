@@ -299,6 +299,8 @@ export function axiosToGetCotizacion(cotizacionId, carga){
                     return dispatch(getCotizacion(404))
                     
                 }
+            }).finally(() => {
+                dispatch(gettingCotizacion(false))
             });
     }
 }

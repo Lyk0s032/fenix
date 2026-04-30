@@ -10,11 +10,14 @@ export default function Pendientes(props){
     
     // Luego aplicar filtro de estado si está seleccionado
     if (selectedEstado !== null) {
-        if (selectedEstado === 'sin_enviar') {
+        if (selectedEstado === 'sin_enviar' ) {
             pendientes = pendientes.filter(cot => !cot.estado || cot.estado === null);
         } else {
             pendientes = pendientes.filter(cot => cot.estado === selectedEstado);
         }
+    }else{
+        pendientes = pendientes.filter(cot => !cot.estado );
+
     }
     
     return (

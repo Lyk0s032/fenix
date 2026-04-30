@@ -595,7 +595,11 @@ export default function NewProspectosEmbudo() {
         if (e.key === 'Enter') {
             e.preventDefault();
             const row = tableData[rowIdx];
-            
+            if (!row) {
+                stopEdit();
+                return;
+            }
+
             // Si es una fila nueva y está en cualquiera de los campos principales, intentar guardar
             if (row._isNew && row._isUnsaved && ['empresa', 'whatsapp', 'fuente'].includes(colKey)) {
                 if (row.empresa && row.whatsapp) {
@@ -607,13 +611,26 @@ export default function NewProspectosEmbudo() {
                     return;
                 }
             }
-            
-            // Si es una fila existente y está editando campos básicos, guardar
-            if (!row._isNew && ['empresa', 'whatsapp'].includes(colKey)) {
-                const currentValue = row[colKey];
-                commitEdit(rowIdx, colKey, currentValue);
+
+            if (!row._isNew) {
+                const domEl = e.currentTarget;
+                const domVal = domEl?.value !== undefined ? domEl.value : undefined;
+
+                if (colKey === 'asesor') {
+                    const rawStr = domVal ?? String(row._asesorId ?? '');
+                    const parsed = rawStr === '' ? null : Number(rawStr);
+                    const idNum = parsed != null && Number.isFinite(parsed) ? parsed : null;
+                    const nombre = resolveAsesor(idNum, asesores);
+                    commitEdit(rowIdx, colKey, nombre, { _asesorId: idNum });
+                } else if (DATA_PROSPECT_COLS.has(colKey)) {
+                    const v = domVal !== undefined ? domVal : row[colKey];
+                    commitEdit(rowIdx, colKey, v);
+                } else if (['empresa', 'whatsapp', 'fuente'].includes(colKey)) {
+                    const v = domVal !== undefined ? domVal : row[colKey];
+                    commitEdit(rowIdx, colKey, v);
+                }
             }
-            
+
             stopEdit();
             return;
         }
@@ -625,7 +642,7 @@ export default function NewProspectosEmbudo() {
             const next = visibleCols[ci + 1];
             if (next) startEdit(rowIdx, next.key);
         }
-    }, [tableData, visibleCols, saveNewProspecto, dispatch, commitEdit]);
+    }, [tableData, visibleCols, saveNewProspecto, dispatch, commitEdit, asesores]);
 
     /* ── Drag & drop columnas ── */
     const onDragStart = (e, idx) => { dragColRef.current = idx; e.dataTransfer.effectAllowed = 'move'; };
@@ -716,8 +733,8 @@ export default function NewProspectosEmbudo() {
                 return (
                     <input ref={inputRef} type="time" value={val}
                         onChange={e => updateCellValue(globalIdx, col.key, e.target.value)}
-                        onBlur={() => {
-                            commitEdit(globalIdx, col.key, val);
+                        onBlur={(e) => {
+                            commitEdit(globalIdx, col.key, e.target.value);
                             stopEdit();
                         }}
                         onKeyDown={e => handleCellKey(e, globalIdx, col.key)}
@@ -729,8 +746,8 @@ export default function NewProspectosEmbudo() {
             return (
                 <input ref={inputRef} type={inputType} value={val}
                     onChange={e => updateCellValue(globalIdx, col.key, e.target.value)}
-                    onBlur={() => {
-                        commitEdit(globalIdx, col.key, val);
+                    onBlur={(e) => {
+                        commitEdit(globalIdx, col.key, e.target.value);
                         stopEdit();
                     }}
                     onKeyDown={e => handleCellKey(e, globalIdx, col.key)}
