@@ -7,6 +7,7 @@ import EnDesarrollo from './cotizaciones/enDesarrollo';
 import EnEspera from './cotizaciones/enEspera';
 import { useSelector } from 'react-redux';
 import EnPerdido from './cotizaciones/EnPerdidas';
+import DoingEmbudo from './doing/doing';
 
 export default function CotizacionesEmbudo(){
     const [params, setParams] = useSearchParams();
@@ -147,8 +148,9 @@ export default function CotizacionesEmbudo(){
                     <div className="containerTopPestana">
                         <div className="topTitleAndSearch">
                             <div className="containerAndSearch">
-                                <div className="titleDiv">
+                                <div className="titleDiv titleDivWithDoing">
                                     <h1>Cotizaciones</h1>
+                                    <DoingEmbudo />
                                 </div>
                                 <div className="searchDiv" ref={dropdownRef}>
                                     <div className="searchInputWrapper">

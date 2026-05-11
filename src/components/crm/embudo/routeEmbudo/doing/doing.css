@@ -1,0 +1,226 @@
+/* Panel pendientes “doing” — estilo hoja tipo Excel, scoped */
+
+.embudo .titleDiv.titleDivWithDoing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.doingCloudBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: 1px solid #c5d4e8;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #f8fbff 0%, #e8f0fa 100%);
+    color: #2c5282;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.doingCloudBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(44, 82, 130, 0.2);
+    border-color: #94b8e0;
+}
+
+.doingCloudBtn:active {
+    transform: translateY(0);
+}
+
+.doingCloudBtn .doingCloudIcon {
+    font-size: 22px;
+}
+
+.doingBackdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    z-index: 4500;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px 12px;
+    overflow-y: auto;
+}
+
+.doingModal {
+    margin-top: 4vh;
+    width: min(1100px, 100%);
+    max-height: min(88vh, 900px);
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #b4b4b4;
+    border-radius: 4px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.doingModalHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #d0d0d0;
+    background: linear-gradient(180deg, #f3f3f3 0%, #e8e8e8 100%);
+}
+
+.doingModalHeader h2 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.doingModalHeader p {
+    margin: 4px 0 0;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.doingModalClose {
+    flex-shrink: 0;
+    border: 1px solid #bbb;
+    background: #fff;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.doingModalClose:hover {
+    background: #f5f5f5;
+}
+
+.doingSheetToolbar {
+    padding: 8px 12px;
+    border-bottom: 1px solid #d0d0d0;
+    font-size: 0.75rem;
+    color: #444;
+    background: #fafafa;
+}
+
+.doingSheetWrap {
+    overflow: auto;
+    flex: 1;
+    min-height: 200px;
+}
+
+.doingSheet {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 13px;
+    background: #fff;
+}
+
+.doingSheet thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #e7e6e6;
+    border: 1px solid #bfbfbf;
+    padding: 6px 8px;
+    text-align: left;
+    font-weight: 600;
+    color: #222;
+    white-space: nowrap;
+}
+
+.doingSheet tbody td {
+    border: 1px solid #bfbfbf;
+    padding: 0;
+    vertical-align: middle;
+    background: #fff;
+}
+
+.doingSheet tbody tr:nth-child(even) td {
+    background: #f9f9f9;
+}
+
+.doingSheet tbody tr:hover td {
+    background: #fff9e6;
+}
+
+.doingCellInput {
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    padding: 6px 8px;
+    font-size: 13px;
+    font-family: inherit;
+    background: transparent;
+    color: #111;
+}
+
+.doingCellInput:focus {
+    outline: 2px solid #217346;
+    outline-offset: -2px;
+    background: #fff;
+}
+
+.doingCellInput:disabled {
+    color: #666;
+    cursor: not-allowed;
+}
+
+.doingCellStatic {
+    padding: 6px 8px;
+    word-break: break-word;
+}
+
+.doingCellActions {
+    padding: 4px 6px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.doingBtnPrimary {
+    border: 1px solid #217346;
+    background: #217346;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.doingBtnPrimary:hover:not(:disabled) {
+    background: #1a5c38;
+}
+
+.doingBtnPrimary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.doingNewRow td {
+    background: #e8f4ea !important;
+}
+
+.doingModalFooter {
+    padding: 10px 12px;
+    border-top: 1px solid #d0d0d0;
+    font-size: 0.75rem;
+    color: #555;
+    background: #fafafa;
+}
+
+.doingErrBanner {
+    margin: 8px 12px 0;
+    padding: 8px 10px;
+    background: #fdecea;
+    border: 1px solid #f5c2c0;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #842029;
+}
