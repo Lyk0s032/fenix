@@ -74,6 +74,8 @@ export default function CotizacionesPanel(props){
     const trazabilidadComposerRef = useRef(null);
     const cotizacionRootRef = useRef(null);
     const [trazabilidadAnchorEl, setTrazabilidadAnchorEl] = useState(null);
+    const [distribuidorActivo, setDistribuidorActivo] = useState(cotizacion?.distribuidor || false);
+    const [savingDistribuidor, setSavingDistribuidor] = useState(false);
 
     const notasTrazabilidadOrdenadas = useMemo(() => {
         let raw = [...actions.noteCotizacionsFromCotizacion(cotizacion)];
@@ -203,6 +205,12 @@ export default function CotizacionesPanel(props){
     }, [cotizacion?.id]);
 
     useEffect(() => {
+        if (cotizacion) {
+            setDistribuidorActivo(cotizacion.distribuidor || false);
+        }
+    }, [cotizacion?.id, cotizacion?.distribuidor]);
+
+    useEffect(() => {
         setTrazabilidadAbierta(false);
         setNotaTrazabilidad('');
         setTrazabilidadPendingNote(null);
@@ -296,6 +304,29 @@ export default function CotizacionesPanel(props){
             dispatch(actions.HandleAlerta(msg, 'mistake'));
         } finally {
             setNotaTrazabilidadSaving(false);
+        }
+    };
+
+    const toggleDistribuidor = async (nuevoValor) => {
+        if (!cotizacion?.id || savingDistribuidor) return;
+        setSavingDistribuidor(true);
+        try {
+            await axios.put('/api/cotizacion/distribuidor', {
+                cotizacionId: cotizacion.id,
+                distribuidor: nuevoValor,
+            });
+            setDistribuidorActivo(nuevoValor);
+            dispatch(actions.HandleAlerta(
+                nuevoValor ? 'Marcado como cotización de distribuidor' : 'Desmarcado como cotización de distribuidor',
+                'positive'
+            ));
+            dispatch(actions.getCotizacion({ ...cotizacion, distribuidor: nuevoValor }));
+            if (user?.id) dispatch(actions.AxiosGetAllEmbudo(user.id, false));
+        } catch (err) {
+            const msg = err?.response?.data?.msg || 'No se pudo actualizar el campo de distribuidor';
+            dispatch(actions.HandleAlerta(msg, 'mistake'));
+        } finally {
+            setSavingDistribuidor(false);
         }
     };
     // APLAZAR COTIZACIÓN
@@ -449,11 +480,27 @@ export default function CotizacionesPanel(props){
                                                 <MdAccessTime className="icon Wait" /><br />
                                                 <span className='Wait'>%%%</span>
                                             </button>
+
+                                            <div className="distributorToggleContainer">
+                                                <label className="distributorToggle">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={distribuidorActivo}
+                                                        disabled={savingDistribuidor}
+                                                        onChange={(e) => toggleDistribuidor(e.target.checked)}
+                                                    />
+                                                    <span className="distributorSlider"></span>
+                                                </label>
+                                                <span className="distributorLabel">
+                                                    {distribuidorActivo ? 'Distribuidor' : 'No distribuidor'}
+                                                </span>
+                                            </div>
                                         </div>
                                         <div className="edit">
-                                            <button style={{marginRight:20}} onClick={() => setOptions('message')}>
+                                            {/* Botón de mensajes oculto - Para activar, descomentar este bloque */}
+                                            {/* <button style={{marginRight:20}} onClick={() => setOptions('message')}>
                                                 <MdOutlineMessage className="icon"  />
-                                            </button>
+                                            </button> */}
                                             <button onClick={() => setOptions('edit')}>
                                                 <BsThreeDotsVertical className="icon"  />
                                             </button>

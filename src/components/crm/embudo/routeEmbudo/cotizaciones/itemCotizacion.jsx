@@ -14,6 +14,9 @@ export default function ItemCotizaciones(props){
         params.set('cotizacion','action');
         setParams(params);
     };
+    {
+        console.log('cotizacion', cotizacion);
+    }
     return (
         <tr onClick={() => {
             openCotizacion()

@@ -18,6 +18,7 @@ export default function CotizacionesEmbudo(){
     const [selectedClients, setSelectedClients] = useState([]);
     const [selectedEstado, setSelectedEstado] = useState(null);
     const [showClientDropdown, setShowClientDropdown] = useState(false);
+    const [tipoClienteFilter, setTipoClienteFilter] = useState('todas'); // 'todas', 'distribuidor', 'cliente_final'
     
     // Ref para el dropdown
     const dropdownRef = useRef(null);
@@ -102,11 +103,19 @@ export default function CotizacionesEmbudo(){
             );
         }
 
+        // Filtro por tipo de cliente (distribuidor/cliente final)
+        if (tipoClienteFilter === 'distribuidor') {
+            filtered = filtered.filter(cot => cot.distribuidor === true);
+        } else if (tipoClienteFilter === 'cliente_final') {
+            filtered = filtered.filter(cot => cot.distribuidor === false || cot.distribuidor === null || cot.distribuidor === undefined);
+        }
+        // Si es 'todas', no se aplica ningún filtro adicional
+
         // NOTA: El filtro por estado NO se aplica aquí
         // Se pasa como prop a los componentes hijos para que filtren dentro de su tab
 
         return filtered;
-    }, [cotizaciones, searchText, selectedClients, filteredClientsList, showClientDropdown]);
+    }, [cotizaciones, searchText, selectedClients, filteredClientsList, showClientDropdown, tipoClienteFilter]);
 
     // Agregar cliente a la selección
     const addClient = (client) => {
@@ -127,10 +136,11 @@ export default function CotizacionesEmbudo(){
         setSearchText('');
         setSelectedClients([]);
         setSelectedEstado(null);
+        setTipoClienteFilter('todas');
     };
 
     // Verificar si hay filtros activos (solo globales, no incluye estado)
-    const hasActiveFilters = searchText || selectedClients.length > 0;
+    const hasActiveFilters = searchText || selectedClients.length > 0 || tipoClienteFilter !== 'todas';
 
     // Estados disponibles para filtrar
     const estadosFilter = [
@@ -153,24 +163,39 @@ export default function CotizacionesEmbudo(){
                                     <DoingEmbudo />
                                 </div>
                                 <div className="searchDiv" ref={dropdownRef}>
-                                    <div className="searchInputWrapper">
-                                        <BsSearch className="searchIcon" />
-                                        <input 
-                                            type="text" 
-                                            placeholder='Buscar por nombre o cliente...'
-                                            value={searchText}
-                                            onChange={(e) => setSearchText(e.target.value)}
-                                            onFocus={() => setShowClientDropdown(true)}
-                                        />
-                                        {searchText && (
-                                            <BsX 
-                                                className="clearIcon" 
-                                                onClick={() => {
-                                                    setSearchText('');
-                                                    setShowClientDropdown(false);
-                                                }}
+                                    <div className="searchAndFilterWrapper">
+                                        <div className="searchInputWrapper">
+                                            <BsSearch className="searchIcon" />
+                                            <input 
+                                                type="text" 
+                                                placeholder='Buscar por nombre o cliente...'
+                                                value={searchText}
+                                                onChange={(e) => setSearchText(e.target.value)}
+                                                onFocus={() => setShowClientDropdown(true)}
                                             />
-                                        )}
+                                            {searchText && (
+                                                <BsX 
+                                                    className="clearIcon" 
+                                                    onClick={() => {
+                                                        setSearchText('');
+                                                        setShowClientDropdown(false);
+                                                    }}
+                                                />
+                                            )}
+                                        </div>
+                                        
+                                        {/* Filtro de tipo de cliente */}
+                                        <div className="tipoClienteFilter">
+                                            <select 
+                                                value={tipoClienteFilter} 
+                                                onChange={(e) => setTipoClienteFilter(e.target.value)}
+                                                className={`tipoClienteSelect ${tipoClienteFilter !== 'todas' ? 'active' : ''}`}
+                                            >
+                                                <option value="todas">Todas</option>
+                                                <option value="cliente_final">Cliente Final</option>
+                                                <option value="distribuidor">Distribuidor</option>
+                                            </select>
+                                        </div>
                                     </div>
 
                                     {/* Dropdown de clientes */}
